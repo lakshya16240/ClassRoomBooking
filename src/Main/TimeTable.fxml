@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--<?import com.gluonhq.charm.glisten.control.TextField?>-->
+
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="867.0" prefWidth="906.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.Controller">
+   <children>
+      <JFXTextArea layoutX="2.0" prefHeight="141.0" prefWidth="139.0" text="     &#10;MON">
+         <font>
+            <Font size="45.0" />
+         </font>
+      </JFXTextArea>
+      <JFXTextArea layoutY="141.0" prefHeight="141.0" prefWidth="139.0" text="&#10;TUE" wrapText="true">
+         <font>
+            <Font size="45.0" />
+         </font>
+      </JFXTextArea>
+      <JFXTextArea layoutY="282.0" prefHeight="141.0" prefWidth="139.0" text="&#10;WED">
+         <font>
+            <Font size="45.0" />
+         </font>
+      </JFXTextArea>
+      <JFXTextArea layoutY="434.0" prefHeight="141.0" prefWidth="139.0" text="&#10;THU">
+         <font>
+            <Font size="45.0" />
+         </font>
+      </JFXTextArea>
+      <JFXTextArea layoutY="575.0" prefHeight="141.0" prefWidth="139.0" text="&#10;FRI">
+         <font>
+            <Font size="45.0" />
+         </font>
+      </JFXTextArea>
+      <JFXTextArea layoutY="716.0" prefHeight="141.0" prefWidth="139.0" text="&#10;SAT">
+         <font>
+            <Font size="45.0" />
+         </font>
+      </JFXTextArea>
+      <TableView layoutX="116.0" prefHeight="867.0" prefWidth="793.0">
+        <columns>
+          <TableColumn prefWidth="90.0" text="9:00-10;00" />
+          <TableColumn prefWidth="102.0" text="10:00-11:00" />
+            <TableColumn prefWidth="99.0" text="11:00-12:00" />
+            <TableColumn prefWidth="88.0" text="12:00-1:00" />
+            <TableColumn text="1:00-2:00" />
+            <TableColumn prefWidth="85.0" text="2:00-3:00" />
+            <TableColumn minWidth="0.0" prefWidth="79.0" text="3:00-4:00" />
+            <TableColumn minWidth="0.0" prefWidth="86.0" text="4:00-5:00" />
+            <TableColumn prefWidth="81.0" text="5:00-6:00" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

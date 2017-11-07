@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="859.0" prefWidth="1227.0" style="-fx-background-image: #85C1E9;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.StudentController">
+   <children>
+      <ImageView fitHeight="867.0" fitWidth="1236.0" layoutX="-4.0" layoutY="-7.0" pickOnBounds="true">
+         <image>
+            <Image url="@../Images/1.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="133.0" fitWidth="322.0" pickOnBounds="true">
+         <image>
+            <Image url="@../Images/iiitd(1).jpg" />
+         </image>
+      </ImageView>
+      <JFXDrawer layoutY="130.0" prefHeight="729.0" prefWidth="322.0">
+         <children>
+            <VBox prefHeight="703.0" prefWidth="322.0" style="-fx-background-color: #21618C;">
+               <children>
+                  <JFXButton onAction="#displayCourses" prefHeight="132.0" prefWidth="322.0" style="-fx-background-color: #21618C;" text="My Courses" textFill="WHITE">
+                     <font>
+                        <Font size="27.0" />
+                     </font></JFXButton>
+                  <JFXButton onAction="#roomBooking" prefHeight="133.0" prefWidth="322.0" style="-fx-background-color: #21618C;" text="Room Booking" textFill="WHITE">
+                     <font>
+                        <Font size="27.0" />
+                     </font></JFXButton>
+                  <JFXButton onAction="#viewTimeTable" prefHeight="133.0" prefWidth="322.0" style="-fx-background-color: #21618C;" text="Time Table" textFill="WHITE">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton prefHeight="133.0" prefWidth="322.0" style="-fx-background-color: #21618C;" text="Search for Courses" textFill="WHITE">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </VBox>
+         </children>
+      </JFXDrawer>
+      <AnchorPane fx:id="studentPane" layoutX="324.0" layoutY="-1.0" prefHeight="867.0" prefWidth="906.0" />
+   </children>
+</AnchorPane>
