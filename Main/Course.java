@@ -9,12 +9,12 @@ public class Course implements Serializable{
     private String name;
     private String[] time;
     private String[] room;
-    private ArrayList<Course> preRequisites, postConditions;
+    private ArrayList<String> preRequisites, postConditions;
     private final int credits;
     private String instructor;
 
     
-    public Course(String type, String name, String code, String instructor, int credits, String[] time, String[] room, ArrayList<Course> preRequisites, ArrayList<Course> postConditions) {
+    public Course(String type, String name, String code, String instructor, int credits, String[] time, String[] room, ArrayList<String> preRequisites, ArrayList<String> postConditions) {
         this.type = type;
         this.name = name;
         this.code = code;
@@ -30,6 +30,11 @@ public class Course implements Serializable{
         String s ="type:" + type+  "course code:" + code+ " name: " + name + " credits: " + credits + " instructor: "+ instructor + " Monday: "+ time[0] + " Tuesday:"+ time[1] ;
         return (s);
     }
+
+    public ArrayList<String> getPostConditions() {
+        return postConditions;
+    }
+
     public String getName(){
         return name;
     }

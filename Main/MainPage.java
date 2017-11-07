@@ -3,6 +3,7 @@ package Main;
 import java.io.IOException;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -42,11 +43,14 @@ public class MainPage extends Application {
         stage.show();
     }
 
-    public static List<Course> readCSV() throws IOException {
+    public static List<Course> readCourseCSV() throws IOException {
+
         List<Course> courseinfo = new ArrayList<>();
 //        String pathToFile = "/Users/pc.csv"; 
 //        String pathToFile = "/Users/finalap.csv";
-        String pathToFile = "./src/finalap.csv";
+        String pathToFile = "./src/timetable.csv";
+
+        HashMap<String,ArrayList<String>> hashMapPC = readPostConditionsCSV();
 
         System.out.println(pathToFile + " path ");
         try (BufferedReader br = new BufferedReader(new FileReader(pathToFile))) {
@@ -58,15 +62,21 @@ public class MainPage extends Application {
                 String[] schedule = new String[5];
                 for (int i = 0; i < 5; i++) {
                     schedule[i] = attributes[6 + i];
-                    //System.out.println(schedule[i] + " " + attributes[6+i]);
+                    System.out.println("print it agaiinnn ::::::   " + schedule[i] + " " + attributes[6+i]);
                 }
-                courseinfo.add(new Course(attributes[0], attributes[1], attributes[2], attributes[3], Integer.valueOf(attributes[4]), schedule, null, null, null));
+                if(hashMapPC.containsKey(attributes[2])) {
+                    ArrayList<String> postConditions = hashMapPC.get(attributes[2]);
+                    for(int i=0;i<postConditions.size();i++){
+                        System.out.println(postConditions.get(i));
+                    }
+                    courseinfo.add(new Course(attributes[0], attributes[1], attributes[2], attributes[3], Integer.valueOf(attributes[4]), schedule, null, null, postConditions));
+                }
                 line = br.readLine();
 
                 for (int i = 0; i < 5; i++) {
                     if (!schedule[i].equals("-")) {
                         String[] timeAndVenue = schedule[i].split("\\$");
-
+                        System.out.println("haijajsjsojdajjaoidjiodojjodoiiiooisdjjjoid :::::::::: " + timeAndVenue[0]);
                         Admin.addBookings(timeAndVenue, i);
                     }
                 }
@@ -76,6 +86,38 @@ public class MainPage extends Application {
             ioe.printStackTrace();
         }
         return courseinfo;
+    }
+
+    public static HashMap<String,ArrayList<String>> readPostConditionsCSV() throws IOException{
+
+        ArrayList<String> postConditionsArrayList;
+        HashMap<String,ArrayList<String>> postConditionsHashMap = new HashMap<>();
+
+        String pathToFile = "./src/postConditions.csv";
+
+        try(BufferedReader br = new BufferedReader(new FileReader(pathToFile))){
+
+            //System.out.println("HSAIDJAJJDJIIAJIDAJIJIAJIDA");
+            String line  = br.readLine();
+            line = br.readLine();
+            while(line != null){
+                //System.out.println("hoaooslasllalloalloaloaojsajojdjdojaodjojad");
+                String[] attributes = line.split(",");
+
+                postConditionsArrayList = new ArrayList<>();
+                for(int i=0;i<5 && (3+i)<attributes.length;i++){
+                    //System.out.println("yolaa   " + attributes[3+i]);
+                    postConditionsArrayList.add(attributes[3+i]);
+                }
+
+                postConditionsHashMap.put(attributes[0],postConditionsArrayList);
+                line = br.readLine();
+            }
+
+        }
+
+        return postConditionsHashMap;
+
     }
 
     /**
@@ -91,10 +133,14 @@ public class MainPage extends Application {
 //        ArrayList<Integer> myarray = new ArrayList<Integer>();
      
         List<Course> courseinfo = new ArrayList<>();
-        courseinfo = readCSV();
+        courseinfo = readCourseCSV();
         for (int i = 0; i < courseinfo.size(); i++) {
             Course c = courseinfo.get(i);
             System.out.println(c);
+            ArrayList<String> pc = c.getPostConditions();
+            for(int j=0;j<pc.size();j++){
+                System.out.println(pc.get(j));
+            }
         }
 //        System.out.println("hello22");
 //                

@@ -29,6 +29,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import org.controlsfx.control.textfield.TextFields;
 
 import javafx.stage.Stage;
 
@@ -106,6 +107,9 @@ public class Control implements Initializable  {
     
     @FXML
     private Button tbutton1;
+
+    @FXML
+    private TextField searchCourses;
 //    @FXML javafx.scene.control.TableColumn tc1;
 //    @FXML javafx.scene.control.TableColumn tc2;
 //    @FXML javafx.scene.control.TableColumn tc3;
@@ -244,7 +248,7 @@ public class Control implements Initializable  {
         MainPage obj = new MainPage();
         List<Course> myList = new ArrayList<Course>();
         try {
-            myList = obj.readCSV();
+            myList = obj.readCourseCSV();
         } catch (IOException ex) {
             Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -312,6 +316,25 @@ public class Control implements Initializable  {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+
+        List<Course> courseList;
+        ArrayList<String> postConditionsList = new ArrayList<>();
+        try {
+            courseList = MainPage.readCourseCSV();
+            for(int i=0;i<courseList.size();i++){
+
+                Course course = courseList.get(i);
+                postConditionsList.addAll(course.getPostConditions());
+            }
+            String[] suggestedPostConditions = new String[postConditionsList.size()];
+            for(int i=0;i<postConditionsList.size();i++){
+                suggestedPostConditions[i] = postConditionsList.get(i);
+            }
+            TextFields.bindAutoCompletion(searchCourses,suggestedPostConditions);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 //                MainPage obj = new MainPage();
 //        List<Course> myList = new ArrayList<Course>();
 //        try {
