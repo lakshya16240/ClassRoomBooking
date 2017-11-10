@@ -1,8 +1,13 @@
 package Main;
 
-
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Room implements Serializable {
 
@@ -19,6 +24,42 @@ public class Room implements Serializable {
         this.bookings = new ArrayList<Requests>();
     }
 
+    public static void serializeRoom(HashMap<String, Room> rb) throws IOException {
+
+        ObjectOutputStream out = null;
+        try {
+//			System.out.println(p.getName());x` 
+            out = new ObjectOutputStream(new FileOutputStream("./src/" + "RoomData" + ".txt"));
+//			System.out.println("created");
+            out.writeObject(rb);
+        } finally {
+            out.close();
+        }
+    }
+
+    public static HashMap<String, Room> deserializeRoom() throws IOException, ClassNotFoundException {
+        System.out.println("deserializing");
+        ObjectInputStream in = null;
+        HashMap<String, Room> rb;
+        try {
+
+            in = new ObjectInputStream(new FileInputStream("./src/" + "RoomData" + ".txt"));
+            rb = (HashMap<String, Room>) in.readObject();
+            //			in.readObject();
+            return rb;
+        } finally {
+            in.close();
+        }
+    }
+    
+    public  void printAvailability(){
+        for (int i= 0 ; i < 7 ; i++){
+            for (int j=0;j<24;j++){
+                System.out.print(getAvailability()[j][i]+ " " );
+            }
+            System.out.println();
+        }
+    }
     public boolean[][] getAvailability() {
         return availability;
     }
@@ -27,7 +68,7 @@ public class Room implements Serializable {
         return bookings;
     }
 
-    public boolean IsAvailable(String time){
+    public boolean IsAvailable(String time) {
         return true;
     }
 }
