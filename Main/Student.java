@@ -10,11 +10,9 @@ public class Student extends User {
 
     Student(String name, String emailId, String password, String type) {
         super(name, emailId, password, type);
+        courses = new ArrayList<>();
     }
 
-//    Student(String name, String emailId, String password, String type) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
     public ArrayList<Course> viewCourses(){
         return courses;
     }
@@ -25,7 +23,6 @@ public class Student extends User {
 
     @Override
     public void CancelRoom(Room room) {
-
     }
 
     public TimeTable ViewTimeTable() {
@@ -36,7 +33,9 @@ public class Student extends User {
 //        return 
     }
 
-    public void AddCourses(Course course){
+    public void addCourses(Course course){
+
+        courses.add(course);
 
     }
 }

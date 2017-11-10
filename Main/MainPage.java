@@ -49,7 +49,7 @@ public class MainPage extends Application {
                 String[] schedule = new String[5];
                 for (int i = 0; i < 5; i++) {
                     schedule[i] = attributes[6 + i];
-                    System.out.println("print it agaiinnn ::::::   " + schedule[i] + " " + attributes[6+i]);
+                    //System.out.println("print it agaiinnn ::::::   " + schedule[i] + " " + attributes[6+i]);
                 }
                 if(hashMapPC.containsKey(attributes[2])) {
                     ArrayList<String> postConditions = hashMapPC.get(attributes[2]);
@@ -113,7 +113,7 @@ public class MainPage extends Application {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         College clgobj = deserialize("data");
         System.out.println();
-        
+
         Admin obj = (Admin) clgobj.getAllUsersMap().get("abhishek16126");
         System.out.println("after deserializing at start");
 
@@ -135,7 +135,7 @@ public class MainPage extends Application {
         Room RoomObj  = RoomData.get("C21");
         System.out.println("room data coming");
         RoomObj.printAvailability();
-        
+
 //        System.out.println("hello22");
 //                
 //        System.out.println("ABHISHEK");

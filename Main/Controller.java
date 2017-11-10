@@ -190,10 +190,10 @@ public class Controller implements Initializable {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StdntPage.fxml"));
                 root2 = (Parent) fxmlLoader.load();
 //                root2 = FXMLLoader.load(getClass().getResource("StdntPage.fxml"));
-                StudentController newcontroller = fxmlLoader.<StudentController>getController();
+                StudentController newcontroller = fxmlLoader.getController();
                 newcontroller.Test("Super");
                 newcontroller.Start((Student) obj);
-                                                                                                            
+
             } else if (clgobj.getAllUsersMap().get(email).getType().equals("Admin")) {
 //                root2 = FXMLLoader.load(getClass().getResource("AdminPage.fxml"));
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AdminPage.fxml"));
@@ -218,6 +218,7 @@ public class Controller implements Initializable {
             Stage stage = (Stage) LogIn.getScene().getWindow();
             stage.setScene(scene);
 
+
             stage.show();
 //            loginlabel.setText("hello");
         } else {
@@ -237,6 +238,11 @@ public class Controller implements Initializable {
         studentPane.getChildren().clear();
         studentPane.getChildren().add(newstudentPane);
     }
+
+
+
+
+
 //     @FXML
 //    void roomBooking(ActionEvent event) throws IOException{
 //        Pane newstudentPane = FXMLLoader.load(getClass().getResource("RoomBooking.fxml"));
@@ -267,7 +273,7 @@ public class Controller implements Initializable {
 //        Requests myreq = new Requests(date1, from_time, to_time, reason, "Student");
 //        Admin.addRequest(myreq);
 ////        System.out.println("new created abhishek");
-//       
+//
 //        ArrayList<Requests> allreq = new ArrayList<Requests>();
 //        allreq.add(myreq);
 ////        College.serialize();
