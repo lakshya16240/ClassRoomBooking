@@ -23,7 +23,6 @@ public class Student extends User {
 
     @Override
     public void CancelRoom(Room room) {
-
     }
 
     public TimeTable ViewTimeTable() {
