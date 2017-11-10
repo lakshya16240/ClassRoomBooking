@@ -62,7 +62,7 @@ public class MainPage extends Application {
                 String[] schedule = new String[5];
                 for (int i = 0; i < 5; i++) {
                     schedule[i] = attributes[6 + i];
-                    System.out.println("print it agaiinnn ::::::   " + schedule[i] + " " + attributes[6+i]);
+                    //System.out.println("print it agaiinnn ::::::   " + schedule[i] + " " + attributes[6+i]);
                 }
                 if(hashMapPC.containsKey(attributes[2])) {
                     ArrayList<String> postConditions = hashMapPC.get(attributes[2]);
@@ -76,7 +76,7 @@ public class MainPage extends Application {
                 for (int i = 0; i < 5; i++) {
                     if (!schedule[i].equals("-")) {
                         String[] timeAndVenue = schedule[i].split("\\$");
-                        System.out.println("haijajsjsojdajjaoidjiodojjodoiiiooisdjjjoid :::::::::: " + timeAndVenue[0]);
+                        //System.out.println("haijajsjsojdajjaoidjiodojjodoiiiooisdjjjoid :::::::::: " + timeAndVenue[0]);
                         Admin.addBookings(timeAndVenue, i);
                     }
                 }

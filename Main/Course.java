@@ -12,6 +12,7 @@ public class Course implements Serializable{
     private ArrayList<String> preRequisites, postConditions;
     private final int credits;
     private String instructor;
+    private String postConditionsString="";
 
     
     public Course(String type, String name, String code, String instructor, int credits, String[] time, String[] room, ArrayList<String> preRequisites, ArrayList<String> postConditions) {
@@ -31,10 +32,23 @@ public class Course implements Serializable{
         return (s);
     }
 
+    public void convertToString(ArrayList<String> postConditions){
+        postConditionsString="";
+        for(int i=0;i<postConditions.size();i++){
+            postConditionsString= postConditionsString.concat((i+1)+". "+postConditions.get(i) + "\n");
+        }
+
+        //System.out.println( "holaaa :  " + postConditionsString);
+    }
+
     public ArrayList<String> getPostConditions() {
         return postConditions;
     }
 
+
+    public String getPostConditionsString() {
+        return postConditionsString;
+    }
     public String getName(){
         return name;
     }

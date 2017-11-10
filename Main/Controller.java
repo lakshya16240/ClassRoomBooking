@@ -181,7 +181,7 @@ public class Controller implements Initializable {
     @FXML
     void SignUp(ActionEvent event) throws IOException, ClassNotFoundException {
 //        College clgobj = deserialize("data");
-//        clgobj = College.deserialize("data");
+        clgobj = College.deserialize("data");
         String user_name = name.getText();
         String email = emailId.getText();
         String passwd = password.getText();
@@ -253,7 +253,7 @@ public class Controller implements Initializable {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StdntPage.fxml"));
                 root2 = (Parent) fxmlLoader.load();
 //                root2 = FXMLLoader.load(getClass().getResource("StdntPage.fxml"));
-                StudentController newcontroller = fxmlLoader.<StudentController>getController();
+                StudentController newcontroller = fxmlLoader.getController();
                 newcontroller.Test("Super");
                 newcontroller.Start((Student) obj);
 
@@ -281,17 +281,6 @@ public class Controller implements Initializable {
             Stage stage = (Stage) LogIn.getScene().getWindow();
             stage.setScene(scene);
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             stage.show();
 //            loginlabel.setText("hello");
         } else {
@@ -311,6 +300,11 @@ public class Controller implements Initializable {
         studentPane.getChildren().clear();
         studentPane.getChildren().add(newstudentPane);
     }
+
+
+
+
+
 //     @FXML
 //    void roomBooking(ActionEvent event) throws IOException{
 //        Pane newstudentPane = FXMLLoader.load(getClass().getResource("RoomBooking.fxml"));
