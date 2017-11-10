@@ -17,8 +17,11 @@ import static Main.College.deserialize;
  *
  * @author Lenovo
  */
+
 public class MainPage extends Application {
+    public static MainPage main = new MainPage();
     public static College clgobj;
+    public User current_user;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -53,9 +56,9 @@ public class MainPage extends Application {
                 }
                 if(hashMapPC.containsKey(attributes[2])) {
                     ArrayList<String> postConditions = hashMapPC.get(attributes[2]);
-                    for(int i=0;i<postConditions.size();i++){
-                        System.out.println(postConditions.get(i));
-                    }
+//                    for(int i=0;i<postConditions.size();i++){
+//                        System.out.println(postConditions.get(i));
+//                    }
                     courseinfo.add(new Course(attributes[0], attributes[1], attributes[2], attributes[3], Integer.valueOf(attributes[4]), schedule, null, null, postConditions));
                 }
                 line = br.readLine();
@@ -111,13 +114,13 @@ public class MainPage extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        College clgobj = deserialize("data");
+        clgobj = deserialize("data");
         System.out.println();
 
         Admin obj = (Admin) clgobj.getAllUsersMap().get("abhishek16126");
         System.out.println("after deserializing at start");
 
-        System.out.println(obj.getRequests());
+        System.out.println(obj.getReq());
 //        ArrayList<Integer> myarray = new ArrayList<Integer>();
      
         List<Course> courseinfo = new ArrayList<>();
@@ -126,9 +129,7 @@ public class MainPage extends Application {
             Course c = courseinfo.get(i);
             System.out.println(c);
             ArrayList<String> pc = c.getPostConditions();
-            for(int j=0;j<pc.size();j++){
-                System.out.println(pc.get(j));
-            }
+//            fabhisababba
         }
         HashMap<String, Room> RoomData = new HashMap<String, Room>();
         RoomData = Room.deserializeRoom();

@@ -20,6 +20,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * @author Lenovo
  */
 public class RequestController implements Initializable {
+//    MainPage main = new MainPage();
 
     @FXML
     private TableView<Requests> requestTable;
@@ -54,44 +55,72 @@ public class RequestController implements Initializable {
         System.out.println("approved requests = " + ApprovedRequests);
         System.out.println("requests = " + AllRequests);
         ArrayList<Requests> AppReq = new ArrayList<Requests>();
+
         for (int i = 0; i < ApprovedRequests.size(); i++) {
             AppReq.add(ApprovedRequests.get(i));
         }
-        while (cnt>=0){
-        for (int i = 0; i < AllRequests.size(); i++) {
-            System.out.println(AllRequests.get(i) + " is not equal to " + ApprovedRequests.get(0));
+        
+
+        while (cnt >= 0) {
+            Requests current_req = AppReq.get(cnt);
+//                User  userobj = clgobj.getAllUsersMap().get(current_req.getUser().getName());
+            User userobj = current_req.getUser();
+            System.out.println("user check " + userobj);
+            
+            
+            for (int i = 0; i < userobj.getRequests().size(); i++) {
+                   if (userobj.getRequests().get(i).equals(current_req)){
+                       userobj.getRequests().get(i).setStatus("Approved");
+                   }
+            }
+            System.out.println("The actual check " + clgobj.getAllUsersMap().get("ab").getRequests());
+            
+            System.out.println("here will be the error " + (clgobj.getAllUsersMap().get("ab")== current_req.getUser()));
+            System.out.println("one more check when I did jugaad " + current_req.getStatus());
+//            current_req.setStatus("Approved");
+            for (int i = 0; i < AllRequests.size(); i++) {
+//                System.out.println(AllRequests.get(i) + " is not equal to " + ApprovedRequests.get(0));
 //                Boolean t = Requests.get(i).getReason().equals(ApprovedRequests.get(0).getReason());
 //                System.out.println(t);
-            if (AllRequests.get(i).equals(AppReq.get(cnt))) {
+//                Requests current_req = AppReq.get(cnt);
+////                User  userobj = clgobj.getAllUsersMap().get(current_req.getUser().getName());
+//                User userobj = current_req.getUser();
+//                System.out.println("user check " + userobj);
+//                current_req.setStatus("Approved");
 
-                AppReq.remove(cnt);
-                System.out.println("object found");
-                cnt--;
-                AllRequests.remove(i);
+//                main.current_user = current_req.getUser();
+                if (AllRequests.get(i).equals(current_req)) {
+                    AppReq.remove(cnt);
+                    System.out.println("object found");
+                    cnt--;
+                    AllRequests.remove(i);
+                }
             }
+            System.out.println("check in admin " + MainPage.clgobj.getAllUsersMap().get("ab").getRequests());
+            ObservableList<Requests> display = FXCollections.observableArrayList(AllRequests);
+            Controller.serializeArray(AllRequests);
+            PopulateTable();
         }
         
-        ObservableList<Requests> display = FXCollections.observableArrayList(AllRequests);
-        Controller.serializeArray(AllRequests);
-        PopulateTable();
-        }
+        College.serialize(clgobj);
+        
+        System.out.println("serialized");
     }
-    
-    
 
     @FXML
     void DisApproveRequests(ActionEvent event) {
-
     }
 
-    public void PopulateTable() {
+    public void PopulateTable() throws IOException {
         ArrayList<Requests> requests = new ArrayList<Requests>();
 //        requestTable.getSelectionModel().setCellSelectionEnabled(true);
 //        requestTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
         try {
             requests = Controller.deserializeArray();
-
+            if (requests == null) {
+                requests = new ArrayList<Requests>();
+            }
             for (int i = 0; i < clgobj.getAllUsers().size(); i++) {
                 System.out.println(clgobj.getAllUsers().get(i));
             }
@@ -120,11 +149,16 @@ public class RequestController implements Initializable {
 
         requestTable.setItems(obsList);
         requestTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        College.serialize(clgobj);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        PopulateTable();
+        try {
+            PopulateTable();
+        } catch (IOException ex) {
+            Logger.getLogger(RequestController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 }

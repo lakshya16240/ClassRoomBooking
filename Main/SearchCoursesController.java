@@ -27,22 +27,7 @@ import java.util.ResourceBundle;
 
 public class SearchCoursesController implements Initializable{
 
-    private Student myStudent;
-    public void Start(Student student) throws IOException {
-        myStudent = student;
-        //loadCourseTable();
-    }
-
-    public void loadCourseTable() throws IOException {
-        ArrayList<Course> myCourses = myStudent.viewCourses();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CourseTable.fxml"));
-        Pane newstudentPane = fxmlLoader.load();
-        Control newcontroller = fxmlLoader.<Control>getController();
-        newcontroller.Start(myCourses);
-        searchCoursePane.getChildren().clear();
-        searchCoursePane.getChildren().add(newstudentPane);
-    }
-
+    
     @FXML
     private TableView<Course> searchCoursesTable;
 

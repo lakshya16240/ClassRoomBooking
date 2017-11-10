@@ -6,7 +6,6 @@ import static Main.initializer.serialize;
 import java.io.*;
 import java.net.URL;
 import java.util.*;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,17 +18,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-
 import javafx.stage.Stage;
 
-/**
- *
- * @author Lenovo
- */
 public class Controller implements Initializable {
-//    @FXML 
-//    ToggleGroup Users;
-//  
+    
 
     @FXML
     private TableView<Course> mytable;
@@ -159,10 +151,14 @@ public class Controller implements Initializable {
         try {
 
             in = new ObjectInputStream(new FileInputStream("./src/" + "list" + ".txt"));
+//            if (in==null){
+//                in = new ArrayList<Re>
+//            }
             ArrayList<Requests> obj = (ArrayList<Requests>) in.readObject();
             //			in.readObject();
             return obj;
-        } finally {
+        } 
+        finally {
             in.close();
         }
     }
@@ -193,7 +189,9 @@ public class Controller implements Initializable {
                 StudentController newcontroller = fxmlLoader.getController();
                 newcontroller.Test("Super");
                 newcontroller.Start((Student) obj);
-
+                MainPage.main.current_user = (Student)obj;
+                System.out.println("main.current user has been set " + MainPage.main.current_user);
+//                MainPage main = new MainPage();
             } else if (clgobj.getAllUsersMap().get(email).getType().equals("Admin")) {
 //                root2 = FXMLLoader.load(getClass().getResource("AdminPage.fxml"));
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AdminPage.fxml"));
@@ -202,6 +200,7 @@ public class Controller implements Initializable {
                 AdminController newcontroller = fxmlLoader.<AdminController>getController();
 //                newcontroller.Test("Super");
                 newcontroller.Start((Admin) obj);
+                MainPage.main.current_user = (Admin)obj;
 
             } else {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FacultyPage.fxml"));
@@ -210,7 +209,7 @@ public class Controller implements Initializable {
                 FacultyController newcontroller = fxmlLoader.<FacultyController>getController();
 //                newcontroller.Test("Super");
                 newcontroller.Start((Faculty) obj);
-
+                MainPage.main.current_user = (Faculty)obj;
 //                root2 = FXMLLoader.load(getClass().getResource("FacultyPage.fxml"));
             }
 
@@ -238,10 +237,6 @@ public class Controller implements Initializable {
         studentPane.getChildren().clear();
         studentPane.getChildren().add(newstudentPane);
     }
-
-
-
-
 
 //     @FXML
 //    void roomBooking(ActionEvent event) throws IOException{
@@ -282,9 +277,8 @@ public class Controller implements Initializable {
 //        serializeArray(arr);
 ////        clgobj.
 //    }
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }
-
+    
 }
