@@ -3,6 +3,7 @@ package Main;
 
 import java.util.ArrayList;
 
+
 public class TimeTable {
 
     private ArrayList<Course> allCourses;

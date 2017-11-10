@@ -19,20 +19,7 @@ import static Main.College.deserialize;
  */
 public class MainPage extends Application {
     public static College clgobj;
-//    public static College deserialize(String filename) throws IOException, ClassNotFoundException{
-//		
-//		ObjectInputStream in = null;
-//		try {
-//			
-//			in = new ObjectInputStream(new FileInputStream("./src/" + filename + ".txt"));
-//			College obj = (College)in.readObject();
-//			//			in.readObject();
-//			return obj;
-//		}
-//		finally {
-//			in.close();
-//		}
-//	}
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
@@ -73,13 +60,13 @@ public class MainPage extends Application {
                 }
                 line = br.readLine();
 
-                for (int i = 0; i < 5; i++) {
-                    if (!schedule[i].equals("-")) {
-                        String[] timeAndVenue = schedule[i].split("\\$");
-                        //System.out.println("haijajsjsojdajjaoidjiodojjodoiiiooisdjjjoid :::::::::: " + timeAndVenue[0]);
-                        Admin.addBookings(timeAndVenue, i);
-                    }
-                }
+//                for (int i = 0; i < 5; i++) {
+//                    if (!schedule[i].equals("-")) {
+//                        String[] timeAndVenue = schedule[i].split("\\$");
+//                        System.out.println("haijajsjsojdajjaoidjiodojjodoiiiooisdjjjoid :::::::::: " + timeAndVenue[0]);
+//                        initializer.addBookings(timeAndVenue, i);
+//                    }
+//                }
 
             }
         } catch (IOException ioe) {
@@ -126,6 +113,7 @@ public class MainPage extends Application {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         College clgobj = deserialize("data");
         System.out.println();
+
         Admin obj = (Admin) clgobj.getAllUsersMap().get("abhishek16126");
         System.out.println("after deserializing at start");
 
@@ -142,6 +130,12 @@ public class MainPage extends Application {
                 System.out.println(pc.get(j));
             }
         }
+        HashMap<String, Room> RoomData = new HashMap<String, Room>();
+        RoomData = Room.deserializeRoom();
+        Room RoomObj  = RoomData.get("C21");
+        System.out.println("room data coming");
+        RoomObj.printAvailability();
+
 //        System.out.println("hello22");
 //                
 //        System.out.println("ABHISHEK");
