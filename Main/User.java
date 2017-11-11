@@ -1,16 +1,19 @@
 package Main;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public abstract class User implements Serializable {
 
     private String name, emailId, password, type;
+    private ArrayList<Requests> requests;
 
     public User(String name, String emailId, String password, String type) {
         this.name = name;
         this.emailId = emailId;
         this.password = password;
         this.type = type;
+        requests = new ArrayList<>();
     }
 
     public String getName() {
@@ -38,7 +41,11 @@ public abstract class User implements Serializable {
 
    }
 
-   public abstract void BookRoom(Room room, String startTime, String endTime, int date);
+    public ArrayList<Requests> getRequests() {
+        return requests;
+    }
+
+    public abstract void BookRoom(Room room, String startTime, String endTime, int date);
 
    public abstract void CancelRoom(Room room);
 
