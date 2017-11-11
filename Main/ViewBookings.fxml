@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="867.0" prefWidth="906.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Main.ViewBookingsController">
+
+    <children>
+        <TableView fx:id="requestTable" layoutY="-2.0" prefHeight="793.0" prefWidth="906.0">
+            <columns>
+                <TableColumn fx:id="Date" prefWidth="107.0" text="Date" />
+                <TableColumn fx:id="Timings" prefWidth="135.0" text="Timings" />
+                <TableColumn fx:id="UserType" prefWidth="159.0" text="User Type" />
+                <TableColumn fx:id="Reason" prefWidth="504.0" text="Reason" />
+            </columns>
+        </TableView>
+        <Button fx:id="cancelButton" layoutX="94.0" layoutY="809.0" mnemonicParsing="false" onAction="#CancelRequests" prefHeight="31.0" prefWidth="301.0" text="Cancel Selected Requests" />
+    </children>
+</AnchorPane>
