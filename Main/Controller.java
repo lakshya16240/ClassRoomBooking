@@ -7,6 +7,7 @@ import java.io.*;
 import java.net.URL;
 import java.util.*;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,6 +17,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -88,6 +91,15 @@ public class Controller implements Initializable {
 
     @FXML
     private TableView tableView;
+
+    @FXML
+    private RadioButton studentToggle;
+
+    @FXML
+    private RadioButton facultyToggle;
+
+    @FXML
+    private RadioButton adminToggle;
 //
 //    @FXML
 //    private TextField date;
@@ -279,6 +291,96 @@ public class Controller implements Initializable {
 //    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+
+        username.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if(event.getCode()== KeyCode.ENTER){
+                    LogIn.fire();
+                }
+            }
+        });
+        pass.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if(event.getCode()== KeyCode.ENTER){
+                    LogIn.fire();
+                }
+            }
+        });
+
+        password.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if(event.getCode()== KeyCode.ENTER){
+                    SignUp.fire();
+                }
+            }
+        });
+
+        name.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if(event.getCode()== KeyCode.ENTER){
+                    SignUp.fire();
+                }
+            }
+        });
+        emailId.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if(event.getCode()== KeyCode.ENTER){
+                    SignUp.fire();
+                }
+            }
+        });
+
+
+        LogIn.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if(event.getCode()==KeyCode.ENTER){
+                    LogIn.fire();
+                }
+            }
+        });
+
+        SignUp.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if(event.getCode()==KeyCode.ENTER){
+                    SignUp.fire();
+                }
+            }
+        });
+
+        studentToggle.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if(event.getCode()==KeyCode.ENTER){
+                    studentToggle.setSelected(true);
+                }
+            }
+        });
+
+        facultyToggle.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if(event.getCode()==KeyCode.ENTER){
+                    facultyToggle.setSelected(true);
+                }
+            }
+        });
+
+        adminToggle.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if(event.getCode()==KeyCode.ENTER){
+                    adminToggle.setSelected(true);
+                }
+            }
+        });
     }
     
 }

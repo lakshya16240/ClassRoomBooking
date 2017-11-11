@@ -24,25 +24,30 @@
          <children>
             <VBox prefHeight="703.0" prefWidth="322.0" style="-fx-background-color: #21618C;">
                <children>
-                  <JFXButton onAction="#displayCourses" prefHeight="132.0" prefWidth="322.0" style="-fx-background-color: #21618C;" text="My Courses" textFill="WHITE">
+                  <JFXButton onAction="#displayCourses" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #21618C;" text="My Courses" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font></JFXButton>
-                  <JFXButton onAction="#roomBooking" prefHeight="133.0" prefWidth="322.0" style="-fx-background-color: #21618C;" text="Room Booking" textFill="WHITE">
+                  <JFXButton onAction="#roomBooking" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #21618C;" text="Room Booking" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font></JFXButton>
-                  <JFXButton onAction="#viewTimeTable" prefHeight="133.0" prefWidth="322.0" style="-fx-background-color: #21618C;" text="Time Table" textFill="WHITE">
+                  <JFXButton onAction="#viewTimeTable" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #21618C;" text="Time Table" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton onAction="#searchCoursesStudent" prefHeight="133.0" prefWidth="322.0" style="-fx-background-color: #21618C;" text="Search for Courses" textFill="WHITE">
+                  <JFXButton onAction="#searchCoursesStudent" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #21618C;" text="Search for Courses" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton onAction="#myRequestsStudent" prefHeight="133.0" prefWidth="322.0" style="-fx-background-color: #21618C;" text="My Requests" textFill="WHITE">
+                  <JFXButton onAction="#myRequestsStudent" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #21618C;" text="My Requests" textFill="WHITE">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton  fx:id="logoutStudent" onAction="#Logout" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #21618C;" text="Logout" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font>

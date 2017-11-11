@@ -1,5 +1,6 @@
 package Main;
 
+import static Main.MainPage.clgobj;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -23,9 +24,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
 
-
-public class SearchCoursesController implements Initializable{
+public class SearchCoursesController implements Initializable {
 
     @FXML
     private TableView<Course> searchCoursesTable;
@@ -34,12 +36,12 @@ public class SearchCoursesController implements Initializable{
     private ListView<String> listViewPostConditions;
 
     @FXML
-    private TableColumn<Course,String> tc5;
+    private TableColumn<Course, String> tc5;
     @FXML
 
-    private TableColumn<Course,String> tc6;
+    private TableColumn<Course, String> tc6;
     @FXML
-    private TableColumn<Course,String> tc7;
+    private TableColumn<Course, String> tc7;
 
     @FXML
     private TableColumn<Course, Integer> tc8;
@@ -47,19 +49,34 @@ public class SearchCoursesController implements Initializable{
     @FXML
     private TableColumn<Course, String> tc9;
 
-
-
     @FXML
     private TextField searchCoursesTextField;
 
     @FXML
     private AnchorPane searchCoursePane;
 
+    @FXML
+    private Button AddCourse;
+
+    @FXML
+    void addCourse(ActionEvent event) {
+        ObservableList<Course> SelectedCourses = FXCollections.observableArrayList();;
+        SelectedCourses = searchCoursesTable.getSelectionModel().getSelectedItems();
+//        System.out.println("req = " + ApprovedRequests);
+        
+//        System.out.println("dis - approved requests = " + DisApprovedRequests);
+//        System.out.println("requests = " + AllRequests);
+        Student user = (Student)MainPage.main.current_user;
+        for (int i=0 ; i<SelectedCourses.size() ; i++){
+            user.addCourses(SelectedCourses.get(i));
+        }
+        clgobj.getAllUsersMap().put(user.getEmailId(),user);
+        System.out.println("Courses are : " + user.viewCourses() );
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
+//        searchCoursesTable.setSelectionModel(value);
         List<Course> courseList = new ArrayList<>();
         ArrayList<String> postConditionsList = new ArrayList<>();
         try {
@@ -74,18 +91,15 @@ public class SearchCoursesController implements Initializable{
                 suggestedPostConditions[i] = postConditionsList.get(i);
                 //System.out.println("suggested pc =  " + suggestedPostConditions[i]);
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
         String postConditionTyped = "";
 
-
         List<Course> finalCourseList = courseList;
 
         searchCoursesTextField.textProperty().addListener(new ChangeListener<String>() {
-
 
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -97,9 +111,9 @@ public class SearchCoursesController implements Initializable{
 
                     Course course = finalCourseList.get(i);
                     ArrayList<String> postConditions = course.getPostConditions();
-                    for(int j=0;j<postConditions.size();j++){
+                    for (int j = 0; j < postConditions.size(); j++) {
 
-                        if(postConditions.get(j).contains(newValue)){
+                        if (postConditions.get(j).contains(newValue)) {
                             course.convertToString(postConditions);
                             courseObservableList.add(course);
 //                            postConditionsObservableList.addAll(postConditions);
@@ -126,13 +140,8 @@ public class SearchCoursesController implements Initializable{
                 searchCoursesTable.setItems(courseObservableList);
 //                listViewPostConditions.setItems(postConditionsObservableList);
 
-
-
             }
         });
-
-
-
 
 //        List<Course> courseList;
 //        ArrayList<String> postConditionsList = new ArrayList<>();
@@ -155,9 +164,6 @@ public class SearchCoursesController implements Initializable{
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-
-
 //
-
     }
 }

@@ -63,19 +63,22 @@ public class RequestController implements Initializable {
         while (cnt >= 0) {
             Requests current_req = AppReq.get(cnt);
 //                User  userobj = clgobj.getAllUsersMap().get(current_req.getUser().getName());
-            User userobj = current_req.getUser();
+            User userobj = clgobj.getAllUsersMap().get(current_req.getUser().getEmailId());
             System.out.println("user check " + userobj);
-            
-            
+
+            System.out.println("All requests on pressing Approved before check: " + userobj.getRequests());
+
             for (int i = 0; i < userobj.getRequests().size(); i++) {
-                   if (userobj.getRequests().get(i).equals(current_req)){
-                       userobj.getRequests().get(i).setStatus("Approved");
-                   }
+                if (userobj.getRequests().get(i).equals(current_req)) {
+                    userobj.getRequests().get(i).setStatus("Approved");
+                }
             }
 
-            clgobj.getAllUsersMap().put(current_req.getUser().getEmailId(),userobj);
-            System.out.println("The actual check " + clgobj.getAllUsersMap().get("ab").getRequests());
-            
+            clgobj.getAllUsersMap().put(current_req.getUser().getEmailId(), userobj);
+            System.out.println("All requests on pressing Approved: " + userobj.getRequests());
+            System.out.println("All requests on pressing Approved (just a check) : " + clgobj.getAllUsersMap().get(userobj.getEmailId()).getRequests());
+
+//            System.out.println("The actual check " + clgobj.getAllUsersMap().get("ab").getRequests());
 //            System.out.println("here will be the error " + (clgobj.getAllUsersMap().get("ab") == current_req.getUser()));
 //            System.out.println("one more check when I did jugaad " + current_req.getStatus());
 //            current_req.setStatus("Approved");
@@ -94,17 +97,26 @@ public class RequestController implements Initializable {
                     AppReq.remove(cnt);
                     System.out.println("object found");
                     cnt--;
-                    AllRequests.remove(i);
+                    AllRequests.get(i).setStatus("Approved");
+//                    AllRequests.remove(i);
                 }
             }
-            System.out.println("check in admin " + MainPage.clgobj.getAllUsersMap().get("ab").getRequests());
-            ObservableList<Requests> display = FXCollections.observableArrayList(AllRequests);
-            Controller.serializeArray(AllRequests);
-            PopulateTable();
+
         }
-        
+        ArrayList<Requests> PendingRequests = new ArrayList<Requests>();
+        for (int i = 0; i < AllRequests.size(); i++) {
+            if (AllRequests.get(i).getStatus().equals("Pending")) {
+                PendingRequests.add(AllRequests.get(i));
+            }
+        }
+//            System.out.println("check in admin " + MainPage.clgobj.getAllUsersMap().get("ab").getRequests());
+        ObservableList<Requests> display = FXCollections.observableArrayList(PendingRequests);
+//            System.out.println("check in admin " + MainPage.clgobj.getAllUsersMap().get("ab").getRequests());
+//            ObservableList<Requests> display = FXCollections.observableArrayList(AllRequests);
+        Controller.serializeArray(AllRequests);
+        PopulateTable();
         College.serialize(clgobj);
-        
+
         System.out.println("serialized");
     }
 
@@ -124,24 +136,24 @@ public class RequestController implements Initializable {
         for (int i = 0; i < DisApprovedRequests.size(); i++) {
             DisAppReq.add(DisApprovedRequests.get(i));
         }
-        
 
         while (cnt >= 0) {
             Requests current_req = DisAppReq.get(cnt);
 //                User  userobj = clgobj.getAllUsersMap().get(current_req.getUser().getName());
-            User userobj = current_req.getUser();
-            System.out.println("user check " + userobj);
-            
-            
-            for (int i = 0; i < userobj.getRequests().size(); i++) {
-                   if (userobj.getRequests().get(i).equals(current_req)){
-                       userobj.getRequests().get(i).setStatus("Rejected");
-                   }
-            }
+//            User userobj = current_req.getUser();
+            User userobj = clgobj.getAllUsersMap().get(current_req.getUser().getEmailId());
 
-            clgobj.getAllUsersMap().put(current_req.getUser().getEmailId(),userobj);
+            System.out.println("user check " + userobj);
+
+            for (int i = 0; i < userobj.getRequests().size(); i++) {
+                if (userobj.getRequests().get(i).equals(current_req)) {
+                    userobj.getRequests().get(i).setStatus("Rejected");
+                }
+            }
+            System.out.println("All requests on pressing DisApproved: " + userobj.getRequests());
+            clgobj.getAllUsersMap().put(current_req.getUser().getEmailId(), userobj);
 //            System.out.println("The actual check " + clgobj.getAllUsersMap().get("ab").getRequests());
-            
+
 //            System.out.println("here will be the error " + (clgobj.getAllUsersMap().get("ab") == current_req.getUser()));
 //            System.out.println("one more check when I did jugaad " + current_req.getStatus());
 //            current_req.setStatus("Approved");
@@ -160,19 +172,26 @@ public class RequestController implements Initializable {
                     DisAppReq.remove(cnt);
                     System.out.println("object found");
                     cnt--;
-                    AllRequests.remove(i);
+                    AllRequests.get(i).setStatus("Rejected");
+//                    AllRequests.remove(i);
                 }
             }
-//            System.out.println("check in admin " + MainPage.clgobj.getAllUsersMap().get("ab").getRequests());
-            ObservableList<Requests> display = FXCollections.observableArrayList(AllRequests);
-            Controller.serializeArray(AllRequests);
-            PopulateTable();
+
         }
-        
+        ArrayList<Requests> PendingRequests = new ArrayList<Requests>();
+        for (int i = 0; i < AllRequests.size(); i++) {
+            if (AllRequests.get(i).getStatus().equals("Pending")) {
+                PendingRequests.add(AllRequests.get(i));
+            }
+        }
+//            System.out.println("check in admin " + MainPage.clgobj.getAllUsersMap().get("ab").getRequests());
+        ObservableList<Requests> display = FXCollections.observableArrayList(PendingRequests);
+
+        Controller.serializeArray(AllRequests);
+        PopulateTable();
         College.serialize(clgobj);
         System.out.println("serialized");
-    
-    
+
     }
 
     public void PopulateTable() throws IOException {
@@ -185,10 +204,10 @@ public class RequestController implements Initializable {
             if (requests == null) {
                 requests = new ArrayList<Requests>();
             }
-            for (int i = 0; i < clgobj.getAllUsers().size(); i++) {
-                System.out.println(clgobj.getAllUsers().get(i));
-            }
-            System.out.println("deserialized");
+//            for (int i = 0; i < clgobj.getAllUsers().size(); i++) {
+//                System.out.println(clgobj.getAllUsers().get(i));
+//            }
+//            System.out.println("deserialized");
         } catch (IOException ex) {
             Logger.getLogger(RequestController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -197,7 +216,10 @@ public class RequestController implements Initializable {
 
         ObservableList<Requests> obsList = FXCollections.observableArrayList();
         for (int i = 0; i < requests.size(); i++) {
-            obsList.add(requests.get(i));
+            if (requests.get(i).getStatus().equals("Pending")){
+                obsList.add(requests.get(i));
+            }
+            
         }
         System.out.println("arraylist coming");
 //        final ObservableList<Course> data = FXCollections.observableArrayList(new Course("a", "b" , "c", "d", 5, null, null, null, null));
