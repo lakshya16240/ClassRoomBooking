@@ -37,7 +37,12 @@
                         <Font size="27.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="searchCoursesButton" onAction="#searchCoursesStudent" prefHeight="133.0" prefWidth="322.0" style="-fx-background-color: #21618C;" text="Search for Courses" textFill="WHITE">
+                  <JFXButton onAction="#searchCoursesStudent" prefHeight="133.0" prefWidth="322.0" style="-fx-background-color: #21618C;" text="Search for Courses" textFill="WHITE">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton onAction="#myRequestsStudent" prefHeight="133.0" prefWidth="322.0" style="-fx-background-color: #21618C;" text="My Requests" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font>

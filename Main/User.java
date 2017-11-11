@@ -6,8 +6,8 @@ import java.util.ArrayList;
 public abstract class User implements Serializable {
 
     private String name, emailId, password, type;
-    private ArrayList<Requests> requests; 
-    
+    private ArrayList<Requests> requests;
+
     public User(String name, String emailId, String password, String type) {
         this.name = name;
         this.emailId = emailId;
@@ -15,11 +15,11 @@ public abstract class User implements Serializable {
         this.type = type;
         requests = new ArrayList<Requests>();
     }
-    
+
     public ArrayList<Requests> getRequests(){
         return requests;
     }
-    
+
     public String getName() {
         return name;
     }

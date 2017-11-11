@@ -27,7 +27,6 @@ import java.util.ResourceBundle;
 
 public class SearchCoursesController implements Initializable{
 
-    
     @FXML
     private TableView<Course> searchCoursesTable;
 
@@ -46,7 +45,7 @@ public class SearchCoursesController implements Initializable{
     private TableColumn<Course, Integer> tc8;
 
     @FXML
-    private TableColumn<Course, Integer> tc9;
+    private TableColumn<Course, String> tc9;
 
 
 
@@ -121,7 +120,7 @@ public class SearchCoursesController implements Initializable{
                         new PropertyValueFactory<Course, Integer>("credits"));
 
                 tc9.setCellValueFactory(
-                        new PropertyValueFactory<Course, Integer>("postConditionsString"));
+                        new PropertyValueFactory<Course, String>("postConditionsString"));
 //        new PropertyValueFactory<Course, Integer>("credits"));
 
                 searchCoursesTable.setItems(courseObservableList);

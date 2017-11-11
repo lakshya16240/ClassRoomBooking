@@ -64,6 +64,14 @@ public class StudentController implements Initializable {
 
     }
 
+    @FXML
+    public void myRequestsStudent(ActionEvent actionEvent) throws IOException {
+
+        Pane newstudentPane = FXMLLoader.load(getClass().getResource("MyRequests.fxml"));
+        studentPane.getChildren().clear();
+        studentPane.getChildren().add(newstudentPane);
+    }
+
 
     void Test(String s) {
         System.out.println(s + " chalaaa");
@@ -74,4 +82,6 @@ public class StudentController implements Initializable {
 
 
     }
+
+
 }

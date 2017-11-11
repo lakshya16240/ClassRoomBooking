@@ -9,6 +9,7 @@ public class Faculty extends User {
 
     Faculty(String name, String emailId, String password, String type) {
         super(name, emailId, password, type);
+        coursesTaught = new ArrayList<>();
     }
 
     @Override

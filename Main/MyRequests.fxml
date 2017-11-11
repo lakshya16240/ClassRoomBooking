@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="867.0" prefWidth="906.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.MyRequestsController">
+   <children>
+      <TableView fx:id="myRequestsTable" prefHeight="740.0" prefWidth="906.0">
+        <columns>
+            <TableColumn fx:id="dateMyRequests" prefWidth="108.0" text="Date" />
+          <TableColumn fx:id="startTimeMyRequests" prefWidth="108.0" text="Start Time" />
+          <TableColumn fx:id="endTimeMyRequests" prefWidth="108.0" text="End Time" />
+            <TableColumn fx:id="roomMyRequests" text="Room" />
+            <TableColumn fx:id="reasonMyRequests" prefWidth="370.0" text="Reason" />
+            <TableColumn fx:id="statusMyRequests" minWidth="0.0" prefWidth="139.0" text="Status" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
