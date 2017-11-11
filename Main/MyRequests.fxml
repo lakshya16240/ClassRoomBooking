@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="867.0" prefWidth="906.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.MyRequestsController">
    <children>
-      <TableView fx:id="myRequestsTable" layoutY="26.0" prefHeight="841.0" prefWidth="906.0">
+      <TableView fx:id="myRequestsTable" prefHeight="740.0" prefWidth="906.0">
         <columns>
             <TableColumn fx:id="dateMyRequests" prefWidth="108.0" text="Date" />
           <TableColumn fx:id="startTimeMyRequests" prefWidth="108.0" text="Start Time" />

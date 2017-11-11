@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Requests implements Serializable {
 
-    private Room roomNumber;
+    private String roomNumber;
     private String date;
     private String status;
     private String startTime, endTime;
@@ -12,8 +12,8 @@ public class Requests implements Serializable {
     private String userType;
     private User user;
 
-    public Requests(String date, String startTime, String endTime, String reason, String userType) {
-//        this.roomNumber = roomNumber;
+    public Requests(String date, String startTime, String endTime, String reason, String userType,String roomNumber) {
+        this.roomNumber = roomNumber;
         this.date = date;
         this.status = "Pending";
         this.startTime = startTime;
@@ -73,10 +73,10 @@ public class Requests implements Serializable {
 //    }
 
 
-    public Room getRoomNumber() {
+    public String getRoomNumber() {
         return roomNumber;
     }
-    
+
     public String getStatus() {
         return status;
     }

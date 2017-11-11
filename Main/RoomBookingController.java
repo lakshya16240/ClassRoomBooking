@@ -9,6 +9,7 @@ import static Main.Controller.deserializeArray;
 import static Main.Controller.serializeArray;
 import static Main.MainPage.clgobj;
 import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
 import java.io.IOException;
 import java.time.Instant;
@@ -43,6 +44,9 @@ public class RoomBookingController {
 
     @FXML
     private TextArea Reason;
+
+    @FXML
+    private JFXTextField roomRequest;
     
     @FXML
     void makeRequest(ActionEvent event) throws IOException, ClassNotFoundException {
@@ -58,6 +62,7 @@ public class RoomBookingController {
 //        String requested_date = date1.toString();
         String from_time = timeFrom.getValue().toString();
         String to_time = timeTo.getValue().toString();
+        String roomNumber = roomRequest.getText();
 
         System.out.println("date =  " + date1);
         System.out.println("from_time = " + from_time );
@@ -72,7 +77,7 @@ public class RoomBookingController {
 //        year.setText(null);
 //        timeFrom.setText(null);
 //        timeTo.setText(null);
-        Reason.setText(null);
+        Reason.setText("");
 //        Admin.
         ArrayList<Requests> arr = new ArrayList<Requests>();
         arr = deserializeArray();
@@ -80,7 +85,7 @@ public class RoomBookingController {
             arr = new ArrayList<Requests>();
         }
         System.out.println( "may be null " + MainPage.main.current_user);
-        Requests myreq = new Requests(date1, from_time, to_time, reason, MainPage.main.current_user.getType());
+        Requests myreq = new Requests(date1, from_time, to_time, reason, MainPage.main.current_user.getType(),roomNumber);
         myreq.setUser(MainPage.main.current_user);
 //        Admin.addRequest(myreq);
         MainPage.main.current_user.getRequests().add(myreq);
@@ -90,7 +95,7 @@ public class RoomBookingController {
         arr.add(myreq);
 //        College.serialize();
         System.out.println(myreq);
-        System.out.println("check " + MainPage.clgobj.getAllUsersMap().get("ab").getRequests());
+//        System.out.println("check " + MainPage.clgobj.getAllUsersMap().get("ab").getRequests());
         College.serialize(MainPage.clgobj);
         
         serializeArray(arr);

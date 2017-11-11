@@ -73,6 +73,7 @@ public class RequestController implements Initializable {
                        userobj.getRequests().get(i).setStatus("Approved");
                    }
             }
+            clgobj.getAllUsersMap().put(current_req.getUser().getEmailId(),userobj);
             System.out.println("The actual check " + clgobj.getAllUsersMap().get("ab").getRequests());
             
             System.out.println("here will be the error " + (clgobj.getAllUsersMap().get("ab")== current_req.getUser()));
