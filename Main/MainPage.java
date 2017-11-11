@@ -134,15 +134,15 @@ public class MainPage extends Application {
         courseinfo = readCourseCSV();
         for (int i = 0; i < courseinfo.size(); i++) {
             Course c = courseinfo.get(i);
-            System.out.println(c);
+//            System.out.println(c);
             ArrayList<String> pc = c.getPostConditions();
 //            fabhisababba
         }
         HashMap<String, Room> RoomData = new HashMap<String, Room>();
         RoomData = Room.deserializeRoom();
         Room RoomObj  = RoomData.get("C21");
-        System.out.println("room data coming");
-        RoomObj.printAvailability();
+//        System.out.println("room data coming");
+//        RoomObj.printAvailability();
 
 //        System.out.println("hello22");
 //                

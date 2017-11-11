@@ -37,7 +37,8 @@ public class MyRequestsController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        User currentStudent = MainPage.main.current_user ;
+        User currentStudent = MainPage.main.current_user;
+        System.out.println("requests check " + MainPage.main.current_user.getRequests());
         ObservableList<Requests> courseObservableList = FXCollections.observableArrayList(currentStudent.getRequests());
 
 
