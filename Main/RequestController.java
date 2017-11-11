@@ -73,10 +73,12 @@ public class RequestController implements Initializable {
                        userobj.getRequests().get(i).setStatus("Approved");
                    }
             }
+//            clgobj.getAllUsersMap().
+            clgobj.getAllUsersMap().put(userobj.getEmailId(), userobj) ; 
             System.out.println("The actual check " + clgobj.getAllUsersMap().get("ab").getRequests());
             
-            System.out.println("here will be the error " + (clgobj.getAllUsersMap().get("ab")== current_req.getUser()));
-            System.out.println("one more check when I did jugaad " + current_req.getStatus());
+//            System.out.println("here will be the error " + (clgobj.getAllUsersMap().get("ab") == current_req.getUser()));
+//            System.out.println("one more check when I did jugaad " + current_req.getStatus());
 //            current_req.setStatus("Approved");
             for (int i = 0; i < AllRequests.size(); i++) {
 //                System.out.println(AllRequests.get(i) + " is not equal to " + ApprovedRequests.get(0));
