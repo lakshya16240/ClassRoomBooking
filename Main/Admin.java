@@ -82,7 +82,7 @@ public class Admin extends User {
     }
 
     public  ArrayList<Requests> getReq() {
-        
+
         if (requests==null){
             requests = new ArrayList<>();
         }

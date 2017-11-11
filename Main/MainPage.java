@@ -54,12 +54,19 @@ public class MainPage extends Application {
                     schedule[i] = attributes[6 + i];
                     //System.out.println("print it agaiinnn ::::::   " + schedule[i] + " " + attributes[6+i]);
                 }
+
+
                 if(hashMapPC.containsKey(attributes[2])) {
                     ArrayList<String> postConditions = hashMapPC.get(attributes[2]);
 //                    for(int i=0;i<postConditions.size();i++){
 //                        System.out.println(postConditions.get(i));
 //                    }
-                    courseinfo.add(new Course(attributes[0], attributes[1], attributes[2], attributes[3], Integer.valueOf(attributes[4]), schedule, null, null, postConditions));
+                    Course course = new Course(attributes[0], attributes[1], attributes[2], attributes[3], Integer.valueOf(attributes[4]), schedule, null, null, postConditions);
+                    courseinfo.add(course);
+                    if(clgobj.getAllUsersMap().get(attributes[3])==null){
+                        clgobj.getAllUsersMap().put(attributes[3],new Faculty(attributes[3],attributes[3],attributes[3],"Faculty"));
+                        ((Faculty)clgobj.getAllUsersMap().get(attributes[3])).getCoursesTaught().add(course);
+                    }
                 }
                 line = br.readLine();
 
