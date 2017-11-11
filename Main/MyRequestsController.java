@@ -37,18 +37,18 @@ public class MyRequestsController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        User currentStudent ;
-        ObservableList<Requests> courseObservableList = FXCollections.observableArrayList();
-        //courseObservableList = currentStudent.getRequests();
+        User currentStudent = MainPage.main.current_user ;
+        ObservableList<Requests> courseObservableList = FXCollections.observableArrayList(currentStudent.getRequests());
 
-//        dateMyRequests.setCellValueFactory(new PropertyValueFactory<>("date"));
-//        startTimeMyRequests.setCellValueFactory(new PropertyValueFactory<>("startTime"));
-//        endTimeMyRequests.setCellValueFactory(new PropertyValueFactory<>("endTime"));
-//        statusMyRequests.setCellValueFactory(new PropertyValueFactory<>("status"));
-//        reasonMyRequests.setCellValueFactory(new PropertyValueFactory<>("reason"));
-//        roomMyRequests.setCellValueFactory(new PropertyValueFactory<>("room"));
-//
-//        myRequestsTable.setItems(courseObservableList);
+
+        dateMyRequests.setCellValueFactory(new PropertyValueFactory<>("date"));
+        startTimeMyRequests.setCellValueFactory(new PropertyValueFactory<>("startTime"));
+        endTimeMyRequests.setCellValueFactory(new PropertyValueFactory<>("endTime"));
+        statusMyRequests.setCellValueFactory(new PropertyValueFactory<>("status"));
+        reasonMyRequests.setCellValueFactory(new PropertyValueFactory<>("reason"));
+        roomMyRequests.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
+
+        myRequestsTable.setItems(courseObservableList);
 
     }
 }
