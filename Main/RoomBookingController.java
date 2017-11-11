@@ -50,6 +50,9 @@ public class RoomBookingController {
     
     @FXML
     void makeRequest(ActionEvent event) throws IOException, ClassNotFoundException {
+
+        int flag=0;
+
         System.out.println("req 1 = "  + MainPage.main.current_user.getRequests());
         System.out.println("make request pressed");
 //        String date1 = date.getAccessibleText();\\
@@ -63,6 +66,8 @@ public class RoomBookingController {
         String from_time = timeFrom.getValue().toString();
         String to_time = timeTo.getValue().toString();
         String roomNumber = roomRequest.getText();
+
+
 
         System.out.println("date =  " + date1);
         System.out.println("from_time = " + from_time );
@@ -88,11 +93,37 @@ public class RoomBookingController {
         Requests myreq = new Requests(date1, from_time, to_time, reason, MainPage.main.current_user.getType(),roomNumber);
         myreq.setUser(MainPage.main.current_user);
 //        Admin.addRequest(myreq);
+
+
+        for(int i=0;i<arr.size();i++){
+
+            if(arr.get(i).getDate().compareTo(date1)==0 &&
+                    arr.get(i).getRoomNumber().compareToIgnoreCase(roomNumber)==0 &&
+                    arr.get(i).getStartTime().compareTo(from_time)<0 &&
+                    arr.get(i).getEndTime().compareTo(from_time)>0 &&
+                    arr.get(i).getStatus().equals("Approved"))
+            {
+                myreq.setStatus("Invalid Request");
+                flag=1;
+            }
+
+            else if(arr.get(i).getDate().compareTo(date1)==0 &&
+                    arr.get(i).getRoomNumber().compareToIgnoreCase(roomNumber)==0 &&
+                    arr.get(i).getStartTime().compareTo(to_time)<0 &&
+                    arr.get(i).getEndTime().compareTo(to_time)>0 &&
+                    arr.get(i).getStatus().equals("Approved"))
+            {
+                myreq.setStatus("Invalid Request");
+                flag=1;
+            }
+        }
+
         MainPage.main.current_user.getRequests().add(myreq);
 //        System.out.println("new created abhishek");
 //        ArrayList<Requests> allreq = new ArrayList<Requests>();
 //        allreq.add(myreq);
-        arr.add(myreq);
+        if(flag==0)
+            arr.add(myreq);
 //        College.serialize();
         System.out.println(myreq);
 //        System.out.println("check " + MainPage.clgobj.getAllUsersMap().get("ab").getRequests());
