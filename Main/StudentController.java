@@ -59,18 +59,9 @@ public class StudentController implements Initializable {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SearchCourses.fxml"));
         Pane newstudentPane = fxmlLoader.load();
-//        SearchCoursesController newcontroller = fxmlLoader.<SearchCoursesController>getController();
-//        newcontroller.Start(myStudent);
         studentPane.getChildren().clear();
         studentPane.getChildren().add(newstudentPane);
 
-    }
-
-    @FXML
-    public void myRequestsStudent(ActionEvent actionEvent) throws IOException {
-        Pane newstudentPane = FXMLLoader.load(getClass().getResource("MyRequests.fxml"));
-        studentPane.getChildren().clear();
-        studentPane.getChildren().add(newstudentPane);
     }
 
 

@@ -48,13 +48,13 @@ public class Requests implements Serializable {
     public String getUserType() {
         return userType;
     }
-
+    
     public void setUserType(String userType) {
         this.userType = userType;
     }
 
     public boolean equals(Requests req) {
-        if (date.equals(req.getDate()) && status.equals(req.getStatus()) && reason.equals(req.getReason()) && userType.equals(req.getUserType()) && startTime.equals(req.startTime) && endTime.equals(req.endTime)) {
+        if (date.equals(req.getDate()) &&  reason.equals(req.getReason()) && userType.equals(req.getUserType()) && startTime.equals(req.startTime) && endTime.equals(req.endTime)) {
             System.out.println(" Request True");
             return true;
             
@@ -88,7 +88,11 @@ public class Requests implements Serializable {
     public String getEndTime() {
         return endTime;
     }
-
+    
+    public void setUser(User user){
+        this.user = user;
+    }
+    
     public static void main(String[] args) {
         System.out.println("ABHISHEK");
     }

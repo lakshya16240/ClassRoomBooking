@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTimePicker?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,40 +17,35 @@
             <Image url="@../Images/1.jpg" />
          </image>
       </ImageView>
-      <TextField fx:id="date" layoutX="196.0" layoutY="122.0" prefHeight="31.0" prefWidth="52.0" />
-      <TextField fx:id="year" layoutX="300.0" layoutY="122.0" prefHeight="31.0" prefWidth="52.0" />
-      <TextField fx:id="month" layoutX="248.0" layoutY="122.0" prefHeight="31.0" prefWidth="52.0" />
       <Text layoutX="124.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date:" wrappingWidth="62.6708984375">
          <font>
             <Font size="27.0" />
          </font>
       </Text>
-      <Text layoutX="211.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DD" />
-      <Text layoutX="261.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MM" />
-      <Text layoutX="312.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="YYYY" />
       <Text layoutX="118.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time:" wrappingWidth="73.67088043689728">
          <font>
             <Font size="27.0" />
          </font>
       </Text>
-      <TextField fx:id="timeFrom" layoutX="188.0" layoutY="211.0" prefHeight="31.0" prefWidth="97.0" />
-      <TextField fx:id="timeTo" layoutX="289.0" layoutY="211.0" prefHeight="31.0" prefWidth="97.0" />
-      <Text layoutX="211.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From">
+      <Text layoutX="246.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From" wrappingWidth="54.23046875">
          <font>
             <Font size="22.0" />
          </font>
       </Text>
-      <Text layoutX="316.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To">
+      <Text layoutX="523.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To">
          <font>
             <Font size="22.0" />
          </font>
       </Text>
-      <Text layoutX="90.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reason:" wrappingWidth="96.99999189376831">
+      <Text layoutX="106.0" layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reason:" wrappingWidth="96.99999189376831">
          <font>
             <Font size="27.0" />
          </font>
       </Text>
-      <TextArea fx:id="Reason" layoutX="188.0" layoutY="296.0" prefHeight="157.0" prefWidth="224.0" />
+      <TextArea fx:id="Reason" layoutX="228.0" layoutY="306.0" prefHeight="157.0" prefWidth="224.0" />
       <Button fx:id="requestbtn" layoutX="236.0" layoutY="499.0" mnemonicParsing="false" onAction="#makeRequest" prefHeight="31.0" prefWidth="152.0" text="Make Request" />
+      <JFXDatePicker fx:id="date" layoutX="198.0" layoutY="121.0" />
+      <JFXTimePicker fx:id="timeFrom" layoutX="198.0" layoutY="212.0" />
+      <JFXTimePicker fx:id="timeTo" layoutX="433.0" layoutY="209.0" />
    </children>
 </AnchorPane>

@@ -7,8 +7,16 @@ package Main;
 
 import static Main.Controller.deserializeArray;
 import static Main.Controller.serializeArray;
+import static Main.MainPage.clgobj;
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTimePicker;
 import java.io.IOException;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -21,57 +29,74 @@ import javafx.scene.control.TextField;
 
 
 public class RoomBookingController {
+//    MainPage main = new MainPage();
     
-    
-    @FXML
-    private TextField date;
 
     @FXML
-    private TextField year;
+    private JFXDatePicker date;
 
     @FXML
-    private TextField month;
+    private JFXTimePicker timeFrom;
 
     @FXML
-    private TextField timeFrom;
-
-    @FXML
-    private TextField timeTo;
+    private JFXTimePicker timeTo;
 
     @FXML
     private TextArea Reason;
     
     @FXML
     void makeRequest(ActionEvent event) throws IOException, ClassNotFoundException {
+        System.out.println("req 1 = "  + MainPage.main.current_user.getRequests());
         System.out.println("make request pressed");
-        String date1 = date.getText();
-        String mnth = month.getText();
-        String year1 = year.getText();
-        String from_time = timeFrom.getText();
-        String to_time = timeTo.getText();
+//        String date1 = date.getAccessibleText();\\
+//        LocalDate localDate = date.getValue();
+//        Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
+//        Date date2 = Date.from(instant);
+//        System.out.println("day = " + date2);
+        String date1 = date.getValue().toString();
+        
+//        String requested_date = date1.toString();
+        String from_time = timeFrom.getValue().toString();
+        String to_time = timeTo.getValue().toString();
+
+        System.out.println("date =  " + date1);
+        System.out.println("from_time = " + from_time );
+//        String date1 = date.getText();
+//        String mnth = month.getText();
+//        String year1 = year.getText();
+//        from_time = timeFrom.getText();
+//        to_time = timeTo.getText();
         String reason = Reason.getText();
-        month.setText(null);
-        date.setText(null);
-        year.setText(null);
-        timeFrom.setText(null);
-        timeTo.setText(null);
+//        month.setText(null);
+//        date.setText(null);
+//        year.setText(null);
+//        timeFrom.setText(null);
+//        timeTo.setText(null);
         Reason.setText(null);
 //        Admin.
-
         ArrayList<Requests> arr = new ArrayList<Requests>();
         arr = deserializeArray();
-        Admin.setList(arr);
-        Requests myreq = new Requests(date1, from_time, to_time, reason, "Student");
-        Admin.addRequest(myreq);
+        if (arr==null){
+            arr = new ArrayList<Requests>();
+        }
+        System.out.println( "may be null " + MainPage.main.current_user);
+        Requests myreq = new Requests(date1, from_time, to_time, reason, MainPage.main.current_user.getType());
+        myreq.setUser(MainPage.main.current_user);
+//        Admin.addRequest(myreq);
+        MainPage.main.current_user.getRequests().add(myreq);
 //        System.out.println("new created abhishek");
-       
-        ArrayList<Requests> allreq = new ArrayList<Requests>();
-        allreq.add(myreq);
+//        ArrayList<Requests> allreq = new ArrayList<Requests>();
+//        allreq.add(myreq);
+        arr.add(myreq);
 //        College.serialize();
         System.out.println(myreq);
-
+        System.out.println("check " + MainPage.clgobj.getAllUsersMap().get("ab").getRequests());
+        College.serialize(MainPage.clgobj);
+        
         serializeArray(arr);
 //        clgobj.
+//        College.serialize(clgobj);
+        System.out.println("req 2 = "  + MainPage.main.current_user.getRequests());
     }
 
 }

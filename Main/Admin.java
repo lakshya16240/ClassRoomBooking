@@ -81,12 +81,13 @@ public class Admin extends User {
 
     }
 
-//    public static ArrayList<Requests> getRequests() {
-//        if (requests==null){
-//            requests = new ArrayList<>();
-//        }
-//        return requests;
-//    }
+    public  ArrayList<Requests> getReq() {
+
+        if (requests==null){
+            requests = new ArrayList<>();
+        }
+        return requests;
+    }
 
     public static void addRequest(Requests req) {
         if (requests==null){

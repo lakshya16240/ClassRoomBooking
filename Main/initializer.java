@@ -115,7 +115,10 @@ public class initializer {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         College clgobj = new College();
 //        clgobj = College.deserialize("data");
-//        serializeReq(null);
+        ArrayList<Requests> req = new ArrayList<Requests>();
+        serializeReq(req);
+        Controller.serializeArray(null);
+        
         User admin1 = new Admin("Abhishek", "abhishek16126", "abhi", "Admin");
         User admin2 = new Admin("Lakshya", "lakshya16240", "chowki", "Admin");
         clgobj.getAllUsers().add(admin1);
