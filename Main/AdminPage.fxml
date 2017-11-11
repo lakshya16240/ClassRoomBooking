@@ -31,7 +31,13 @@
                   <JFXButton onAction="#roomBooking" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #21618C;" text="Room Booking" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
-                     </font></JFXButton>
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="roomBookingsAdmin" onAction="#viewBookings" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #21618C;" text="View Bookings" textFill="WHITE">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </JFXButton>
                   <JFXButton onAction="#viewTimeTable" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #21618C;" text="Time Table" textFill="WHITE">
                      <font>
                         <Font size="27.0" />

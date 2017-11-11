@@ -51,6 +51,14 @@ public class AdminController implements Initializable {
     }
 
     @FXML
+    public void viewBookings(ActionEvent actionEvent) throws IOException {
+
+        Pane newstudentPane = FXMLLoader.load(getClass().getResource("ViewBookings.fxml"));
+        adminPane.getChildren().clear();
+        adminPane.getChildren().add(newstudentPane);
+    }
+
+    @FXML
     public void Logout(ActionEvent actionEvent) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainPage.fxml"));
@@ -64,6 +72,7 @@ public class AdminController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
     }
+
 
 
 }

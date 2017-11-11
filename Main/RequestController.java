@@ -74,7 +74,7 @@ public class RequestController implements Initializable {
                    }
             }
             clgobj.getAllUsersMap().put(current_req.getUser().getEmailId(),userobj);
-            System.out.println("The actual check " + clgobj.getAllUsersMap().get("ab").getRequests());
+//            System.out.println("The actual check " + clgobj.getAllUsersMap().get("ab").getRequests());
             
             System.out.println("here will be the error " + (clgobj.getAllUsersMap().get("ab")== current_req.getUser()));
             System.out.println("one more check when I did jugaad " + current_req.getStatus());
@@ -97,7 +97,7 @@ public class RequestController implements Initializable {
                     AllRequests.remove(i);
                 }
             }
-            System.out.println("check in admin " + MainPage.clgobj.getAllUsersMap().get("ab").getRequests());
+//            System.out.println("check in admin " + MainPage.clgobj.getAllUsersMap().get("ab").getRequests());
             ObservableList<Requests> display = FXCollections.observableArrayList(AllRequests);
             Controller.serializeArray(AllRequests);
             PopulateTable();
