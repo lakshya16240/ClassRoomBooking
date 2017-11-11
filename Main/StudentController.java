@@ -4,13 +4,16 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import org.controlsfx.control.textfield.TextFields;
 
 public class StudentController implements Initializable {
@@ -18,8 +21,13 @@ public class StudentController implements Initializable {
     public void Start(Student student) {
         myStudent = student;
     }
+
+
     @FXML
     private AnchorPane studentPane;
+
+    @FXML
+    private JFXButton logoutStudent;
 
     @FXML
     void displayCourses(ActionEvent event) throws IOException {
@@ -72,6 +80,17 @@ public class StudentController implements Initializable {
         studentPane.getChildren().add(newstudentPane);
     }
 
+    @FXML
+    public void Logout(ActionEvent actionEvent) throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainPage.fxml"));
+        Parent root2 = fxmlLoader.load();
+        Scene scene = new Scene(root2);
+        Stage stage = (Stage) logoutStudent.getScene().getWindow();
+        stage.setScene(scene);
+
+    }
+
 
     void Test(String s) {
         System.out.println(s + " chalaaa");
@@ -82,6 +101,7 @@ public class StudentController implements Initializable {
 
 
     }
+
 
 
 }

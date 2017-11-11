@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="885.0" prefWidth="1259.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="885.0" prefWidth="1259.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.Controller">
    <children>
       <ImageView fitHeight="778.0" fitWidth="1259.0" layoutX="-1.0" layoutY="106.0" pickOnBounds="true">
          <image>
@@ -45,12 +45,12 @@
       <TextField fx:id="name" layoutX="934.0" layoutY="281.0" prefHeight="44.0" prefWidth="247.0" promptText="Full Name" />
       <TextField fx:id="emailId" layoutX="934.0" layoutY="341.0" prefHeight="44.0" prefWidth="247.0" promptText="Email Id" />
       <PasswordField fx:id="password" layoutX="934.0" layoutY="404.0" prefHeight="46.0" prefWidth="247.0" promptText="Password" />
-      <RadioButton layoutX="939.0" layoutY="475.0" mnemonicParsing="false" text="Student">
+      <RadioButton fx:id="studentToggle" layoutX="939.0" layoutY="475.0" mnemonicParsing="false" text="Student">
          <toggleGroup>
             <ToggleGroup fx:id="Users" />
          </toggleGroup></RadioButton>
-      <RadioButton layoutX="1033.0" layoutY="475.0" mnemonicParsing="false" text="Admin" toggleGroup="$Users" />
-      <RadioButton layoutX="1115.0" layoutY="475.0" mnemonicParsing="false" text="Faculty" toggleGroup="$Users" />
+      <RadioButton fx:id="adminToggle" layoutX="1033.0" layoutY="475.0" mnemonicParsing="false" text="Admin" toggleGroup="$Users" />
+      <RadioButton fx:id="facultyToggle" layoutX="1115.0" layoutY="475.0" mnemonicParsing="false" text="Faculty" toggleGroup="$Users" />
       <Button fx:id="SignUp" layoutX="1021.0" layoutY="511.0" mnemonicParsing="false" onAction="#SignUp" text="Sign Up" />
       <Text layoutX="751.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" wrappingWidth="80.6708984375" />
       <Text layoutX="970.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
