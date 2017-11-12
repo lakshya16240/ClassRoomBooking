@@ -31,6 +31,7 @@ public class StudentController implements Initializable {
 
     @FXML
     void displayCourses(ActionEvent event) throws IOException {
+        
         ArrayList<Course> myCourses = myStudent.viewCourses();
 //        myCourses.add(new Course("ama","ajja","jaja","mamama",4,null,null,null,null));
         System.out.println("sizeeee ::::::   " + myCourses.size());
