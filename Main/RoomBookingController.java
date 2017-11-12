@@ -176,9 +176,8 @@ public class RoomBookingController implements Initializable {
 //        clgobj.
 //        College.serialize(clgobj);
         System.out.println("req 2 = " + MainPage.main.current_user.getRequests());
-        }
-}
 
+        }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -200,4 +199,7 @@ public class RoomBookingController implements Initializable {
 //            e.printStackTrace();
 //        }
     }
+}
+
+
 

@@ -160,7 +160,7 @@ public class MainPage extends Application {
         courseinfo = readCourseCSV();
         for (int i = 0; i < courseinfo.size(); i++) {
             Course c = courseinfo.get(i);
-//            System.out.println(c);
+            System.out.println(c);
             ArrayList<String> pc = c.getPostConditions();
 //            fabhisababba
         }
