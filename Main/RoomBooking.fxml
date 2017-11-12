@@ -5,54 +5,25 @@
 <?import com.jfoenix.controls.JFXTimePicker?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="867.0" prefWidth="906.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.RoomBookingController">
    <children>
-      <ImageView fitHeight="867.0" fitWidth="906.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true">
-         <image>
-            <Image url="@../Images/1.jpg" />
-         </image>
-      </ImageView>
-      <Text layoutX="124.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date:" wrappingWidth="62.6708984375">
-         <font>
-            <Font size="27.0" />
-         </font>
-      </Text>
-      <Text layoutX="433.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room:" wrappingWidth="62.67090904712677">
-         <font>
-            <Font size="27.0" />
-         </font>
-      </Text>
-      <Text layoutX="118.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time:" wrappingWidth="73.67088043689728">
-         <font>
-            <Font size="27.0" />
-         </font>
-      </Text>
-      <Text layoutX="246.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From" wrappingWidth="54.23046875">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Text>
-      <Text layoutX="523.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Text>
-      <Text layoutX="106.0" layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reason:" wrappingWidth="96.99999189376831">
-         <font>
-            <Font size="27.0" />
-         </font>
-      </Text>
-      <TextArea fx:id="Reason" layoutX="228.0" layoutY="306.0" prefHeight="157.0" prefWidth="224.0" />
-      <Button fx:id="requestbtn" layoutX="236.0" layoutY="499.0" mnemonicParsing="false" onAction="#makeRequest" prefHeight="31.0" prefWidth="152.0" text="Make Request" />
-      <JFXDatePicker fx:id="date" layoutX="198.0" layoutY="121.0" />
-      <JFXTimePicker fx:id="timeFrom" layoutX="198.0" layoutY="212.0" />
-      <JFXTimePicker fx:id="timeTo" layoutX="433.0" layoutY="209.0" />
-      <JFXTextField fx:id="roomRequest" layoutX="523.0" layoutY="121.0" prefHeight="27.0" prefWidth="112.0" />
+      <TextArea fx:id="Reason" layoutX="198.0" layoutY="337.0" prefHeight="126.0" prefWidth="475.0" />
+      <Button fx:id="requestbtn" layoutX="377.0" layoutY="520.0" mnemonicParsing="false" onAction="#makeRequest" prefHeight="31.0" prefWidth="152.0" style="-fx-background-color: #40C4D0;" text="Make Request" />
+      <JFXDatePicker fx:id="date" layoutX="261.0" layoutY="121.0" prefHeight="29.0" prefWidth="125.0" style="-fx-background-color: #FFFFFF;" />
+      <JFXTimePicker fx:id="timeFrom" layoutX="261.0" layoutY="212.0" prefHeight="27.0" prefWidth="125.0" style="-fx-background-color: #FFFFFF;" />
+      <JFXTimePicker fx:id="timeTo" layoutX="539.0" layoutY="213.0" prefHeight="29.0" prefWidth="125.0" style="-fx-background-color: #FFFFFF;" />
+      <JFXTextField fx:id="roomRequest" layoutX="539.0" layoutY="122.0" prefHeight="29.0" prefWidth="125.0" style="-fx-background-color: #FFFFFF;" />
+       <TextField editable="false" layoutX="476.0" layoutY="122.0" prefHeight="29.0" prefWidth="63.0" style="-fx-background-color: #40C4D0; -fx-border-color: #000000;" text="ROOM :" />
+       <TextField editable="false" layoutX="198.0" layoutY="121.0" prefHeight="27.0" prefWidth="63.0" style="-fx-background-color: #40C4D0; -fx-border-color: #000000;" text="DATE :" />
+      <TextField alignment="TOP_CENTER" editable="false" layoutX="198.0" layoutY="310.0" prefHeight="27.0" prefWidth="475.0" style="-fx-background-color: #40C4D0;" text="REASON : " />
+      <TextField editable="false" layoutX="198.0" layoutY="212.0" prefHeight="29.0" prefWidth="63.0" style="-fx-background-color: #40C4D0;" text="FROM :">
+         <effect>
+            <DropShadow height="4.0" radius="1.955" width="5.82" />
+         </effect></TextField>
+      <TextField editable="false" layoutX="476.0" layoutY="213.0" prefHeight="29.0" prefWidth="63.0" style="-fx-background-color: #40C4D0; -fx-border-color: #000000;" text="TO" />
    </children>
 </AnchorPane>
