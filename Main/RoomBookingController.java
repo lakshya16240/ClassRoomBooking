@@ -21,6 +21,8 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.HashMap;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -36,6 +38,8 @@ import javafx.stage.Stage;
  *
  * @author Lenovo
  */
+
+
 public class RoomBookingController implements Initializable {
 //    MainPage main = new MainPage();
 
@@ -57,6 +61,8 @@ public class RoomBookingController implements Initializable {
     @FXML
     void makeRequest(ActionEvent event) throws IOException, ClassNotFoundException {
 
+        HashMap<String, Room> roomBookings = Room.deserializeRoom();
+
         int flag = 0;
 
         System.out.println("req 1 = " + MainPage.main.current_user.getRequests());
@@ -67,26 +73,50 @@ public class RoomBookingController implements Initializable {
 //        Date date2 = Date.from(instant);
 //        System.out.println("day = " + date2);
         String date1 = date.getValue().toString();
+        int day = date.getValue().getDayOfWeek().getValue();
 
 //        String requested_date = date1.toString();
         String from_time = timeFrom.getValue().toString();
         String to_time = timeTo.getValue().toString();
         String roomNumber = roomRequest.getText();
+        roomNumber = roomNumber.toUpperCase();
+
 
         System.out.println("date =  " + date1);
         System.out.println("from_time = " + from_time);
-//        String date1 = date.getText();
-//        String mnth = month.getText();
-//        String year1 = year.getText();
-//        from_time = timeFrom.getText();
-//        to_time = timeTo.getText();
+
         String reason = Reason.getText();
-//        month.setText(null);
-//        date.setText(null);
-//        year.setText(null);
-//        timeFrom.setText(null);
-//        timeTo.setText(null);
+
         Reason.setText("");
+
+
+        int startHour = Integer.parseInt((from_time.split(":"))[0]);
+        int startMin = Integer.parseInt((from_time.split(":"))[1]);
+        int endHour = Integer.parseInt((to_time.split(":"))[0]);
+        int endMin = Integer.parseInt((to_time.split(":"))[1]);
+        int startIndex;
+        int endIndex;
+
+        if (startHour < 8) {
+            startIndex = (12 + startHour - 8) * 2;
+        } else {
+            startIndex = (startHour - 8) * 2;
+        }
+        if (startMin != 0) {
+            startIndex++;
+        }
+
+        if (endHour <= 8) {
+            endIndex = (12 + endHour - 8) * 2 - 1;
+        } else {
+            endIndex = (endHour - 8) * 2 - 1;
+        }
+
+        if (endMin != 0) {
+            endIndex++;
+        }
+
+
 //        Admin.
         ArrayList<Requests> arr = new ArrayList<Requests>();
         arr = deserializeArray();
@@ -98,46 +128,60 @@ public class RoomBookingController implements Initializable {
         myreq.setUser(MainPage.main.current_user);
 //        Admin.addRequest(myreq);
 
-        for (int i = 0; i < arr.size(); i++) {
 
-            if (arr.get(i).getDate().compareTo(date1) == 0
-                    && arr.get(i).getRoomNumber().compareToIgnoreCase(roomNumber) == 0
-                    && arr.get(i).getStartTime().compareTo(from_time) < 0
-                    && arr.get(i).getEndTime().compareTo(from_time) > 0
-                    && arr.get(i).getStatus().equals("Approved")) {
-                myreq.setStatus("Invalid Request");
-                flag = 1;
-            } else if (arr.get(i).getDate().compareTo(date1) == 0
-                    && arr.get(i).getRoomNumber().compareToIgnoreCase(roomNumber) == 0
-                    && arr.get(i).getStartTime().compareTo(to_time) < 0
-                    && arr.get(i).getEndTime().compareTo(to_time) > 0
-                    && arr.get(i).getStatus().equals("Approved")) {
+        for (int j = startIndex; j <= endIndex; j++) {
+
+            if ((roomBookings.get(roomNumber).getAvailability())[j][day]) {
                 myreq.setStatus("Invalid Request");
                 flag = 1;
             }
         }
+        if (flag == 0) {
 
-        MainPage.main.current_user.getRequests().add(myreq);
+
+            for (int i = 0; i < arr.size(); i++) {
+
+                if (arr.get(i).getDate().compareTo(date1) == 0 &&
+                        arr.get(i).getRoomNumber().compareToIgnoreCase(roomNumber) == 0 &&
+                        arr.get(i).getStartTime().compareTo(from_time) < 0 &&
+                        arr.get(i).getEndTime().compareTo(from_time) > 0 &&
+                        arr.get(i).getStatus().equals("Approved")) {
+                    myreq.setStatus("Invalid Request");
+                    flag = 1;
+                } else if (arr.get(i).getDate().compareTo(date1) == 0 &&
+                        arr.get(i).getRoomNumber().compareToIgnoreCase(roomNumber) == 0 &&
+                        arr.get(i).getStartTime().compareTo(to_time) < 0 &&
+                        arr.get(i).getEndTime().compareTo(to_time) > 0 &&
+                        arr.get(i).getStatus().equals("Approved")) {
+                    myreq.setStatus("Invalid Request");
+                    flag = 1;
+                }
+                }
+            }
+
+            MainPage.main.current_user.getRequests().add(myreq);
 //        System.out.println("new created abhishek");
 //        ArrayList<Requests> allreq = new ArrayList<Requests>();
 //        allreq.add(myreq);
         if (flag == 0) {
-            arr.add(myreq);
+                arr.add(myreq);
         }
 //        College.serialize();
-        System.out.println(myreq);
+            System.out.println(myreq);
 //        System.out.println("check " + MainPage.clgobj.getAllUsersMap().get("ab").getRequests());
-        College.serialize(MainPage.clgobj);
+            College.serialize(MainPage.clgobj);
 
-        serializeArray(arr);
+            serializeArray(arr);
+
 //        clgobj.
 //        College.serialize(clgobj);
         System.out.println("req 2 = " + MainPage.main.current_user.getRequests());
-    }
-    
+        }
+}
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+
 //        method();
 //        try {
 //            Stage primaryStage = new Stage();
@@ -156,4 +200,4 @@ public class RoomBookingController implements Initializable {
 //            e.printStackTrace();
 //        }
     }
-}
+
