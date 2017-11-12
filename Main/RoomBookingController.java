@@ -89,7 +89,7 @@ public class RoomBookingController {
         if (arr==null){
             arr = new ArrayList<Requests>();
         }
-        System.out.println( "may be null " + MainPage.main.current_user);
+//        System.out.println( "may be null " + MainPage.main.current_user);
         Requests myreq = new Requests(date1, from_time, to_time, reason, MainPage.main.current_user.getType(),roomNumber);
         myreq.setUser(MainPage.main.current_user);
 //        Admin.addRequest(myreq);
