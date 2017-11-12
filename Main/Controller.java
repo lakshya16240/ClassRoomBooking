@@ -2,6 +2,7 @@ package Main;
 
 //import Main.MainPage.clgobj;
 import static Main.MainPage.clgobj;
+import static Main.MainPage.test_user;
 import static Main.initializer.serialize;
 import java.io.*;
 import java.net.URL;
@@ -203,6 +204,9 @@ public class Controller implements Initializable {
                 newcontroller.Start((Student) obj);
                 MainPage.main.current_user = (Student)obj;
                 System.out.println("main.current user has been set " + MainPage.main.current_user);
+                test_user = obj ;
+//                test_user.setName("Abhi");
+//                System.out.println("test name " + clgobj.getAllUsersMap().get(obj.getEmailId()).getName());
 //                MainPage main = new MainPage();
             } else if (clgobj.getAllUsersMap().get(email).getType().equals("Admin")) {
 //                root2 = FXMLLoader.load(getClass().getResource("AdminPage.fxml"));

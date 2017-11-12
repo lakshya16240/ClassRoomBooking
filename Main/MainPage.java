@@ -47,11 +47,12 @@ public class MainPage extends Application {
     public static MainPage main = new MainPage();
     public static College clgobj;
     public User current_user;
-
+    public static User test_user;
+    
     @Override
     public void start(Stage stage) throws Exception {
         
-        Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml")); 
 
         Scene scene = new Scene(root);
 

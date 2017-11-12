@@ -19,7 +19,10 @@ public abstract class User implements Serializable {
     public ArrayList<Requests> getRequests(){
         return requests;
     }
-
+    
+    public void setName(String new_name){
+        this.name = new_name;
+    }
     public String getName() {
         return name;
     }
