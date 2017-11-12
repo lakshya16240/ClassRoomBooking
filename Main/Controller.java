@@ -63,12 +63,6 @@ public class Controller implements Initializable {
     @FXML
     private TableColumn<Course, String> tc4;
 
-//    @FXML javafx.scene.control.TableColumn tc1;
-//    @FXML javafx.scene.control.TableColumn tc2;
-//    @FXML javafx.scene.control.TableColumn tc3;
-//    @FXML javafx.scene.control.TableColumn tc4;
-//    @FXML
-//    private TableColumn<?, ?> tc1;
     @FXML
     private TextField name;
 

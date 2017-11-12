@@ -125,7 +125,7 @@ public class RoomBookingController implements Initializable {
 
         for (int j = startIndex; j <= endIndex; j++) {
 
-            if ( roomBookings.get(roomNumber)==null ||(roomBookings.get(roomNumber).getAvailability())[j][day]) {
+            if (roomBookings.get(roomNumber) == null || (roomBookings.get(roomNumber).getAvailability())[j][day]) {
                 myreq.setStatus("Invalid Request");
                 flag = 1;
             }
@@ -174,7 +174,7 @@ public class RoomBookingController implements Initializable {
     }
 
     @Override
-    public void initialize(URL locationab   , ResourceBundle resources) {
+    public void initialize(URL locationab, ResourceBundle resources) {
 
 //        method();
 //        try {
@@ -194,5 +194,4 @@ public class RoomBookingController implements Initializable {
 //            e.printStackTrace();
 //        }
     }
-
 }
