@@ -8,31 +8,20 @@ package Main;
 import static Main.Controller.deserializeArray;
 import static Main.Controller.serializeArray;
 import static Main.MainPage.clgobj;
+import static Main.MainPage.current_user;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
-import com.sun.javafx.scene.control.skin.DatePickerSkin;
 import java.io.IOException;
 import java.net.URL;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.HashMap;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 
 /**
  *
@@ -119,14 +108,14 @@ public class RoomBookingController implements Initializable {
             arr = new ArrayList<Requests>();
         }
 //        System.out.println( "may be null " + MainPage.main.current_user);
-        Requests myreq = new Requests(date1, from_time, to_time, reason, MainPage.main.current_user.getType(), roomNumber);
-        myreq.setUser(clgobj.getAllUsersMap().get(MainPage.main.current_user.getEmailId()));
+        Requests myreq = new Requests(date1, from_time, to_time, reason, current_user.getType(), roomNumber);
+        myreq.setUser(clgobj.getAllUsersMap().get(current_user.getEmailId()));
 //        Admin.addRequest(myreq);
-
+        day--;
         for (int j = startIndex; j <= endIndex; j++) {
 
             if (roomBookings.get(roomNumber) == null || (roomBookings.get(roomNumber).getAvailability())[j][day]) {
-                myreq.setStatus("Invalid Request");
+                myreq.setStatus("Room Already Boooked");
                 flag = 1;
             }
         }
@@ -139,29 +128,34 @@ public class RoomBookingController implements Initializable {
                         && arr.get(i).getStartTime().compareTo(from_time) < 0
                         && arr.get(i).getEndTime().compareTo(from_time) > 0
                         && arr.get(i).getStatus().equals("Approved")) {
-                    myreq.setStatus("Invalid Request");
+                    myreq.setStatus("Room Already Boooked");
                     flag = 1;
                 } else if (arr.get(i).getDate().compareTo(date1) == 0
                         && arr.get(i).getRoomNumber().compareToIgnoreCase(roomNumber) == 0
                         && arr.get(i).getStartTime().compareTo(to_time) < 0
                         && arr.get(i).getEndTime().compareTo(to_time) > 0
                         && arr.get(i).getStatus().equals("Approved")) {
-                    myreq.setStatus("Invalid Request");
+                    myreq.setStatus("Room Already Boooked");
                     flag = 1;
                 }
             }
         }
 
-        MainPage.main.current_user.getRequests().add(myreq);
+        
 //        clgobj.getAllUsersMap().put(MainPage.main.current_user.getEmailId(), MainPage.main.current_user);
 //        System.out.println("new created abhishek");
 //        ArrayList<Requests> allreq = new ArrayList<Requests>();
 //        allreq.add(myreq);
         if (flag == 0) {
-            arr.add(myreq);
+            
+            if (!current_user.getType().equals("Student")){
+                myreq.setStatus("Approved");
+            }
+//            arr.add(myreq);
         }
+        current_user.getRequests().add(myreq);
 //        College.serialize();
-
+        arr.add(myreq);
         System.out.println(myreq);
 //        System.out.println("check " + MainPage.clgobj.getAllUsersMap().get("ab").getRequests());
         College.serialize(MainPage.clgobj);
@@ -170,12 +164,15 @@ public class RoomBookingController implements Initializable {
 
 //        clgobj.
 //        College.serialize(clgobj);
-        System.out.println("req 2 = " + MainPage.main.current_user.getRequests());
+        System.out.println("req 2 = " + current_user.getRequests());
     }
 
     @Override
     public void initialize(URL locationab, ResourceBundle resources) {
-
+//        date.setStyle("-fx-text-fill: white; -fx-font-size: 16;");
+//        timeFrom.setStyle("-fx-text-fill: white;");
+//        timeTo.setStyle("-fx-text-fill: white;");
+//        Reason.setStyle("-fx-text-fill: white;");
 //        method();
 //        try {
 //            Stage primaryStage = new Stage();

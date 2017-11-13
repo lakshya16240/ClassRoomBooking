@@ -46,7 +46,7 @@ import static Main.College.deserialize;
 public class MainPage extends Application {
     public static MainPage main = new MainPage();
     public static College clgobj;
-    public User current_user;
+    public static User current_user;
     public static User test_user;
     
     @Override

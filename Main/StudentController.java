@@ -1,10 +1,12 @@
 package Main;
+
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,11 +19,12 @@ import javafx.stage.Stage;
 import org.controlsfx.control.textfield.TextFields;
 
 public class StudentController implements Initializable {
+
     private Student myStudent;
+
     public void Start(Student student) {
         myStudent = student;
     }
-
 
     @FXML
     private AnchorPane studentPane;
@@ -30,19 +33,20 @@ public class StudentController implements Initializable {
     private JFXButton logoutStudent;
 
     @FXML
+    private JFXTextField welcome_user;
+
+    @FXML
     void displayCourses(ActionEvent event) throws IOException {
-        
+
         ArrayList<Course> myCourses = myStudent.viewCourses();
 //        myCourses.add(new Course("ama","ajja","jaja","mamama",4,null,null,null,null));
         System.out.println("sizeeee ::::::   " + myCourses.size());
-
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CourseTable.fxml"));
         Pane newstudentPane = fxmlLoader.load();
         Control newcontroller = fxmlLoader.<Control>getController();
         //newcontroller.Test("Super");
         newcontroller.Start(myCourses);
-
 
         studentPane.getChildren().add(newstudentPane);
 //        tableView.getColumns().add(0,"monday");
@@ -63,8 +67,7 @@ public class StudentController implements Initializable {
     }
 
     @FXML
-    void searchCoursesStudent(ActionEvent event) throws IOException{
-
+    void searchCoursesStudent(ActionEvent event) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SearchCourses.fxml"));
         Pane newstudentPane = fxmlLoader.load();
@@ -92,17 +95,18 @@ public class StudentController implements Initializable {
 
     }
 
-
     void Test(String s) {
         System.out.println(s + " chalaaa");
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
+        System.out.println(MainPage.current_user);
+        System.out.println(MainPage.current_user.getName());
+//        welcome_user.
+        welcome_user.setText("Welcome, " + MainPage.current_user.getName());
+//            resultInfo.setText("Passed!");
+        welcome_user.setStyle("-fx-text-fill: white; -fx-font-size: 16;");
     }
-
-
 
 }

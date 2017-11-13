@@ -65,8 +65,8 @@ public class Requests implements Serializable {
 
     @Override
     public String toString() {
-//        return "Requests{" + "roomNumber=" + roomNumber + ", date=" + date + ", status=" + status + ", startTime=" + startTime + ", endTime=" + endTime + ", reason=" + reason + ", userType=" + userType + '}';
-        return "Requests{" + "roomNumber=" + roomNumber + ",reason=" + reason + '}';
+        return "Requests{" + "roomNumber=" + roomNumber + ", date=" + date + ", status=" + status + ", startTime=" + startTime + ", endTime=" + endTime + ", reason=" + reason + ", userType=" + userType + '}';
+//        return "Requests{" + "roomNumber=" + roomNumber + ",reason=" + reason + '}';
 
     }
 

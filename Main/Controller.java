@@ -2,6 +2,7 @@ package Main;
 
 //import Main.MainPage.clgobj;
 import static Main.MainPage.clgobj;
+import static Main.MainPage.current_user;
 import static Main.MainPage.test_user;
 import static Main.initializer.serialize;
 import java.io.*;
@@ -25,7 +26,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class Controller implements Initializable {
-    
 
     @FXML
     private TableView<Course> mytable;
@@ -164,8 +164,7 @@ public class Controller implements Initializable {
             ArrayList<Requests> obj = (ArrayList<Requests>) in.readObject();
             //			in.readObject();
             return obj;
-        } 
-        finally {
+        } finally {
             in.close();
         }
     }
@@ -182,7 +181,7 @@ public class Controller implements Initializable {
         System.out.println("hello");
 
         Parent root2;
-
+//        current_user
         int num = clgobj.Login(email, passwd);
         if (num == 1) {
             loginlabel.setText("successful");
@@ -190,43 +189,46 @@ public class Controller implements Initializable {
             User obj = clgobj.getAllUsersMap().get(email);
 
             if (clgobj.getAllUsersMap().get(email).getType().equals("Student")) {
+                current_user = (Student) obj;
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StdntPage.fxml"));
                 root2 = (Parent) fxmlLoader.load();
 //                root2 = FXMLLoader.load(getClass().getResource("StdntPage.fxml"));
                 StudentController newcontroller = fxmlLoader.getController();
                 newcontroller.Test("Super");
                 newcontroller.Start((Student) obj);
-                MainPage.main.current_user = (Student)obj;
-                System.out.println("main.current user has been set " + MainPage.main.current_user);
-                test_user = obj ;
+                current_user = (Student) obj;
+                System.out.println("current user has been set to " + current_user);
+//                System.out.println("main.current user has been set " + MainPage.main.current_user);
+//                test_user = obj ;
 //                test_user.setName("Abhi");
 //                System.out.println("test name " + clgobj.getAllUsersMap().get(obj.getEmailId()).getName());
 //                MainPage main = new MainPage();
             } else if (clgobj.getAllUsersMap().get(email).getType().equals("Admin")) {
 //                root2 = FXMLLoader.load(getClass().getResource("AdminPage.fxml"));
+                current_user = (Admin) obj;
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AdminPage.fxml"));
                 root2 = (Parent) fxmlLoader.load();
 //                root2 = FXMLLoader.load(getClass().getResource("StdntPage.fxml"));
                 AdminController newcontroller = fxmlLoader.<AdminController>getController();
 //                newcontroller.Test("Super");
                 newcontroller.Start((Admin) obj);
-                MainPage.main.current_user = (Admin)obj;
+                current_user = (Admin) obj;
 
             } else {
+                current_user = (Faculty) obj;
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FacultyPage.fxml"));
                 root2 = (Parent) fxmlLoader.load();
 //                root2 = FXMLLoader.load(getClass().getResource("StdntPage.fxml"));
                 FacultyController newcontroller = fxmlLoader.<FacultyController>getController();
 //                newcontroller.Test("Super");
                 newcontroller.Start((Faculty) obj);
-                MainPage.main.current_user = (Faculty)obj;
+                current_user = (Faculty) obj;
 //                root2 = FXMLLoader.load(getClass().getResource("FacultyPage.fxml"));
             }
-
+            System.out.println("now the current user has been set to " + current_user);
             Scene scene = new Scene(root2);
             Stage stage = (Stage) LogIn.getScene().getWindow();
             stage.setScene(scene);
-
 
             stage.show();
 //            loginlabel.setText("hello");
@@ -254,7 +256,6 @@ public class Controller implements Initializable {
 //        studentPane.getChildren().clear();
 //        studentPane.getChildren().add(newstudentPane);
 //    }
-
 //    @FXML
 //    void makeRequest(ActionEvent event) throws IOException, ClassNotFoundException {
 //        System.out.println("make request pressed");
@@ -290,11 +291,10 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-
         username.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                if(event.getCode()== KeyCode.ENTER){
+                if (event.getCode() == KeyCode.ENTER) {
                     LogIn.fire();
                 }
             }
@@ -302,7 +302,7 @@ public class Controller implements Initializable {
         pass.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                if(event.getCode()== KeyCode.ENTER){
+                if (event.getCode() == KeyCode.ENTER) {
                     LogIn.fire();
                 }
             }
@@ -311,7 +311,7 @@ public class Controller implements Initializable {
         password.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                if(event.getCode()== KeyCode.ENTER){
+                if (event.getCode() == KeyCode.ENTER) {
                     SignUp.fire();
                 }
             }
@@ -320,7 +320,7 @@ public class Controller implements Initializable {
         name.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                if(event.getCode()== KeyCode.ENTER){
+                if (event.getCode() == KeyCode.ENTER) {
                     SignUp.fire();
                 }
             }
@@ -328,17 +328,16 @@ public class Controller implements Initializable {
         emailId.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                if(event.getCode()== KeyCode.ENTER){
+                if (event.getCode() == KeyCode.ENTER) {
                     SignUp.fire();
                 }
             }
         });
 
-
         LogIn.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                if(event.getCode()==KeyCode.ENTER){
+                if (event.getCode() == KeyCode.ENTER) {
                     LogIn.fire();
                 }
             }
@@ -347,7 +346,7 @@ public class Controller implements Initializable {
         SignUp.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                if(event.getCode()==KeyCode.ENTER){
+                if (event.getCode() == KeyCode.ENTER) {
                     SignUp.fire();
                 }
             }
@@ -356,7 +355,7 @@ public class Controller implements Initializable {
         studentToggle.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                if(event.getCode()==KeyCode.ENTER){
+                if (event.getCode() == KeyCode.ENTER) {
                     studentToggle.setSelected(true);
                 }
             }
@@ -365,7 +364,7 @@ public class Controller implements Initializable {
         facultyToggle.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                if(event.getCode()==KeyCode.ENTER){
+                if (event.getCode() == KeyCode.ENTER) {
                     facultyToggle.setSelected(true);
                 }
             }
@@ -374,11 +373,11 @@ public class Controller implements Initializable {
         adminToggle.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                if(event.getCode()==KeyCode.ENTER){
+                if (event.getCode() == KeyCode.ENTER) {
                     adminToggle.setSelected(true);
                 }
             }
         });
     }
-    
+
 }

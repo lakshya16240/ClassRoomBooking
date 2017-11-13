@@ -1,6 +1,7 @@
 package Main;
 
 import static Main.MainPage.clgobj;
+import static Main.MainPage.current_user;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -59,19 +60,20 @@ public class SearchCoursesController implements Initializable {
     private Button AddCourse;
 
     @FXML
-    void addCourse(ActionEvent event) {
+    void addCourse(ActionEvent event) throws IOException {
         ObservableList<Course> SelectedCourses = FXCollections.observableArrayList();;
         SelectedCourses = searchCoursesTable.getSelectionModel().getSelectedItems();
 //        System.out.println("req = " + ApprovedRequests);
-        
+
 //        System.out.println("dis - approved requests = " + DisApprovedRequests);
 //        System.out.println("requests = " + AllRequests);
-        Student user = (Student)MainPage.main.current_user;
-        for (int i=0 ; i<SelectedCourses.size() ; i++){
-            user.addCourses(SelectedCourses.get(i));
+//        current_user = (Student)current_user;
+        for (int i = 0; i < SelectedCourses.size(); i++) {
+            ((Student) current_user).addCourses(SelectedCourses.get(i));
         }
-        clgobj.getAllUsersMap().put(user.getEmailId(),user);
-        System.out.println("Courses are : " + user.viewCourses() );
+//        clgobj.getAllUsersMap().put(user.getEmailId(),user);
+//        System.out.println("Courses are : " + user.viewCourses() );
+        College.serialize(clgobj);
     }
 
     @Override
@@ -79,8 +81,24 @@ public class SearchCoursesController implements Initializable {
 //        searchCoursesTable.setSelectionModel(value);
         List<Course> courseList = new ArrayList<>();
         ArrayList<String> postConditionsList = new ArrayList<>();
+
         try {
             courseList = MainPage.readCourseCSV();
+            ObservableList<Course> courseObservableList = FXCollections.observableArrayList(courseList);
+//            course.convertToString(courseList);
+            tc5.setCellValueFactory(
+                    new PropertyValueFactory<Course, String>("name"));
+            tc6.setCellValueFactory(
+                    new PropertyValueFactory<Course, String>("type"));
+            tc7.setCellValueFactory(
+                    new PropertyValueFactory<Course, String>("code"));
+            tc8.setCellValueFactory(
+                    new PropertyValueFactory<Course, Integer>("credits"));
+
+            tc9.setCellValueFactory(
+                    new PropertyValueFactory<Course, String>("postConditionsString"));
+
+            searchCoursesTable.setItems(courseObservableList);
             for (int i = 0; i < courseList.size(); i++) {
 
                 Course course = courseList.get(i);
@@ -143,27 +161,5 @@ public class SearchCoursesController implements Initializable {
             }
         });
 
-//        List<Course> courseList;
-//        ArrayList<String> postConditionsList = new ArrayList<>();
-//        try {
-//            courseList = MainPage.readCourseCSV();
-//            for(int i=0;i<courseList.size();i++){
-//
-//                Course course = courseList.get(i);
-//                postConditionsList.addAll(course.getPostConditions());
-//            }
-//            String[] suggestedPostConditions = new String[postConditionsList.size()];
-//            for(int i=0;i<postConditionsList.size();i++){
-//                suggestedPostConditions[i] = postConditionsList.get(i);
-//                //System.out.println("suggested pc =  " + suggestedPostConditions[i]);
-//            }
-//
-//            TextFields.bindAutoCompletion(searchCoursesTextField, suggestedPostConditions);
-//
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
     }
 }
