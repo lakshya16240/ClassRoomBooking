@@ -28,7 +28,8 @@ public class Course implements Serializable{
     }
     @Override
     public String toString(){
-        String s ="type:" + type+  "course code:" + code+ " name: " + name + " credits: " + credits + " instructor: "+ instructor + " Monday: "+ time[0] + " Tuesday:"+ time[1] ;
+        String s ="type:" + type+  "course code:" + code+ " name: " + name + " credits: " + credits + " instructor: "+ instructor + " Monday: "+ time[0] + " Tuesday:"+ time[1] + " ::" + room[0] ;
+        //String s =
         return (s);
     }
 
@@ -61,9 +62,20 @@ public class Course implements Serializable{
     public int getCredits(){
         return credits;
     }
-    
-    
-//    public String getInfo(){
+
+    public String[] getTime() {
+        return time;
+    }
+
+    public String[] getRoom() {
+        return room;
+    }
+
+    public String getInstructor() {
+        return instructor;
+    }
+
+    //    public String getInfo(){
 //
 //    }
 }

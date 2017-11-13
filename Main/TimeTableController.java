@@ -1,47 +1,143 @@
 package Main;
 
 import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.skins.JFXDatePickerSkin;
 import com.sun.javafx.scene.control.skin.DatePickerSkin;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import sun.applet.Main;
 
 public class TimeTableController implements Initializable{
 
     @FXML
-    private DatePicker datePicker;
-    
-    public void method(){
-        try {
-            Stage primaryStage = new Stage();
-            BorderPane root = new BorderPane();
-            Scene scene = new Scene(root, 400, 400);
-//            scene.getStylesheets().add()
-//            scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+    public ListView<TextFlow> listViewBookings;
 
-            DatePickerSkin datePickerSkin = new DatePickerSkin(new DatePicker(LocalDate.now()));
-            Node popupContent = datePickerSkin.getPopupContent();
+    @FXML
+    private ListView<TextFlow> listViewCourses;
 
-            root.setCenter(popupContent);
+    @FXML
+    private AnchorPane timeTableAnchor;
 
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
+    @FXML
+    private TabPane calendarTab;
+
+
+    private JFXDatePicker datePicker = new JFXDatePicker(LocalDate.now());
+    private int day;
+    private List<Course> courseList;
+    private ArrayList<Requests> requestsList ;
+
+
+    private void coursesListView(int day) throws IOException {
+        //int day = datePicker.getValue().getDayOfWeek().getValue() - 1;
+//        MainPage.current_user = (Student) MainPage.current_user;
+        System.out.println("day ::::" + day);
+
+        listViewCourses.getItems().clear();
+        //List<Course> displayList = new ArrayList<>();
+        for(int i=0;i<courseList.size();i++){
+            String[] timings = courseList.get(i).getTime();
+            String[] rooms = courseList.get(i).getRoom();
+            if(!timings[day].equals("-")){
+                TextFlow textFlow = new TextFlow();
+                Text text1  = new Text(courseList.get(i).getName() + "\n");
+                text1.setStyle("-fx-font-size: 20px");
+                Text text2 = new Text(courseList.get(i).getInstructor() + "\n");
+                text2.setStyle("-fx-font-size: 15px");
+                Text text3 = new Text(timings[day] + "    " + rooms[day]);
+                text3.setStyle("-fx-font-size: 15px");
+                textFlow.getChildren().addAll(text1,text2,text3);
+                //displayList.add(courseList.get(i));
+
+                listViewCourses.getItems().add(textFlow);
+            }
         }
+//        ObservableList<Course> observableList = FXCollections.observableList(displayList);
+//        listViewTable.getItems().addAll(courseList.get(0).getName());
+//        listViewTable.setItems(observableList);
     }
+
+
+    private void bookingsListView(String date){
+
+        listViewBookings.getItems().clear();
+        for(int i =0 ; i <requestsList.size();i++){
+            if(requestsList.get(i).getDate().equals(date) && requestsList.get(i).getStatus().equals("Approved")){
+                TextFlow textFlow = new TextFlow();
+                Text text1  = new Text(requestsList.get(i).getReason() + "\n");
+                text1.setStyle("-fx-font-size: 20px");
+                Text text2 = new Text("From : " + requestsList.get(i).getStartTime() + "\n");
+                text2.setStyle("-fx-font-size: 15px");
+                Text text3 = new Text("To   : " + requestsList.get(i).getEndTime() + "\n");
+                text3.setStyle("-fx-font-size: 15px");
+                Text text4 = new Text("Room : " + requestsList.get(i).getRoomNumber() );
+                text4.setStyle("-fx-font-size: 15px");
+                textFlow.getChildren().addAll(text1,text2,text3,text4);
+
+                listViewBookings.getItems().add(textFlow);
+            }
+        }
+
+
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        method();
-        //datePicker.show();
+
+
+
+        courseList = ((Student) MainPage.current_user).viewCourses();
+        requestsList = MainPage.current_user.getRequests();
+
+        JFXDatePickerSkin datePickerSkin = new JFXDatePickerSkin((datePicker));
+        Node popupContent = datePickerSkin.getPopupContent();
+        popupContent.setLayoutX(350.0);
+        popupContent.setLayoutY(100.0);
+        popupContent.setScaleX(1.17);
+        popupContent.setScaleY(0.85);
+        timeTableAnchor.getChildren().add(popupContent);
+        try {
+            coursesListView(LocalDate.now().getDayOfWeek().getValue()-1);
+            bookingsListView(LocalDate.now().toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        datePicker.setOnAction(event -> {
+            day = datePicker.getValue().getDayOfWeek().getValue();
+            try {
+                coursesListView(day-1);
+                bookingsListView(datePicker.getValue().toString());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+
+
 
     }
 }

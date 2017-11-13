@@ -2,15 +2,21 @@ package Main;
 
 import java.io.*;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.skins.JFXDatePickerSkin;
+import com.sun.javafx.scene.control.skin.DatePickerSkin;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.DatePicker;
 import javafx.scene.layout.Pane;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -62,7 +68,15 @@ public class StudentController implements Initializable {
     @FXML
     void viewTimeTable(ActionEvent event) throws IOException {
         Pane newstudentPane = FXMLLoader.load(getClass().getResource("TimeTable.fxml"));
+//        JFXDatePickerSkin datePickerSkin = new JFXDatePickerSkin((new JFXDatePicker(LocalDate.now())));
+//        Node popupContent = datePickerSkin.getPopupContent();
+//        popupContent.setLayoutX(350.0);
+//        popupContent.setLayoutY(100.0);
+//        popupContent.setScaleX(1.17);
+//        popupContent.setScaleY(0.85);
+        //root.setCenter(popupContent);
         studentPane.getChildren().clear();
+        //studentPane.getChildren().add(popupContent);
         studentPane.getChildren().add(newstudentPane);
     }
 
