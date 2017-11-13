@@ -12,28 +12,28 @@
    <children>
       <ImageView fitHeight="867.0" fitWidth="1236.0" layoutY="-7.0" pickOnBounds="true">
          <image>
-            <Image url="@../Images/1.jpg" />
+            <Image url="@../Images/grad3.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="133.0" fitWidth="322.0" pickOnBounds="true">
+      <ImageView fitHeight="133.0" fitWidth="322.0" layoutX="50.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Images/iiitd(1).jpg" />
+            <Image url="@../Images/IIITD(2).png" />
          </image>
       </ImageView>
-      <JFXDrawer layoutY="130.0" prefHeight="729.0" prefWidth="322.0">
+      <JFXDrawer layoutY="130.0" prefHeight="287.0" prefWidth="322.0">
          <children>
             <VBox prefHeight="703.0" prefWidth="322.0" style="-fx-background-color: #21618C;">
                <children>
-                  <JFXButton onAction="#displayCourses" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #21618C;" text="My Courses" textFill="WHITE">
+                  <JFXButton onAction="#displayCourses" prefHeight="102.0" prefWidth="322.0" style="-fx-background-color: #215259;" text="My Courses" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font></JFXButton>
-                  <JFXButton onAction="#roomBooking" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #21618C;" text="Room Booking" textFill="WHITE">
+                  <JFXButton onAction="#roomBooking" prefHeight="109.0" prefWidth="322.0" style="-fx-background-color: #689D91;" text="Room Booking" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font></JFXButton>
 
-                  <JFXButton  fx:id="logoutFaculty" onAction="#Logout" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #21618C;" text="Logout" textFill="WHITE">
+                  <JFXButton fx:id="logoutFaculty" onAction="#Logout" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #536482;" text="Logout" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font>
