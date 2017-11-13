@@ -5,9 +5,9 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="867.0" prefWidth="906.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.RequestController">
+<AnchorPane id="AnchorPane" prefHeight="867.0" prefWidth="906.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.RequestController">
    <children>
-      <TableView fx:id="requestTable" layoutY="-2.0" prefHeight="790.0" prefWidth="906.0">
+      <TableView fx:id="requestTable" layoutY="-2.0" prefHeight="526.0" prefWidth="906.0">
         <columns>
             <TableColumn fx:id="Date" prefWidth="107.0" text="Date" />
           <TableColumn fx:id="Timings" prefWidth="135.0" text="Timings" />
@@ -15,7 +15,7 @@
             <TableColumn fx:id="Reason" prefWidth="504.0" text="Reason" />
         </columns>
       </TableView>
-      <Button fx:id="ApproveButton" layoutX="100.0" layoutY="809.0" mnemonicParsing="false" onAction="#ApproveRequests" prefHeight="31.0" prefWidth="301.0" text="Approve Selected Requests" />
+      <Button fx:id="ApproveButton" layoutX="265.0" layoutY="577.0" mnemonicParsing="false" onAction="#ApproveRequests" prefHeight="31.0" prefWidth="301.0" text="Approve Selected Requests" />
       <Button fx:id="DisApproveButton" layoutX="520.0" layoutY="809.0" mnemonicParsing="false" onAction="#DisApproveRequests" prefHeight="31.0" prefWidth="324.0" text="Dis-Approve Selected Requests" />
    </children>
 </AnchorPane>

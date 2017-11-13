@@ -46,11 +46,11 @@ import static Main.College.deserialize;
 public class MainPage extends Application {
     public static MainPage main = new MainPage();
     public static College clgobj;
-    public User current_user;
+    public static User current_user;
 
     @Override
     public void start(Stage stage) throws Exception {
-        
+
         Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
 
         Scene scene = new Scene(root);
@@ -87,7 +87,25 @@ public class MainPage extends Application {
 //                    for(int i=0;i<postConditions.size();i++){
 //                        System.out.println(postConditions.get(i));
 //                    }
-                    Course course = new Course(attributes[0], attributes[1], attributes[2], attributes[3], Integer.valueOf(attributes[4]), schedule, null, null, postConditions);
+
+                    String[] timings = new String[7];
+                    String[] rooms = new String[7];
+                    timings[5] = timings[6] = "-";
+                    rooms[5] = rooms[6] = "-";
+                    for (int i = 0; i < 5; i++) {
+                        if (!schedule[i].equals("-")) {
+                            String[] timeAndVenue = schedule[i].split("\\$");
+                            timings[i] = timeAndVenue[0];
+                            rooms[i] = timeAndVenue[1];
+
+                        }
+                        else{
+                            timings[i] = rooms[i] = schedule[i];
+
+                        }
+                    }
+
+                    Course course = new Course(attributes[0], attributes[1], attributes[2], attributes[3], Integer.valueOf(attributes[4]), timings, rooms, null, postConditions);
                     courseinfo.add(course);
                     if(clgobj.getAllUsersMap().get(attributes[3])==null){
                         clgobj.getAllUsersMap().put(attributes[3],new Faculty(attributes[3],attributes[3],attributes[3],"Faculty"));
@@ -155,12 +173,12 @@ public class MainPage extends Application {
 
         System.out.println(obj.getReq());
 //        ArrayList<Integer> myarray = new ArrayList<Integer>();
-     
+
         List<Course> courseinfo = new ArrayList<>();
         courseinfo = readCourseCSV();
         for (int i = 0; i < courseinfo.size(); i++) {
             Course c = courseinfo.get(i);
-            System.out.println(c);
+            //System.out.println(c);
             ArrayList<String> pc = c.getPostConditions();
 //            fabhisababba
         }

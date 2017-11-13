@@ -14,10 +14,10 @@
    <children>
       <ImageView fitHeight="867.0" fitWidth="1236.0" layoutX="-4.0" layoutY="-7.0" pickOnBounds="true">
          <image>
-            <Image url="@../Images/laptopImage1.jpg" />
+            <Image url="@../Images/booksImage.jpg" />
          </image>
          <effect>
-            <GaussianBlur />
+            <GaussianBlur radius="11.52" />
          </effect>
       </ImageView>
       <ImageView fitHeight="133.0" fitWidth="245.0" layoutX="39.0" layoutY="-1.0" pickOnBounds="true">
@@ -25,25 +25,25 @@
             <Image url="@../Images/IIITD(2).png" />
          </image>
       </ImageView>
-      <JFXDrawer layoutY="130.0" prefHeight="729.0" prefWidth="322.0">
+      <JFXDrawer layoutY="130.0" prefHeight="559.0" prefWidth="322.0">
          <children>
             <VBox prefHeight="703.0" prefWidth="322.0" style="-fx-background-color: #3FADA8;">
                <children>
-                  <JFXButton buttonType="RAISED" onAction="#displayCourses" prefHeight="93.0" prefWidth="322.0" ripplerFill="#bf1313" style="-fx-background-color: #C5D01C;" text="My Courses" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" onAction="#displayCourses" prefHeight="93.0" prefWidth="322.0" ripplerFill="#bf1313" style="-fx-background-color: #31D4E6;" text="My Courses" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font>
                      <effect>
                         <DropShadow height="8.86" radius="6.965" />
                      </effect></JFXButton>
-                  <JFXButton buttonType="RAISED" onAction="#roomBooking" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #40C4D0;" text="Room Booking" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" onAction="#roomBooking" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #2BC8D6;" text="Room Booking" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font>
                      <effect>
                         <DropShadow />
                      </effect></JFXButton>
-                  <JFXButton buttonType="RAISED" onAction="#viewTimeTable" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #FF6600;" text="Time Table" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" onAction="#viewTimeTable" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #2DC2CF;" text="Time Table" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font>
@@ -51,7 +51,7 @@
                         <DropShadow />
                      </effect>
                   </JFXButton>
-                  <JFXButton buttonType="RAISED" onAction="#searchCoursesStudent" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #FFC602;" text="Search for Courses" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" onAction="#searchCoursesStudent" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #31BFCC;" text="Search for Courses" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font>
@@ -59,7 +59,7 @@
                         <DropShadow />
                      </effect>
                   </JFXButton>
-                  <JFXButton buttonType="RAISED" onAction="#myRequestsStudent" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #C5D01C;" text="My Requests" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" onAction="#myRequestsStudent" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #3EC3CF;" text="My Requests" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font>
