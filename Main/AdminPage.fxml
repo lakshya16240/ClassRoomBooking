@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDrawer?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -24,29 +25,44 @@
          <children>
             <VBox prefHeight="0.0" prefWidth="322.0" style="-fx-background-color: #21618C;">
                <children>
-                  <JFXButton onAction="#viewRequests" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #5C7B7D;" text="View Requests" textFill="WHITE">
-                     <font>
-                        <Font size="27.0" />
-                     </font></JFXButton>
-                  <JFXButton onAction="#roomBooking" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #689D91;" text="Room Booking" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" onAction="#viewRequests" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #5C7B7D;" text="View Requests" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font>
+                     <effect>
+                        <DropShadow />
+                     </effect></JFXButton>
+                  <JFXButton buttonType="RAISED" onAction="#roomBooking" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #689D91;" text="Room Booking" textFill="WHITE">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
                   </JFXButton>
-                  <JFXButton fx:id="roomBookingsAdmin" onAction="#viewBookings" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #215259;" text="View Bookings" textFill="WHITE">
+                  <JFXButton fx:id="roomBookingsAdmin" buttonType="RAISED" onAction="#viewBookings" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #215259;" text="View Bookings" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
                   </JFXButton>
-                  <JFXButton onAction="#viewTimeTable" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #405C61;" text="Time Table" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" onAction="#viewTimeTable" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #405C61;" text="Time Table" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
                   </JFXButton>
-                  <JFXButton fx:id="logoutAdmin" onAction="#Logout" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #536482;" text="Logout" textFill="WHITE">
+                  <JFXButton fx:id="logoutAdmin" buttonType="RAISED" onAction="#Logout" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #536482;" text="Logout" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
                   </JFXButton>
                </children>
             </VBox>
