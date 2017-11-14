@@ -3,7 +3,8 @@ package Main;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Course implements Serializable{
+public class Course implements Serializable {
+
     private String type;
     private String code;
     private String name;
@@ -12,9 +13,14 @@ public class Course implements Serializable{
     private ArrayList<String> preRequisites, postConditions;
     private final int credits;
     private String instructor;
-    private String postConditionsString="";
+    private String postConditionsString = "";
 
-    
+    @Override
+    public boolean equals(Object obj) {
+
+        return name.equals(((Course) obj).getName()) && code.equals(((Course) obj).getCode());
+    }
+
     public Course(String type, String name, String code, String instructor, int credits, String[] time, String[] room, ArrayList<String> preRequisites, ArrayList<String> postConditions) {
         this.type = type;
         this.name = name;
@@ -26,17 +32,18 @@ public class Course implements Serializable{
         this.preRequisites = preRequisites;
         this.postConditions = postConditions;
     }
+
     @Override
-    public String toString(){
-        String s ="type:" + type+  "course code:" + code+ " name: " + name + " credits: " + credits + " instructor: "+ instructor + " Monday: "+ time[0] + " Tuesday:"+ time[1] + " ::" + room[0] ;
+    public String toString() {
+        String s = "type:" + type + "course code:" + code + " name: " + name + " credits: " + credits + " instructor: " + instructor + " Monday: " + time[0] + " Tuesday:" + time[1] + " ::" + room[0];
         //String s =
         return (s);
     }
 
-    public void convertToString(ArrayList<String> postConditions){
-        postConditionsString="";
-        for(int i=0;i<postConditions.size();i++){
-            postConditionsString= postConditionsString.concat((i+1)+". "+postConditions.get(i) + "\n");
+    public void convertToString(ArrayList<String> postConditions) {
+        postConditionsString = "";
+        for (int i = 0; i < postConditions.size(); i++) {
+            postConditionsString = postConditionsString.concat((i + 1) + ". " + postConditions.get(i) + "\n");
         }
 
         //System.out.println( "holaaa :  " + postConditionsString);
@@ -46,20 +53,23 @@ public class Course implements Serializable{
         return postConditions;
     }
 
-
     public String getPostConditionsString() {
         return postConditionsString;
     }
-    public String getName(){
+
+    public String getName() {
         return name;
     }
-    public String getType(){
+
+    public String getType() {
         return type;
     }
-    public String getCode(){
+
+    public String getCode() {
         return code;
     }
-    public int getCredits(){
+
+    public int getCredits() {
         return credits;
     }
 

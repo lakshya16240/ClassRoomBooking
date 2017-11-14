@@ -46,6 +46,9 @@ public class RoomBookingController implements Initializable {
     private JFXTextField roomRequest;
 
     @FXML
+    private JFXTextField capacity;
+
+    @FXML
     void makeRequest(ActionEvent event) throws IOException, ClassNotFoundException {
 
         HashMap<String, Room> roomBookings = Room.deserializeRoom();
@@ -66,8 +69,9 @@ public class RoomBookingController implements Initializable {
         String from_time = timeFrom.getValue().toString();
         String to_time = timeTo.getValue().toString();
         String roomNumber = roomRequest.getText();
-        roomNumber = roomNumber.toUpperCase();
-
+        System.out.println("room no. " + roomNumber);
+//        roomNumber = roomNumber.toUpperCase();
+        int requied_capacity = Integer.parseInt(capacity.getText());
         System.out.println("date =  " + date1);
         System.out.println("from_time = " + from_time);
 
@@ -112,11 +116,15 @@ public class RoomBookingController implements Initializable {
         myreq.setUser(clgobj.getAllUsersMap().get(current_user.getEmailId()));
 //        Admin.addRequest(myreq);
         day--;
-        for (int j = startIndex; j <= endIndex; j++) {
+        if (!roomNumber.equals("")) {
 
-            if (roomBookings.get(roomNumber) == null || (roomBookings.get(roomNumber).getAvailability())[j][day]) {
-                myreq.setStatus("Room Already Boooked");
-                flag = 1;
+            for (int j = startIndex; j <= endIndex; j++) {
+
+                if (roomBookings.get(roomNumber) == null || (roomBookings.get(roomNumber).getAvailability())[j][day]) {
+                    System.out.println("null wala chalaa");
+                    myreq.setStatus("Room Already Boooked");
+                    flag = 1;
+                }
             }
         }
         if (flag == 0) {
@@ -141,14 +149,23 @@ public class RoomBookingController implements Initializable {
             }
         }
 
-        
 //        clgobj.getAllUsersMap().put(MainPage.main.current_user.getEmailId(), MainPage.main.current_user);
 //        System.out.println("new created abhishek");
 //        ArrayList<Requests> allreq = new ArrayList<Requests>();
 //        allreq.add(myreq);
         if (flag == 0) {
-            
-            if (!current_user.getType().equals("Student")){
+            if (roomNumber.equals("")) {
+                System.out.println("Room Number khaali");
+                for (String key : roomBookings.keySet()) {
+                    if (roomBookings.get(key).getCapacity() > requied_capacity) {
+                        myreq.setRoomNumber(key);
+                        
+                        break;
+                    }
+                }
+            }
+            if (!current_user.getType().equals("Student")) {
+
                 myreq.setStatus("Approved");
             }
 //            arr.add(myreq);

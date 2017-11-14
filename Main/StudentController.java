@@ -69,6 +69,7 @@ public class StudentController implements Initializable {
     @FXML
     private JFXTextField welcome_user;
 
+
     @FXML
     void displayCourses(ActionEvent event) throws IOException {
 

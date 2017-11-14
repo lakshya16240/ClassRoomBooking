@@ -1,6 +1,7 @@
 package Main;
 
 import static Main.MainPage.clgobj;
+import static Main.MainPage.current_user;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -55,7 +56,7 @@ public class RequestController implements Initializable {
         System.out.println("approved requests = " + ApprovedRequests);
         System.out.println("requests = " + AllRequests);
         ArrayList<Requests> AppReq = new ArrayList<Requests>();
-
+        
         for (int i = 0; i < ApprovedRequests.size(); i++) {
             AppReq.add(ApprovedRequests.get(i));
         }
@@ -64,19 +65,19 @@ public class RequestController implements Initializable {
             Requests current_req = AppReq.get(cnt);
 //                User  userobj = clgobj.getAllUsersMap().get(current_req.getUser().getName());
             User userobj = clgobj.getAllUsersMap().get(current_req.getUser().getEmailId());
-            System.out.println("user check " + userobj);
+            System.out.println("user check " + current_user);
 
-            System.out.println("All requests on pressing Approved before check: " + userobj.getRequests());
-
-            for (int i = 0; i < userobj.getRequests().size(); i++) {
-                if (userobj.getRequests().get(i).equals(current_req)) {
-                    userobj.getRequests().get(i).setStatus("Approved");
+            System.out.println("All requests on pressing Approved before check: " + current_user.getRequests());
+            
+            for (int i = 0; i < current_user.getRequests().size(); i++) {
+                if (current_user.getRequests().get(i).equals(current_req)) {
+                    current_user.getRequests().get(i).setStatus("Approved");
                 }
             }
 
-            clgobj.getAllUsersMap().put(current_req.getUser().getEmailId(), userobj);
-            System.out.println("All requests on pressing Approved: " + userobj.getRequests());
-            System.out.println("All requests on pressing Approved (just a check) : " + clgobj.getAllUsersMap().get(userobj.getEmailId()).getRequests());
+//            clgobj.getAllUsersMap().put(current_req.getUser().getEmailId(), userobj);
+//            System.out.println("All requests on pressing Approved: " + userobj.getRequests());
+//            System.out.println("All requests on pressing Approved (just a check) : " + clgobj.getAllUsersMap().get(userobj.getEmailId()).getRequests());
 
 //            System.out.println("The actual check " + clgobj.getAllUsersMap().get("ab").getRequests());
 //            System.out.println("here will be the error " + (clgobj.getAllUsersMap().get("ab") == current_req.getUser()));
