@@ -85,7 +85,10 @@ public class SearchCoursesController implements Initializable {
         try {
             courseList = MainPage.readCourseCSV();
             ObservableList<Course> courseObservableList = FXCollections.observableArrayList(courseList);
-//            course.convertToString(courseList);
+//            course.convertToString(courseList);'
+            for (int i = 0 ; i<courseList.size() ;i++){
+                courseList.get(i).convertToString(courseList.get(i).getPostConditions());
+            }
             tc5.setCellValueFactory(
                     new PropertyValueFactory<Course, String>("name"));
             tc6.setCellValueFactory(

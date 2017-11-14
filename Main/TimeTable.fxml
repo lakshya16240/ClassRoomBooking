@@ -9,9 +9,9 @@
 
 <!--<?import jfxtras.scene.control.CalendarPicker?>-->
 
-<AnchorPane fx:id="timeTableAnchor" prefHeight="867.0" prefWidth="906.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.TimeTableController">
+<AnchorPane fx:id="timeTableAnchor" prefHeight="867.0" prefWidth="906.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.TimeTableController">
    <children>
-      <TabPane fx:id="calendarTab" layoutX="222.0" layoutY="516.0" prefHeight="353.0" prefWidth="519.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="calendarTab" layoutX="194.0" layoutY="460.0" prefHeight="353.0" prefWidth="519.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Courses">
             <content>
