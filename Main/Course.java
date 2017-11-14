@@ -85,6 +85,45 @@ public class Course implements Serializable {
         return instructor;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+
+        return name.equals(((Course)obj).getName()) && code.equals(((Course)obj).getCode());
+    }
+
+    public boolean checkTime(Course course){
+
+        for(int i=0;i<7;i++){
+            if(!time[i].equals("-") && !course.getTime()[i].equals("-")) {
+                String startTime = time[i].split("-")[0];
+                String endTime = time[i].split("-")[1];
+                String startTimeCourse = course.getTime()[i].split("-")[0];
+                String endTimeCourse = course.getTime()[i].split("-")[1];
+
+                if (startTime.compareTo(startTimeCourse) < 0
+                        && startTime.compareTo(endTimeCourse) > 0) {
+
+                    return false;
+
+                } else if (endTime.compareTo(startTimeCourse) < 0
+                        && endTime.compareTo(endTimeCourse) > 0) {
+
+                    return false;
+                } else if (startTimeCourse.compareTo(startTime) < 0
+                        && startTimeCourse.compareTo(endTime) > 0) {
+
+                    return false;
+
+                } else if (endTimeCourse.compareTo(startTime) < 0
+                        && endTimeCourse.compareTo(endTime) > 0) {
+
+                    return false;
+
+                }
+            }
+        }
+        return true;
+    }
     //    public String getInfo(){
 //
 //    }

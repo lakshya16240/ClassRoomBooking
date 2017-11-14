@@ -10,12 +10,15 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javafx.scene.layout.Pane;
 
 public class FacultyController {
-    
+
+    private Faculty myFaculty;
     public void Start(Faculty faculty){
-        
+        myFaculty = faculty;
     }
 
     @FXML
@@ -25,8 +28,14 @@ public class FacultyController {
     private AnchorPane facultyPane;
 
     @FXML
-    void displayCourses(ActionEvent event) {
-        
+    void displayCourses(ActionEvent event) throws IOException {
+        ArrayList<Course> myCourses = myFaculty.getCoursesTaught();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CourseTable.fxml"));
+        Pane newfacultyPane = fxmlLoader.load();
+        Control newcontroller = fxmlLoader.<Control>getController();
+        newcontroller.Start(myCourses);
+        facultyPane.getChildren().clear();
+        facultyPane.getChildren().add(newfacultyPane);
     }
 
     @FXML
