@@ -92,7 +92,11 @@ public class Requests implements Serializable {
     public String getEndTime() {
         return endTime;
     }
-    
+   
+     public void setRoomNumber(String RoomNo){
+        this.roomNumber = RoomNo;
+    }
+     
     public void setUser(User user){
         this.user = user;
     }

@@ -132,7 +132,11 @@ public class Controller implements Initializable {
         int val = clgobj.SignUp(user_name, email, passwd, type);
         if (val == 0) {
             signuplabel.setText("User already exists");
-        } else {
+        }
+//        if (val==2){
+//            signuplabel.setText("Invalid E-mail Id");
+//        }
+        else {
             signuplabel.setText("Sign up succesful");
 
         }

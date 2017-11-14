@@ -1,6 +1,7 @@
-
 package Main;
 
+import static Main.MainPage.clgobj;
+import com.jfoenix.controls.JFXButton;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -23,14 +24,52 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import org.controlsfx.control.textfield.TextFields;
 
-
 /**
  *
  * @author Lenovo
  */
-public class Control implements Initializable  {
+public class Control implements Initializable {
 
+    @FXML
+    private TableView<Course> mytable;
+
+    @FXML
+    private AnchorPane adminPane;
+
+    @FXML
+    private TableColumn<Course, String> tc1;
+    @FXML
+
+    private TableColumn<Course, String> tc2;
+    @FXML
+    private TableColumn<Course, String> tc3;
+
+    @FXML
+    private TableColumn<Course, Integer> tc4;
+
+    @FXML
+    private Button tbutton;
+
+    @FXML
+    private Button tbutton1;
+
+    @FXML
+    private TextField searchCourses;
+
+    @FXML
+    private JFXButton LeaveCourse;
+
+    @FXML
+    void leaveCourse(ActionEvent event) throws IOException {
+        ObservableList<Course> obslist = mytable.getSelectionModel().getSelectedItems();
+        for (int i = 0; i < obslist.size(); i++) {
+            ((Student) MainPage.current_user).viewCourses().remove(obslist.get(i));
+        }
+        populateTable();
+        College.serialize(clgobj);
+    }
     private ArrayList<Course> myCourses = new ArrayList<>();
+
     public void Start(ArrayList<Course> myCourses) {
         this.myCourses = myCourses;
         populateTable();
@@ -40,7 +79,7 @@ public class Control implements Initializable  {
         return myCourses;
     }
 
-    public void populateTable(){
+    public void populateTable() {
         MainPage obj = new MainPage();
         List<Course> myList = getMyCourses();
         System.out.println("size please  :  " + myList.size());
@@ -67,42 +106,14 @@ public class Control implements Initializable  {
     }
 
     @FXML
-    private TableView<Course> mytable;
-
-    @FXML
-    private AnchorPane adminPane;
-
-    @FXML
-    private TableColumn<Course,String> tc1;
-    @FXML
-
-    private TableColumn<Course,String> tc2; 
-    @FXML
-    private TableColumn<Course,String> tc3; 
-    
-    @FXML
-    private TableColumn<Course, Integer> tc4; 
-    
-    @FXML
-    private Button tbutton;
-    
-    
-    @FXML
-    private Button tbutton1;
-
-
-
-    @FXML
-    private TextField searchCourses;
-
-    @FXML
-    void viewTimeTable(ActionEvent event) throws IOException{
+    void viewTimeTable(ActionEvent event) throws IOException {
         Pane newstudentPane = FXMLLoader.load(getClass().getResource("TimeTable.fxml"));
         adminPane.getChildren().clear();
         adminPane.getChildren().add(newstudentPane);
     }
-     @FXML
-    void roomBooking(ActionEvent event) throws IOException{
+
+    @FXML
+    void roomBooking(ActionEvent event) throws IOException {
         Pane newstudentPane = FXMLLoader.load(getClass().getResource("RoomBooking.fxml"));
         adminPane.getChildren().clear();
         adminPane.getChildren().add(newstudentPane);
@@ -152,7 +163,6 @@ public class Control implements Initializable  {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 
-
 //        MainPage obj = new MainPage();
 //        List<Course> myList = getMyCourses();
 //        ObservableList<Course> obsList = FXCollections.observableArrayList();
@@ -177,11 +187,4 @@ public class Control implements Initializable  {
 //        mytable.setItems(obsList);
     }
 
-
-
 }
-
-
-
-
-   

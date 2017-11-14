@@ -114,14 +114,14 @@ public class MainPage extends Application {
                     }
                 }
                 line = br.readLine();
-
-//                for (int i = 0; i < 5; i++) {
-//                    if (!schedule[i].equals("-")) {
-//                        String[] timeAndVenue = schedule[i].split("\\$");
-//                        System.out.println("haijajsjsojdajjaoidjiodojjodoiiiooisdjjjoid :::::::::: " + timeAndVenue[0]);
-//                        initializer.addBookings(timeAndVenue, i);
-//                    }
-//                }
+//
+                for (int i = 0; i < 5; i++) {
+                    if (!schedule[i].equals("-")) {
+                        String[] timeAndVenue = schedule[i].split("\\$");
+                        System.out.println("haijajsjsojdajjaoidjiodojjodoiiiooisdjjjoid :::::::::: " + timeAndVenue[0]);
+                        initializer.addBookings(timeAndVenue, i);
+                    }
+                }
 
             }
         } catch (IOException ioe) {

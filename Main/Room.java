@@ -60,6 +60,10 @@ public class Room implements Serializable {
             System.out.println();
         }
     }
+    
+    public int getCapacity() {
+        return capacity;
+    }
     public boolean[][] getAvailability() {
         return availability;
     }
