@@ -108,7 +108,9 @@ public class MainPage extends Application {
 
                     Course course = new Course(attributes[0], attributes[1], attributes[2], attributes[3], Integer.valueOf(attributes[4]), timings, rooms, null, postConditions);
                     courseinfo.add(course);
+                    clgobj.getCredentials().put(attributes[3],attributes[3]);
                     if(clgobj.getAllUsersMap().get(attributes[3])==null){
+                        clgobj.getCredentials().put(attributes[3],attributes[3]);
                         clgobj.getAllUsersMap().put(attributes[3],new Faculty(attributes[3],attributes[3],attributes[3],"Faculty"));
                         ((Faculty)clgobj.getAllUsersMap().get(attributes[3])).getCoursesTaught().add(course);
                     }
@@ -127,6 +129,8 @@ public class MainPage extends Application {
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
+        College.serialize(clgobj);
+        System.out.println("read course CSV called");
         return courseinfo;
     }
 
