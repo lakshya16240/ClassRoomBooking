@@ -60,7 +60,7 @@
                         <DropShadow />
                      </effect>
                   </JFXButton>
-                  <JFXButton buttonType="RAISED" onAction="#myRequestsStudent"  prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #1B3041;" text="My Requests" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" onAction="#myRequestsStudent" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #1B3041;" text="My Requests" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font>
@@ -89,12 +89,12 @@
          </effect>
          <children>
             <JFXTextField fx:id="welcome_user" editable="false" focusColor="BLACK" layoutX="694.0" layoutY="7.0" prefHeight="31.0" prefWidth="208.0" />
-            <ImageView fitHeight="70.0" fitWidth="85.0" layoutX="615.0" layoutY="-12.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="63.0" fitWidth="70.0" layoutX="615.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/notif.png" />
                </image>
             </ImageView>
-            <JFXButton layoutX="613.0" layoutY="7.0" onAction="#displayNotification" prefHeight="45.0" prefWidth="70.0" />
+            <JFXButton layoutX="612.0" layoutY="12.0" onAction="#displayNotification" prefHeight="45.0" prefWidth="70.0" />
          </children></AnchorPane>
    </children>
 </AnchorPane>

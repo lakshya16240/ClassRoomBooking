@@ -1,6 +1,7 @@
 package Main;
 
 import static Main.MainPage.clgobj;
+import static Main.MainPage.current_user;
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
@@ -9,6 +10,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -127,7 +130,36 @@ public class StudentController implements Initializable {
         studentPane.getChildren().add(newstudentPane);
 
     }
+    
+    
+    @FXML
+    public void addFriend(ActionEvent actionEvent){
+        Student friend = null ;
+        //friend = 
+        FriendRequest freq = new FriendRequest((Student) current_user);
+        friend.getFriendRequests().add(freq);
+        
+                
+    }
 
+    @FXML
+    public void viewRequets(ActionEvent actionEvent){
+         ObservableList<Requests> requestList = FXCollections.observableArrayList(MainPage.current_user.getRequests());
+         
+    }
+    
+    @FXML
+    public void approveRequets(ActionEvent actionEvent) throws IOException{
+        ObservableList<FriendRequest> approve_requests = FXCollections.observableArrayList();;
+//        requests = requestTable.getSelectionModel().getSelectedItems();
+        for (int i = 0 ; i<approve_requests.size() ; i++){
+            Student st = (Student)current_user;
+            st.getFriendRequests().remove(approve_requests.get(i));
+            approve_requests.get(i).getSender().getMyFriends().add((Student) current_user);
+            st.getMyFriends().add(approve_requests.get(i).getSender());
+        }
+        College.serialize(clgobj);
+    }
     @FXML
     public void myRequestsStudent(ActionEvent actionEvent) throws IOException {
 

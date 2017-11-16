@@ -19,8 +19,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.HashMap;
-
-import com.sun.xml.internal.bind.v2.TODO;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -68,6 +66,57 @@ public class RoomBookingController implements Initializable {
     private String date;
     public static final String defaultRoom = "All Rooms";
 
+//    boolean checkAvailabilty(Room room, int startIndex, int endIndex, Requests req, String date1, String from_time, String to_time){
+//                HashMap<String, Room> roomBookings = Room.deserializeRoom();
+//                String roomNumber = room.getName();
+//                int flag = 0 ;
+//                for (int j = startIndex; j <= endIndex; j++) {
+//
+//                    if (roomBookings.get(roomNumber) == null || (roomBookings.get(roomNumber).getAvailability())[j][day]) {
+////                    System.out.println("null wala chalaa");
+////                        myreq.setStatus("Room Already Boooked");
+//                        flag = 1;
+//                        return false;
+//                    }
+//                }
+//
+//                if (req.getDate().compareTo(date1) == 0
+//                            && req.getStartTime().compareTo(from_time) < 0
+//                            && req.getEndTime().compareTo(from_time) > 0
+//                            && req.getStatus().equals("Approved")) {
+//
+//                        flag = 1;
+//                    } else if (req.getDate().compareTo(date1) == 0
+//                            && req.getRoomNumber().compareToIgnoreCase(roomNumber) == 0
+//                            && req.getStartTime().compareTo(to_time) < 0
+//                            && req.getEndTime().compareTo(to_time) > 0
+//                            && arr.get(i).getStatus().equals("Approved")) {
+//                        myreq.setStatus("Room Already Boooked");
+//                        flag = 1;
+//                    } else if (arr.get(i).getDate().compareTo(date1) == 0
+//                            && arr.get(i).getRoomNumber().compareToIgnoreCase(roomNumber) == 0
+//                            && from_time.compareTo(arr.get(i).getStartTime()) < 0
+//                            && to_time.compareTo(arr.get(i).getStartTime()) > 0
+//                            && arr.get(i).getStatus().equals("Approved")) {
+//
+//                        myreq.setStatus("Room Already Boooked");
+//                        flag = 1;
+//
+//                    } else if (arr.get(i).getDate().compareTo(date1) == 0
+//                            && arr.get(i).getRoomNumber().compareToIgnoreCase(roomNumber) == 0
+//                            && from_time.compareTo(arr.get(i).getEndTime()) < 0
+//                            && to_time.compareTo(arr.get(i).getEndTime()) > 0
+//                            && arr.get(i).getStatus().equals("Approved")) {
+//
+//                        myreq.setStatus("Room Already Boooked");
+//                        flag = 1;
+//
+//                    }
+//
+////                if (flag == 0){
+////
+////                }
+//    }
     @FXML
     void makeRequest(ActionEvent event) throws IOException, ClassNotFoundException {
 
@@ -198,11 +247,10 @@ public class RoomBookingController implements Initializable {
         }
         else if(startHour == endHour && startMin< endMin){
             myreq.setStatus("Invalid Request");
-            flag=1;
+            flag = 1;
         }
 
-
-        if(flag==0) {
+        if (flag == 0) {
 //        Admin.addRequest(myreq);
             day--;
             if (!roomNumber.equals("")) {
@@ -213,89 +261,87 @@ public class RoomBookingController implements Initializable {
                         System.out.println("null wala chalaa");
                         myreq.setStatus("Room Unavailable");
                         flag = 1;
+
                     }
                 }
             }
-        }
-        if (flag == 0) {
+            if (flag == 0) {
 
-            for (int i = 0; i < arr.size(); i++) {
+                for (int i = 0; i < arr.size(); i++) {
 
-                if (arr.get(i).getDate().compareTo(date1) == 0
-                        && arr.get(i).getRoomNumber().compareToIgnoreCase(roomNumber) == 0
-                        && arr.get(i).getStartTime().compareTo(from_time) < 0
-                        && arr.get(i).getEndTime().compareTo(from_time) > 0
-                        && arr.get(i).getStatus().equals("Approved")) {
-                    myreq.setStatus("Room Already Boooked");
-                    flag = 1;
-                } else if (arr.get(i).getDate().compareTo(date1) == 0
-                        && arr.get(i).getRoomNumber().compareToIgnoreCase(roomNumber) == 0
-                        && arr.get(i).getStartTime().compareTo(to_time) < 0
-                        && arr.get(i).getEndTime().compareTo(to_time) > 0
-                        && arr.get(i).getStatus().equals("Approved")) {
-                    myreq.setStatus("Room Already Boooked");
-                    flag = 1;
-                }
-                else if(arr.get(i).getDate().compareTo(date1) == 0
-                        && arr.get(i).getRoomNumber().compareToIgnoreCase(roomNumber) == 0
-                        && from_time.compareTo(arr.get(i).getStartTime())<0
-                        && to_time.compareTo(arr.get(i).getStartTime())>0
-                        && arr.get(i).getStatus().equals("Approved")){
+                    if (arr.get(i).getDate().compareTo(date1) == 0
+                            && arr.get(i).getRoomNumber().compareToIgnoreCase(roomNumber) == 0
+                            && arr.get(i).getStartTime().compareTo(from_time) < 0
+                            && arr.get(i).getEndTime().compareTo(from_time) > 0
+                            && arr.get(i).getStatus().equals("Approved")) {
+                        myreq.setStatus("Room Already Boooked");
+                        flag = 1;
+                    } else if (arr.get(i).getDate().compareTo(date1) == 0
+                            && arr.get(i).getRoomNumber().compareToIgnoreCase(roomNumber) == 0
+                            && arr.get(i).getStartTime().compareTo(to_time) < 0
+                            && arr.get(i).getEndTime().compareTo(to_time) > 0
+                            && arr.get(i).getStatus().equals("Approved")) {
+                        myreq.setStatus("Room Already Boooked");
+                        flag = 1;
+                    } else if (arr.get(i).getDate().compareTo(date1) == 0
+                            && arr.get(i).getRoomNumber().compareToIgnoreCase(roomNumber) == 0
+                            && from_time.compareTo(arr.get(i).getStartTime()) < 0
+                            && to_time.compareTo(arr.get(i).getStartTime()) > 0
+                            && arr.get(i).getStatus().equals("Approved")) {
 
-                    myreq.setStatus("Room Already Boooked");
-                    flag = 1;
+                        myreq.setStatus("Room Already Boooked");
+                        flag = 1;
 
-                }
-                else if(arr.get(i).getDate().compareTo(date1) == 0
-                        && arr.get(i).getRoomNumber().compareToIgnoreCase(roomNumber) == 0
-                        && from_time.compareTo(arr.get(i).getEndTime())<0
-                        && to_time.compareTo(arr.get(i).getEndTime())>0
-                        && arr.get(i).getStatus().equals("Approved")){
+                    } else if (arr.get(i).getDate().compareTo(date1) == 0
+                            && arr.get(i).getRoomNumber().compareToIgnoreCase(roomNumber) == 0
+                            && from_time.compareTo(arr.get(i).getEndTime()) < 0
+                            && to_time.compareTo(arr.get(i).getEndTime()) > 0
+                            && arr.get(i).getStatus().equals("Approved")) {
 
-                    myreq.setStatus("Room Already Boooked");
-                    flag = 1;
+                        myreq.setStatus("Room Already Boooked");
+                        flag = 1;
 
+                    }
                 }
             }
-        }
 
 //        clgobj.getAllUsersMap().put(MainPage.main.current_user.getEmailId(), MainPage.main.current_user);
 //        System.out.println("new created abhishek");
 //        ArrayList<Requests> allreq = new ArrayList<Requests>();
 //        allreq.add(myreq);
-        if (flag == 0) {
-            if (roomNumber.equals("")) {
-                System.out.println("Room Number khaali");
-                for (String key : roomBookings.keySet()) {
-                    if (roomBookings.get(key).getCapacity() > requied_capacity) {
-                        myreq.setRoomNumber(key);
+            if (flag == 0) {
+                if (roomNumber.equals("")) {
+                    System.out.println("Room Number khaali");
+                    for (String key : roomBookings.keySet()) {
+                        if (roomBookings.get(key).getCapacity() > requied_capacity) {
+                            myreq.setRoomNumber(key);
 
-                        break;
+                            break;
+                        }
                     }
                 }
-            }
-            if (!current_user.getType().equals("Student")) {
+                if (!current_user.getType().equals("Student")) {
 
-                myreq.setStatus("Approved");
-            }
+                    myreq.setStatus("Approved");
+                }
 //            arr.add(myreq);
-        }
-        current_user.getRequests().add(myreq);
+            }
+            current_user.getRequests().add(myreq);
 //        College.serialize();
-        arr.add(myreq);
-        System.out.println(myreq);
+            arr.add(myreq);
+            System.out.println(myreq);
 //        System.out.println("check " + MainPage.clgobj.getAllUsersMap().get("ab").getRequests());
-        College.serialize(MainPage.clgobj);
+            College.serialize(MainPage.clgobj);
 
-        serializeArray(arr);
+            serializeArray(arr);
 
 //        clgobj.
 //        College.serialize(clgobj);
-        System.out.println("req 2 = " + current_user.getRequests());
+            System.out.println("req 2 = " + current_user.getRequests());
+        }
     }
 
     public void roomAvailability() {
-
 
         String roomName = roomsComboBox.getValue();
         boolean[][] availability;
@@ -312,7 +358,7 @@ public class RoomBookingController implements Initializable {
 
                 Text text1 = new Text(roomArrayList.get(i).getName() + "\n");
                 textFlow.getChildren().add(text1);
-                textFlow.getChildren().addAll(bookingSlotsTimings(availability,requests));
+                textFlow.getChildren().addAll(bookingSlotsTimings(availability, requests));
 //                for (int j = 0; j < 24; j++) {
 //
 //                    if (j == 0 && availability[j][day]) {
@@ -435,15 +481,13 @@ public class RoomBookingController implements Initializable {
 //
 //                }
 //            }
-
-
             Room room = roomHashMap.get(roomName);
             availability = room.getAvailability();
             requests = room.getBookings();
 
             Text text1 = new Text(roomName + "\n");
             textFlow.getChildren().add(text1);
-            textFlow.getChildren().addAll(bookingSlotsTimings(availability,requests));
+            textFlow.getChildren().addAll(bookingSlotsTimings(availability, requests));
             listViewBookings.getItems().add(textFlow);
 
         }
@@ -454,7 +498,7 @@ public class RoomBookingController implements Initializable {
         TextFlow textFlow = new TextFlow();
         String startHour = "", endHour = "";
         String startMin = "", endMin = "";
-        int k=0,l=0;
+        int k = 0, l = 0;
 
         for (int j = 0; j < 24; j++) {
 
@@ -498,8 +542,6 @@ public class RoomBookingController implements Initializable {
             }
         }
 
-
-
         for (int j = 0; j < requests.size(); j++) {
             if (requests.get(j).getStatus().equals("Approved")) {
                 if (requests.get(j).getDate().equals(date)) {
@@ -513,12 +555,10 @@ public class RoomBookingController implements Initializable {
         return textFlow;
     }
 
-
     @Override
     public void initialize(URL locationab, ResourceBundle resources) {
 
         //TODO get rooms arrayList
-
         try {
             roomHashMap = Room.deserializeRoom();
         } catch (IOException | ClassNotFoundException e) {
