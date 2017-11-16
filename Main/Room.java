@@ -60,7 +60,11 @@ public class Room implements Serializable {
             System.out.println();
         }
     }
-    
+
+    public String getName() {
+        return name;
+    }
+
     public int getCapacity() {
         return capacity;
     }
