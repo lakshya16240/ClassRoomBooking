@@ -65,7 +65,7 @@ public class RoomBookingController implements Initializable {
     private ArrayList<Requests> requests;
     private String date;
     public static final String defaultRoom = "All Rooms";
-    
+
 //    boolean checkAvailabilty(Room room, int startIndex, int endIndex, Requests req, String date1, String from_time, String to_time){
 //                HashMap<String, Room> roomBookings = Room.deserializeRoom();
 //                String roomNumber = room.getName();
@@ -79,12 +79,12 @@ public class RoomBookingController implements Initializable {
 //                        return false;
 //                    }
 //                }
-//                
+//
 //                if (req.getDate().compareTo(date1) == 0
 //                            && req.getStartTime().compareTo(from_time) < 0
 //                            && req.getEndTime().compareTo(from_time) > 0
 //                            && req.getStatus().equals("Approved")) {
-//                        
+//
 //                        flag = 1;
 //                    } else if (req.getDate().compareTo(date1) == 0
 //                            && req.getRoomNumber().compareToIgnoreCase(roomNumber) == 0
@@ -112,15 +112,18 @@ public class RoomBookingController implements Initializable {
 //                        flag = 1;
 //
 //                    }
-//                
+//
 ////                if (flag == 0){
-////                    
+////
 ////                }
 //    }
     @FXML
     void makeRequest(ActionEvent event) throws IOException, ClassNotFoundException {
 
         HashMap<String, Room> roomBookings = Room.deserializeRoom();
+
+        String timeSetStart= "";
+        String timeSetEnd = "";
 
         int flag = 0;
 
@@ -133,11 +136,13 @@ public class RoomBookingController implements Initializable {
 //        System.out.println("day = " + date2);
         String date1 = datePicker.getValue().toString();
         int day = datePicker.getValue().getDayOfWeek().getValue();
-       
+
 //        String requested_date = date1.toString();
         String from_time = timeFrom.getValue().toString();
+
         String to_time = timeTo.getValue().toString();
         String roomNumber = roomRequest.getText();
+        roomNumber = roomNumber.toUpperCase();
         System.out.println("room no. " + roomNumber);
 //        roomNumber = roomNumber.toUpperCase();
         int requied_capacity = Integer.parseInt(capacity.getText());
@@ -154,6 +159,31 @@ public class RoomBookingController implements Initializable {
         int endMin = Integer.parseInt((to_time.split(":"))[1]);
         int startIndex;
         int endIndex;
+
+
+        if (startHour > 12) {
+            startHour -= 12;
+            timeSetStart = "PM";
+        } else if (startHour == 0) {
+            startHour += 12;
+            timeSetStart = "AM";
+        } else if (startHour == 12)
+            timeSetStart = "PM";
+        else
+            timeSetStart = "AM";
+
+        if (endHour > 12) {
+            endHour -= 12;
+            timeSetEnd = "PM";
+        } else if (endHour == 0) {
+            endHour += 12;
+            timeSetEnd = "AM";
+        } else if (endHour == 12)
+            timeSetEnd = "PM";
+        else
+            timeSetEnd = "AM";
+
+
 
         if (startHour < 8) {
             startIndex = (12 + startHour - 8) * 2;
@@ -185,10 +215,37 @@ public class RoomBookingController implements Initializable {
 //        myreq.setUser(clgobj.getAllUsersMap().get(current_user.getEmailId()));
         myreq.setUser(current_user);
 
-        if (startHour >= 8) {
+
+
+        if(startHour>=8 && timeSetStart.equals("PM")){
             myreq.setStatus("Invalid Request");
-            flag = 1;
-        } else if (endHour == 8 && endMin != 0) {
+            flag=1;
+        }
+        else if(endHour==8 && endMin !=0  && timeSetEnd.equals("PM")){
+            myreq.setStatus("Invalid Request");
+            flag=1;
+        }
+        else if(endHour>8 && timeSetEnd.equals("PM")){
+            myreq.setStatus("Invalid Request");
+            flag=1;
+        }
+        else if(startHour<8 && timeSetStart.equals("AM")){
+            myreq.setStatus("Invalid Request");
+            flag=1;
+        }
+        else if(endHour<8 && timeSetEnd.equals("AM")){
+            myreq.setStatus("Invalid Request");
+            flag=1;
+        }
+        else if(timeSetStart.equals("PM") &&timeSetEnd.equals("AM")){
+            myreq.setStatus("Invalid Request");
+            flag=1;
+        }
+        else if(startHour>endHour){
+            myreq.setStatus("Invalid Request");
+            flag=1;
+        }
+        else if(startHour == endHour && startMin< endMin){
             myreq.setStatus("Invalid Request");
             flag = 1;
         }
@@ -201,8 +258,8 @@ public class RoomBookingController implements Initializable {
                 for (int j = startIndex; j <= endIndex; j++) {
 
                     if (roomBookings.get(roomNumber) == null || (roomBookings.get(roomNumber).getAvailability())[j][day]) {
-//                    System.out.println("null wala chalaa");
-                        myreq.setStatus("Room Already Boooked");
+                        System.out.println("null wala chalaa");
+                        myreq.setStatus("Room Unavailable");
                         flag = 1;
 
                     }
@@ -530,15 +587,15 @@ public class RoomBookingController implements Initializable {
 //            e.printStackTrace();
 //        }
         roomsComboBox.getItems().add(defaultRoom);
-        for (int i = 0; i < roomArrayList.size(); i++) {
-            roomsComboBox.getItems().add(roomArrayList.get(i).getName());
-        }
+//        for (int i = 0; i < roomArrayList.size(); i++)
+//            roomsComboBox.getItems().add(roomArrayList.get(i).getName());
+
 
         roomsComboBox.setValue(defaultRoom);
         datePicker.setOnAction(event -> {
             day = datePicker.getValue().getDayOfWeek().getValue();
             date = datePicker.getValue().toString();
-            roomAvailability();
+            //roomAvailability();
         });
 
     }
