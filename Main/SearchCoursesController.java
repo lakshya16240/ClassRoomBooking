@@ -76,6 +76,17 @@ public class SearchCoursesController implements Initializable {
         College.serialize(clgobj);
     }
 
+    boolean checkTimingsCourses(ArrayList<Course> courses,Course toBeCheckedCourse){
+        for(int i=0;i<courses.size();i++){
+            if(!courses.get(i).checkTime(toBeCheckedCourse)){
+
+                return false;
+            }
+        }
+        return true;
+
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 //        searchCoursesTable.setSelectionModel(value);
@@ -84,10 +95,14 @@ public class SearchCoursesController implements Initializable {
 
         try {
             courseList = MainPage.readCourseCSV();
-            ObservableList<Course> courseObservableList = FXCollections.observableArrayList(courseList);
+            ObservableList<Course> courseObservableList = FXCollections.observableArrayList();
+            ArrayList<Course> registeredCourses = ((Student)MainPage.current_user).viewCourses();
 //            course.convertToString(courseList);'
             for (int i = 0 ; i<courseList.size() ;i++){
-                courseList.get(i).convertToString(courseList.get(i).getPostConditions());
+                if(!registeredCourses.contains(courseList.get(i))) {
+                    courseList.get(i).convertToString(courseList.get(i).getPostConditions());
+                    courseObservableList.add(courseList.get(i));
+                }
             }
             tc5.setCellValueFactory(
                     new PropertyValueFactory<Course, String>("name"));
@@ -120,11 +135,13 @@ public class SearchCoursesController implements Initializable {
 
         List<Course> finalCourseList = courseList;
 
+
         searchCoursesTextField.textProperty().addListener(new ChangeListener<String>() {
 
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 ObservableList<Course> courseObservableList = FXCollections.observableArrayList();
+                ArrayList<Course> registeredCourses = ((Student)MainPage.current_user).viewCourses();
 //                ObservableList<String> postConditionsObservableList = FXCollections.observableArrayList();
 
                 //System.out.println("hello ::::::::::::::::::::");
@@ -134,7 +151,7 @@ public class SearchCoursesController implements Initializable {
                     ArrayList<String> postConditions = course.getPostConditions();
                     for (int j = 0; j < postConditions.size(); j++) {
 
-                        if (postConditions.get(j).contains(newValue)) {
+                        if (postConditions.get(j).contains(newValue) && !registeredCourses.contains(course) && checkTimingsCourses(registeredCourses,course) ) {
                             course.convertToString(postConditions);
                             courseObservableList.add(course);
 //                            postConditionsObservableList.addAll(postConditions);
