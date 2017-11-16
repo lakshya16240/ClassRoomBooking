@@ -127,6 +127,14 @@ public class StudentController implements Initializable {
         studentPane.getChildren().add(newstudentPane);
 
     }
+    
+    
+    @FXML
+    public void addFriend(ActionEvent actionEvent){
+        Student friend;
+        //friend = 
+        
+    }
 
     @FXML
     public void myRequestsStudent(ActionEvent actionEvent) throws IOException {
