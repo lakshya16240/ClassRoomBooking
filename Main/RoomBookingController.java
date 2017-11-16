@@ -65,7 +65,58 @@ public class RoomBookingController implements Initializable {
     private ArrayList<Requests> requests;
     private String date;
     public static final String defaultRoom = "All Rooms";
-
+    
+//    boolean checkAvailabilty(Room room, int startIndex, int endIndex, Requests req, String date1, String from_time, String to_time){
+//                HashMap<String, Room> roomBookings = Room.deserializeRoom();
+//                String roomNumber = room.getName();
+//                int flag = 0 ;
+//                for (int j = startIndex; j <= endIndex; j++) {
+//
+//                    if (roomBookings.get(roomNumber) == null || (roomBookings.get(roomNumber).getAvailability())[j][day]) {
+////                    System.out.println("null wala chalaa");
+////                        myreq.setStatus("Room Already Boooked");
+//                        flag = 1;
+//                        return false;
+//                    }
+//                }
+//                
+//                if (req.getDate().compareTo(date1) == 0
+//                            && req.getStartTime().compareTo(from_time) < 0
+//                            && req.getEndTime().compareTo(from_time) > 0
+//                            && req.getStatus().equals("Approved")) {
+//                        
+//                        flag = 1;
+//                    } else if (req.getDate().compareTo(date1) == 0
+//                            && req.getRoomNumber().compareToIgnoreCase(roomNumber) == 0
+//                            && req.getStartTime().compareTo(to_time) < 0
+//                            && req.getEndTime().compareTo(to_time) > 0
+//                            && arr.get(i).getStatus().equals("Approved")) {
+//                        myreq.setStatus("Room Already Boooked");
+//                        flag = 1;
+//                    } else if (arr.get(i).getDate().compareTo(date1) == 0
+//                            && arr.get(i).getRoomNumber().compareToIgnoreCase(roomNumber) == 0
+//                            && from_time.compareTo(arr.get(i).getStartTime()) < 0
+//                            && to_time.compareTo(arr.get(i).getStartTime()) > 0
+//                            && arr.get(i).getStatus().equals("Approved")) {
+//
+//                        myreq.setStatus("Room Already Boooked");
+//                        flag = 1;
+//
+//                    } else if (arr.get(i).getDate().compareTo(date1) == 0
+//                            && arr.get(i).getRoomNumber().compareToIgnoreCase(roomNumber) == 0
+//                            && from_time.compareTo(arr.get(i).getEndTime()) < 0
+//                            && to_time.compareTo(arr.get(i).getEndTime()) > 0
+//                            && arr.get(i).getStatus().equals("Approved")) {
+//
+//                        myreq.setStatus("Room Already Boooked");
+//                        flag = 1;
+//
+//                    }
+//                
+////                if (flag == 0){
+////                    
+////                }
+//    }
     @FXML
     void makeRequest(ActionEvent event) throws IOException, ClassNotFoundException {
 
@@ -82,7 +133,7 @@ public class RoomBookingController implements Initializable {
 //        System.out.println("day = " + date2);
         String date1 = datePicker.getValue().toString();
         int day = datePicker.getValue().getDayOfWeek().getValue();
-
+       
 //        String requested_date = date1.toString();
         String from_time = timeFrom.getValue().toString();
         String to_time = timeTo.getValue().toString();

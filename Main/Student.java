@@ -9,7 +9,7 @@ public class Student extends User {
     private TimeTable myTimeTable;
     private ArrayList<Course> courses;
     private ArrayList<Student> myFriends;
-    private ArrayList<Student> FriendRequests;
+    private ArrayList<FriendRequest> FriendRequests;
 
     
     Student(String name, String emailId, String password, String type) {
@@ -22,7 +22,7 @@ public class Student extends User {
         return myFriends;
     }
 
-    public ArrayList<Student> getFriendRequests() {
+    public ArrayList<FriendRequest> getFriendRequests() {
         return FriendRequests;
     }
             
