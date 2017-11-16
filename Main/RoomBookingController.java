@@ -106,12 +106,13 @@ public class RoomBookingController implements Initializable {
         int startIndex;
         int endIndex;
 
+
         if (startHour < 8) {
             startIndex = (12 + startHour - 8) * 2;
         } else {
             startIndex = (startHour - 8) * 2;
         }
-        if (startMin != 0) {
+        if (startMin >= 30) {
             startIndex++;
         }
 
@@ -121,7 +122,7 @@ public class RoomBookingController implements Initializable {
             endIndex = (endHour - 8) * 2 - 1;
         }
 
-        if (endMin != 0) {
+        if (endMin >= 30) {
             endIndex++;
         }
 
@@ -135,16 +136,30 @@ public class RoomBookingController implements Initializable {
         Requests myreq = new Requests(date1, from_time, to_time, reason, current_user.getType(), roomNumber);
 //        myreq.setUser(clgobj.getAllUsersMap().get(current_user.getEmailId()));
         myreq.setUser(current_user);
+
+
+        if(startHour>=8){
+            myreq.setStatus("Invalid Request");
+            flag=1;
+        }
+        else if(endHour==8 && endMin !=0){
+            myreq.setStatus("Invalid Request");
+            flag=1;
+        }
+
+
+        if(flag==0) {
 //        Admin.addRequest(myreq);
-        day--;
-        if (!roomNumber.equals("")) {
+            day--;
+            if (!roomNumber.equals("")) {
 
-            for (int j = startIndex; j <= endIndex; j++) {
+                for (int j = startIndex; j <= endIndex; j++) {
 
-                if (roomBookings.get(roomNumber) == null || (roomBookings.get(roomNumber).getAvailability())[j][day]) {
-                    System.out.println("null wala chalaa");
-                    myreq.setStatus("Room Already Boooked");
-                    flag = 1;
+                    if (roomBookings.get(roomNumber) == null || (roomBookings.get(roomNumber).getAvailability())[j][day]) {
+                        System.out.println("null wala chalaa");
+                        myreq.setStatus("Room Already Boooked");
+                        flag = 1;
+                    }
                 }
             }
         }
@@ -166,6 +181,26 @@ public class RoomBookingController implements Initializable {
                         && arr.get(i).getStatus().equals("Approved")) {
                     myreq.setStatus("Room Already Boooked");
                     flag = 1;
+                }
+                else if(arr.get(i).getDate().compareTo(date1) == 0
+                        && arr.get(i).getRoomNumber().compareToIgnoreCase(roomNumber) == 0
+                        && from_time.compareTo(arr.get(i).getStartTime())<0
+                        && to_time.compareTo(arr.get(i).getStartTime())>0
+                        && arr.get(i).getStatus().equals("Approved")){
+
+                    myreq.setStatus("Room Already Boooked");
+                    flag = 1;
+
+                }
+                else if(arr.get(i).getDate().compareTo(date1) == 0
+                        && arr.get(i).getRoomNumber().compareToIgnoreCase(roomNumber) == 0
+                        && from_time.compareTo(arr.get(i).getEndTime())<0
+                        && to_time.compareTo(arr.get(i).getEndTime())>0
+                        && arr.get(i).getStatus().equals("Approved")){
+
+                    myreq.setStatus("Room Already Boooked");
+                    flag = 1;
+
                 }
             }
         }
