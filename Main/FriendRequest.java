@@ -22,9 +22,5 @@ public class FriendRequest implements Serializable{
  
     }
     
-//    @Override
-//    public boolean equals(Object o){
-//        o = (Student)o;
-//        if (o)
-//    }
+//    @ 
 }
