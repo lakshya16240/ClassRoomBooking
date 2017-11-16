@@ -142,7 +142,7 @@ public class RoomBookingController implements Initializable {
             for (int j = startIndex; j <= endIndex; j++) {
 
                 if (roomBookings.get(roomNumber) == null || (roomBookings.get(roomNumber).getAvailability())[j][day]) {
-                    System.out.println("null wala chalaa");
+//                    System.out.println("null wala chalaa");
                     myreq.setStatus("Room Already Boooked");
                     flag = 1;
                 }
