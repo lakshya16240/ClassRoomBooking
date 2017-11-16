@@ -1,6 +1,8 @@
 package Main;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Requests implements Serializable {
 
@@ -11,8 +13,9 @@ public class Requests implements Serializable {
     private String reason;
     private String userType;
     private User user;
+    private Date BookingDate;
 
-    public Requests(String date, String startTime, String endTime, String reason, String userType,String roomNumber) {
+    public Requests(String date, String startTime, String endTime, String reason, String userType, String roomNumber) {
         this.roomNumber = roomNumber;
         this.date = date;
         this.status = "Pending";
@@ -20,11 +23,17 @@ public class Requests implements Serializable {
         this.endTime = endTime;
         this.userType = userType;
         this.reason = reason;
+        Calendar cal = Calendar.getInstance();
+        this.BookingDate = cal.getTime();
     }
     
-    public User getUser(){
+    public Date getBookingDate(){
+        return BookingDate;
+    }
+    public User getUser() {
         return user;
     }
+
     public String getDate() {
         return date;
     }
@@ -48,16 +57,16 @@ public class Requests implements Serializable {
     public String getUserType() {
         return userType;
     }
-    
+
     public void setUserType(String userType) {
         this.userType = userType;
     }
 
     public boolean equals(Requests req) {
-        if (date.equals(req.getDate()) &&  reason.equals(req.getReason()) && userType.equals(req.getUserType()) && startTime.equals(req.startTime) && endTime.equals(req.endTime)) {
+        if (date.equals(req.getDate()) && reason.equals(req.getReason()) && userType.equals(req.getUserType()) && startTime.equals(req.startTime) && endTime.equals(req.endTime)) {
             System.out.println(" Request True");
             return true;
-            
+
         }
         System.out.println("Request False");
         return false;
@@ -73,13 +82,9 @@ public class Requests implements Serializable {
 //    public String toSring(){
 //        return ();
 //    }
-
-
     public String getRoomNumber() {
         return roomNumber;
     }
-
-
 
     public String getStatus() {
         return status;
@@ -92,15 +97,15 @@ public class Requests implements Serializable {
     public String getEndTime() {
         return endTime;
     }
-   
-     public void setRoomNumber(String RoomNo){
+
+    public void setRoomNumber(String RoomNo) {
         this.roomNumber = RoomNo;
     }
-     
-    public void setUser(User user){
+
+    public void setUser(User user) {
         this.user = user;
     }
-    
+
     public static void main(String[] args) {
         System.out.println("ABHISHEK");
     }

@@ -133,7 +133,8 @@ public class RoomBookingController implements Initializable {
         }
 //        System.out.println( "may be null " + MainPage.main.current_user);
         Requests myreq = new Requests(date1, from_time, to_time, reason, current_user.getType(), roomNumber);
-        myreq.setUser(clgobj.getAllUsersMap().get(current_user.getEmailId()));
+//        myreq.setUser(clgobj.getAllUsersMap().get(current_user.getEmailId()));
+        myreq.setUser(current_user);
 //        Admin.addRequest(myreq);
         day--;
         if (!roomNumber.equals("")) {
