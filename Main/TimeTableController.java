@@ -83,6 +83,7 @@ public class TimeTableController implements Initializable {
                 textFlow.getChildren().addAll(text1, text2, text3, text4);
 
                 listViewBookings.getItems().add(textFlow);
+
             }
         }
 

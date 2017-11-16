@@ -15,11 +15,7 @@ public class Course implements Serializable {
     private String instructor;
     private String postConditionsString = "";
 
-    @Override
-    public boolean equals(Object obj) {
 
-        return name.equals(((Course) obj).getName()) && code.equals(((Course) obj).getCode());
-    }
 
     public Course(String type, String name, String code, String instructor, int credits, String[] time, String[] room, ArrayList<String> preRequisites, ArrayList<String> postConditions) {
         this.type = type;

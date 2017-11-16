@@ -5,16 +5,17 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import Main.College.*;
+
 import static Main.College.deserialize;
 
 /**
- *
  * @author Lenovo
  */
 
@@ -51,7 +52,7 @@ public class MainPage extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        
+
         Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
 
         Scene scene = new Scene(root);
@@ -67,7 +68,7 @@ public class MainPage extends Application {
 //        String pathToFile = "/Users/finalap.csv";
         String pathToFile = "./src/timetable.csv";
 
-        HashMap<String,ArrayList<String>> hashMapPC = readPostConditionsCSV();
+        HashMap<String, ArrayList<String>> hashMapPC = readPostConditionsCSV();
 
         System.out.println(pathToFile + " path ");
         try (BufferedReader br = new BufferedReader(new FileReader(pathToFile))) {
@@ -83,7 +84,7 @@ public class MainPage extends Application {
                 }
 
 
-                if(hashMapPC.containsKey(attributes[2])) {
+                if (hashMapPC.containsKey(attributes[2])) {
                     ArrayList<String> postConditions = hashMapPC.get(attributes[2]);
 //                    for(int i=0;i<postConditions.size();i++){
 //                        System.out.println(postConditions.get(i));
@@ -99,21 +100,25 @@ public class MainPage extends Application {
                             timings[i] = timeAndVenue[0];
                             rooms[i] = timeAndVenue[1];
 
-                        }
-                        else{
+                        } else {
                             timings[i] = rooms[i] = schedule[i];
 
                         }
                     }
 
+
                     Course course = new Course(attributes[0], attributes[1], attributes[2], attributes[3], Integer.valueOf(attributes[4]), timings, rooms, null, postConditions);
                     courseinfo.add(course);
-                    clgobj.getCredentials().put(attributes[3],attributes[3]);
-                    if(clgobj.getAllUsersMap().get(attributes[3])==null){
-                        clgobj.getCredentials().put(attributes[3],attributes[3]);
-                        clgobj.getAllUsersMap().put(attributes[3],new Faculty(attributes[3],attributes[3],attributes[3],"Faculty"));
-                        ((Faculty)clgobj.getAllUsersMap().get(attributes[3])).getCoursesTaught().add(course);
+                    //clgobj.getCredentials().put(attributes[3],attributes[3]);
+                    if (clgobj.getAllUsersMap().get(attributes[3]) == null) {
+                        clgobj.getCredentials().put(attributes[3], attributes[3]);
+                        clgobj.getAllUsersMap().put(attributes[3], new Faculty(attributes[3], attributes[3], attributes[3], "Faculty"));
+
+//                        ((Faculty)clgobj.getAllUsersMap().get(attributes[3])).getCoursesTaught().add(course);
                     }
+                    if (!((Faculty) clgobj.getAllUsersMap().get(attributes[3])).getCoursesTaught().contains(course))
+                        ((Faculty) clgobj.getAllUsersMap().get(attributes[3])).getCoursesTaught().add(course);
+
                 }
                 line = br.readLine();
 //
@@ -134,29 +139,29 @@ public class MainPage extends Application {
         return courseinfo;
     }
 
-    public static HashMap<String,ArrayList<String>> readPostConditionsCSV() throws IOException{
+    public static HashMap<String, ArrayList<String>> readPostConditionsCSV() throws IOException {
 
         ArrayList<String> postConditionsArrayList;
-        HashMap<String,ArrayList<String>> postConditionsHashMap = new HashMap<>();
+        HashMap<String, ArrayList<String>> postConditionsHashMap = new HashMap<>();
 
         String pathToFile = "./src/postConditions.csv";
 
-        try(BufferedReader br = new BufferedReader(new FileReader(pathToFile))){
+        try (BufferedReader br = new BufferedReader(new FileReader(pathToFile))) {
 
             //System.out.println("HSAIDJAJJDJIIAJIDAJIJIAJIDA");
-            String line  = br.readLine();
+            String line = br.readLine();
             line = br.readLine();
-            while(line != null){
+            while (line != null) {
                 //System.out.println("hoaooslasllalloalloaloaojsajojdjdojaodjojad");
                 String[] attributes = line.split(",");
 
                 postConditionsArrayList = new ArrayList<>();
-                for(int i=0;i<5 && (3+i)<attributes.length;i++){
+                for (int i = 0; i < 5 && (3 + i) < attributes.length; i++) {
                     //System.out.println("yolaa   " + attributes[3+i]);
-                    postConditionsArrayList.add(attributes[3+i]);
+                    postConditionsArrayList.add(attributes[3 + i]);
                 }
 
-                postConditionsHashMap.put(attributes[0],postConditionsArrayList);
+                postConditionsHashMap.put(attributes[0], postConditionsArrayList);
                 line = br.readLine();
             }
 
@@ -189,7 +194,7 @@ public class MainPage extends Application {
         }
         HashMap<String, Room> RoomData = new HashMap<String, Room>();
         RoomData = Room.deserializeRoom();
-        Room RoomObj  = RoomData.get("C21");
+        Room RoomObj = RoomData.get("C21");
 //        System.out.println("room data coming");
 //        RoomObj.printAvailability();
 
