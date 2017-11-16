@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -42,6 +43,13 @@
             </VBox>
          </children>
       </JFXDrawer>
-      <AnchorPane fx:id="facultyPane" layoutX="321.0" prefHeight="859.0" prefWidth="909.0" />
+      <AnchorPane fx:id="facultyPane" layoutX="322.0" prefHeight="859.0" prefWidth="909.0" />
+      <JFXButton layoutX="955.0" layoutY="-6.0" onAction="#displayNotification" prefHeight="45.0" prefWidth="56.0" />
+      <ImageView fitHeight="45.0" fitWidth="56.0" layoutX="961.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/notif.png" />
+         </image>
+      </ImageView>
+      <JFXTextField fx:id="welcome_user" editable="false" focusColor="BLACK" layoutX="1011.0" prefHeight="31.0" prefWidth="208.0" />
    </children>
 </AnchorPane>

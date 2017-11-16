@@ -166,7 +166,7 @@ public class MainPage extends Application {
             }
 
         }
-
+        
         return postConditionsHashMap;
 
     }

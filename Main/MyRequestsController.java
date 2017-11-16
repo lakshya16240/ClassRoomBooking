@@ -81,7 +81,7 @@ public class MyRequestsController implements Initializable {
         Controller.serializeArray(AllRequests);
         College.serialize(clgobj);
 
-        s = "Room no." + CancelledRequests.get(0).getRoomNumber() + "is now available from " + CancelledRequests.get(0).getStartTime()+ "to " + CancelledRequests.get(0).getEndTime();
+        s = "Room no." + CancelledRequests.get(0).getRoomNumber() + "is now available from " + CancelledRequests.get(0).getStartTime()+ " to " + CancelledRequests.get(0).getEndTime();
         current_user.uppdateNotification(s);
         System.out.println("after cancel "+ current_user.getNotification());
         College.serialize(clgobj);
