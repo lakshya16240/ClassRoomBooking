@@ -73,6 +73,9 @@ public class RoomBookingController implements Initializable {
 
         HashMap<String, Room> roomBookings = Room.deserializeRoom();
 
+        String timeSetStart= "";
+        String timeSetEnd = "";
+
         int flag = 0;
 
 //        System.out.println("req 1 = " + MainPage.main.current_user.getRequests());
@@ -87,8 +90,10 @@ public class RoomBookingController implements Initializable {
 
 //        String requested_date = date1.toString();
         String from_time = timeFrom.getValue().toString();
+
         String to_time = timeTo.getValue().toString();
         String roomNumber = roomRequest.getText();
+        roomNumber = roomNumber.toUpperCase();
         System.out.println("room no. " + roomNumber);
 //        roomNumber = roomNumber.toUpperCase();
         int requied_capacity = Integer.parseInt(capacity.getText());
@@ -105,6 +110,30 @@ public class RoomBookingController implements Initializable {
         int endMin = Integer.parseInt((to_time.split(":"))[1]);
         int startIndex;
         int endIndex;
+
+
+        if (startHour > 12) {
+            startHour -= 12;
+            timeSetStart = "PM";
+        } else if (startHour == 0) {
+            startHour += 12;
+            timeSetStart = "AM";
+        } else if (startHour == 12)
+            timeSetStart = "PM";
+        else
+            timeSetStart = "AM";
+
+        if (endHour > 12) {
+            endHour -= 12;
+            timeSetEnd = "PM";
+        } else if (endHour == 0) {
+            endHour += 12;
+            timeSetEnd = "AM";
+        } else if (endHour == 12)
+            timeSetEnd = "PM";
+        else
+            timeSetEnd = "AM";
+
 
 
         if (startHour < 8) {
@@ -138,11 +167,36 @@ public class RoomBookingController implements Initializable {
         myreq.setUser(current_user);
 
 
-        if(startHour>=8){
+
+        if(startHour>=8 && timeSetStart.equals("PM")){
             myreq.setStatus("Invalid Request");
             flag=1;
         }
-        else if(endHour==8 && endMin !=0){
+        else if(endHour==8 && endMin !=0  && timeSetEnd.equals("PM")){
+            myreq.setStatus("Invalid Request");
+            flag=1;
+        }
+        else if(endHour>8 && timeSetEnd.equals("PM")){
+            myreq.setStatus("Invalid Request");
+            flag=1;
+        }
+        else if(startHour<8 && timeSetStart.equals("AM")){
+            myreq.setStatus("Invalid Request");
+            flag=1;
+        }
+        else if(endHour<8 && timeSetEnd.equals("AM")){
+            myreq.setStatus("Invalid Request");
+            flag=1;
+        }
+        else if(timeSetStart.equals("PM") &&timeSetEnd.equals("AM")){
+            myreq.setStatus("Invalid Request");
+            flag=1;
+        }
+        else if(startHour>endHour){
+            myreq.setStatus("Invalid Request");
+            flag=1;
+        }
+        else if(startHour == endHour && startMin< endMin){
             myreq.setStatus("Invalid Request");
             flag=1;
         }
@@ -157,7 +211,7 @@ public class RoomBookingController implements Initializable {
 
                     if (roomBookings.get(roomNumber) == null || (roomBookings.get(roomNumber).getAvailability())[j][day]) {
                         System.out.println("null wala chalaa");
-                        myreq.setStatus("Room Already Boooked");
+                        myreq.setStatus("Room Unavailable");
                         flag = 1;
                     }
                 }
@@ -493,15 +547,15 @@ public class RoomBookingController implements Initializable {
 //            e.printStackTrace();
 //        }
         roomsComboBox.getItems().add(defaultRoom);
-        for (int i = 0; i < roomArrayList.size(); i++)
-            roomsComboBox.getItems().add(roomArrayList.get(i).getName());
+//        for (int i = 0; i < roomArrayList.size(); i++)
+//            roomsComboBox.getItems().add(roomArrayList.get(i).getName());
 
 
         roomsComboBox.setValue(defaultRoom);
         datePicker.setOnAction(event -> {
             day = datePicker.getValue().getDayOfWeek().getValue();
             date = datePicker.getValue().toString();
-            roomAvailability();
+            //roomAvailability();
         });
 
     }
