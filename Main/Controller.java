@@ -187,6 +187,7 @@ public class Controller implements Initializable {
         Parent root2;
 //        current_user
         int num = clgobj.Login(email, passwd);
+        
         if (num == 1) {
             loginlabel.setText("successful");
 //            loginlabel.setText("hello1");

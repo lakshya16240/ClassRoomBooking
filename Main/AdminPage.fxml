@@ -21,9 +21,9 @@
             <Image url="@../Images/IIITD(2).png" />
          </image>
       </ImageView>
-      <JFXDrawer layoutY="130.0" prefHeight="464.0" prefWidth="322.0">
+      <JFXDrawer layoutY="130.0" prefHeight="373.0" prefWidth="322.0">
          <children>
-            <VBox prefHeight="0.0" prefWidth="322.0" style="-fx-background-color: #21618C;">
+            <VBox prefHeight="442.0" prefWidth="322.0" style="-fx-background-color: #21618C;">
                <children>
                   <JFXButton buttonType="RAISED" onAction="#viewRequests" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #5C7B7D;" text="View Requests" textFill="WHITE">
                      <font>
@@ -41,14 +41,6 @@
                      </effect>
                   </JFXButton>
                   <JFXButton fx:id="roomBookingsAdmin" buttonType="RAISED" onAction="#viewBookings" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #215259;" text="View Bookings" textFill="WHITE">
-                     <font>
-                        <Font size="27.0" />
-                     </font>
-                     <effect>
-                        <DropShadow />
-                     </effect>
-                  </JFXButton>
-                  <JFXButton buttonType="RAISED" onAction="#viewTimeTable" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #405C61;" text="Time Table" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font>

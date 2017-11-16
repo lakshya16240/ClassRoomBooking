@@ -1,15 +1,11 @@
 package Main;
 
+import static Main.MainPage.clgobj;
 import java.io.*;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.skins.JFXDatePickerSkin;
-import com.sun.javafx.scene.control.skin.DatePickerSkin;
 import com.jfoenix.controls.JFXTextField;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,7 +14,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.DatePicker;
 import javafx.scene.layout.Pane;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -27,7 +22,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
-import org.controlsfx.control.textfield.TextFields;
 
 public class StudentController implements Initializable {
 
@@ -41,11 +35,26 @@ public class StudentController implements Initializable {
     public void Start(Student student) {
         myStudent = student;
     }
-
-    public void myMethod() throws Exception {
-        String text = "Hello Programmers";
-        Button btn1 = new Button("test notif bbi no");
-        System.out.println("Button added");
+    
+    
+    @FXML
+    void displayNotification(ActionEvent event) throws IOException {
+        System.out.println("Button pressed");
+        System.out.println("notif = " +MainPage.current_user.getNotification());
+//        if (MainPage.current_user.getNotification()!=null){
+            System.out.println("not null");
+            notification(Pos.TOP_CENTER, graphic, MainPage.current_user.getNotification());
+            MainPage.current_user.setNotification(null);
+            notifBuilder.showInformation();
+            College.serialize(clgobj);
+//        }
+        
+    }
+    
+    public void myMethod(String text) throws Exception {
+//        String text = "Hello Programmers";
+//        Button btn1 = new Button("test notif bbi no");
+//        System.out.println("Button added");
         myButton.setOnAction(e -> {
             graphic = null;
             notification(Pos.TOP_CENTER, graphic, text);
@@ -144,11 +153,19 @@ public class StudentController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        try {
-            myMethod();
-            System.out.println("Method called");
-        } catch (Exception ex) {
-            Logger.getLogger(StudentController.class.getName()).log(Level.SEVERE, null, ex);
+//        try {
+//            myMethod("Hi");
+//            System.out.println("Method called");
+//        } catch (Exception ex) {
+//            Logger.getLogger(StudentController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+        ActionEvent a = new ActionEvent();
+        if (MainPage.current_user.getNotification()!=null){
+            try {
+                displayNotification(a);
+            } catch (IOException ex) {
+                Logger.getLogger(StudentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         System.out.println(MainPage.current_user);
         System.out.println(MainPage.current_user.getName());

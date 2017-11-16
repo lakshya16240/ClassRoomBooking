@@ -62,6 +62,7 @@ public class RoomBookingController implements Initializable {
 //        Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
 //        Date date2 = Date.from(instant);
 //        System.out.println("day = " + date2);
+        
         String date1 = date.getValue().toString();
         int day = date.getValue().getDayOfWeek().getValue();
 
@@ -113,7 +114,8 @@ public class RoomBookingController implements Initializable {
         }
 //        System.out.println( "may be null " + MainPage.main.current_user);
         Requests myreq = new Requests(date1, from_time, to_time, reason, current_user.getType(), roomNumber);
-        myreq.setUser(clgobj.getAllUsersMap().get(current_user.getEmailId()));
+//        myreq.setUser(clgobj.getAllUsersMap().get(current_user.getEmailId()));
+        myreq.setUser(current_user);
 //        Admin.addRequest(myreq);
         day--;
         if (!roomNumber.equals("")) {

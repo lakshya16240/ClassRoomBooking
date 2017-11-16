@@ -1,11 +1,12 @@
 package Main;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public abstract class User implements Serializable {
 
-    private String name, emailId, password, type;
+    private String name, emailId, password, type, notification;
     private ArrayList<Requests> requests;
 
     public User(String name, String emailId, String password, String type) {
@@ -27,6 +28,14 @@ public abstract class User implements Serializable {
         return name;
     }
 
+    public String getNotification() {
+        return notification;
+    }
+
+    public void setNotification(String notification) {
+        this.notification = notification;
+    }
+    
     public String getPassword() {
         return password;
     }
@@ -55,7 +64,15 @@ public abstract class User implements Serializable {
    public void ShowAll(){
 
    }
-
+   
+   public void uppdateNotification(String s) throws IOException, ClassNotFoundException{
+       College clgobj = College.deserialize("data");
+       ArrayList<User> AllUsers = MainPage.clgobj.getAllUsers();
+       for (int i = 0; i<AllUsers.size() ; i++){
+           AllUsers.get(i).setNotification(s);
+       }
+       College.serialize(clgobj);
+   }
    public String ViewStatus(Room room){
 
        return "";

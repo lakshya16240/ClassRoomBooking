@@ -65,13 +65,13 @@ public class RequestController implements Initializable {
             Requests current_req = AppReq.get(cnt);
 //                User  userobj = clgobj.getAllUsersMap().get(current_req.getUser().getName());
             User userobj = clgobj.getAllUsersMap().get(current_req.getUser().getEmailId());
-            System.out.println("user check " + current_user);
+//            System.out.println("user check " + current_user);
 
             System.out.println("All requests on pressing Approved before check: " + current_user.getRequests());
             
-            for (int i = 0; i < current_user.getRequests().size(); i++) {
-                if (current_user.getRequests().get(i).equals(current_req)) {
-                    current_user.getRequests().get(i).setStatus("Approved");
+            for (int i = 0; i < userobj.getRequests().size(); i++) {
+                if (userobj.getRequests().get(i).equals(current_req)) {
+                    userobj.getRequests().get(i).setStatus("Approved");
                 }
             }
 
@@ -216,6 +216,15 @@ public class RequestController implements Initializable {
         }
 
         ObservableList<Requests> obsList = FXCollections.observableArrayList();
+        Calendar cal = Calendar.getInstance();
+        Date CurrentDate = cal.getTime();
+        for (int i=0; i<requests.size(); i++){
+            int DayDiff = (int)((CurrentDate.getTime() - requests.get(i).getBookingDate().getTime())/86400000);
+            System.out.println("day differnce = "  + DayDiff);
+            if (DayDiff>5){
+                requests.get(i).setStatus("Request expired");
+            }                                                                    
+        }
         for (int i = 0; i < requests.size(); i++) {
             if (requests.get(i).getStatus().equals("Pending")){
                 obsList.add(requests.get(i));

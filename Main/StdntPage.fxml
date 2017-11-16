@@ -3,7 +3,6 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDrawer?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.GaussianBlur?>
 <?import javafx.scene.image.Image?>
@@ -61,7 +60,7 @@
                         <DropShadow />
                      </effect>
                   </JFXButton>
-                  <JFXButton buttonType="RAISED" onAction="#myRequestsStudent" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #1B3041;" text="My Requests" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" onAction="#myRequestsStudent"  prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #1B3041;" text="My Requests" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font>
@@ -77,6 +76,9 @@
                         <DropShadow />
                      </effect>
                   </JFXButton>
+                  
+                 
+                     
                </children>
             </VBox>
          </children>
@@ -92,7 +94,7 @@
                   <Image url="@../Images/notif.png" />
                </image>
             </ImageView>
-            <Button fx:id="myButton" layoutX="634.0" layoutY="7.0" mnemonicParsing="false" opacity="0.0" prefHeight="44.0" prefWidth="60.0" text="Button" />
+            <JFXButton layoutX="613.0" layoutY="7.0" onAction="#displayNotification" prefHeight="45.0" prefWidth="70.0" />
          </children></AnchorPane>
    </children>
 </AnchorPane>
