@@ -23,6 +23,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.HashMap;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -67,7 +70,7 @@ public class RoomBookingController implements Initializable {
     private ArrayList<Room> roomArrayList;
     private HashMap<String, Room> roomHashMap;
     private ArrayList<Requests> requests;
-    private String date;
+    private String date = "";
     public static final String defaultRoom = "All Rooms";
     private ArrayList<Room> availableRooms;
 
@@ -441,9 +444,12 @@ public class RoomBookingController implements Initializable {
         TextFlow textFlow = new TextFlow();
         if (roomName.equals(defaultRoom)) {
 
+            listViewBookings.getItems().clear();
+            System.out.println("DEFAULT ROOM");
 
             for(Map.Entry<String, Room> x: roomHashMap.entrySet())
             {
+                textFlow = new TextFlow();
                 availability = x.getValue().getAvailability();
                 requests = x.getValue().getBookings();
 
@@ -451,6 +457,7 @@ public class RoomBookingController implements Initializable {
                 textFlow.getChildren().add(text1);
                 textFlow.getChildren().addAll(bookingSlotsTimings(availability, requests));
                 listViewBookings.getItems().add(textFlow);
+                System.out.println("hashmap running");
 
             }
 
@@ -592,6 +599,7 @@ public class RoomBookingController implements Initializable {
             Text text1 = new Text(roomName + "\n");
             textFlow.getChildren().add(text1);
             textFlow.getChildren().addAll(bookingSlotsTimings(availability, requests));
+            listViewBookings.getItems().clear();
             listViewBookings.getItems().add(textFlow);
 
         }
@@ -639,7 +647,7 @@ public class RoomBookingController implements Initializable {
             }
 
             if (k == 1 && l == 1) {
-                Text text2 = new Text(startHour + ":" + startMin + " - " + endHour + ":" + endMin + ",\n");
+                Text text2 = new Text(startHour + ":" + startMin + " - " + endHour + ":" + endMin + "\n");
                 textFlow.getChildren().add(text2);
                 k = 0;
                 l = 0;
@@ -650,19 +658,21 @@ public class RoomBookingController implements Initializable {
             if (requests.get(j).getStatus().equals("Approved")) {
                 if (requests.get(j).getDate().equals(date)) {
 
-                    Text text2 = new Text(requests.get(j).getStartTime() + " - " + requests.get(j).getEndTime() + ",\n");
+                    Text text2 = new Text(requests.get(j).getStartTime() + " - " + requests.get(j).getEndTime() + "\n");
                     textFlow.getChildren().add(text2);
                 }
             }
         }
 
+        if(textFlow.getChildren().size()==0){
+            textFlow.getChildren().add(new Text("No Bookings on this day"));
+        }
         return textFlow;
     }
 
     @Override
     public void initialize(URL locationab, ResourceBundle resources) {
 
-        //TODO get rooms arrayList
 //        datePicker.
         timeFrom.setIs24HourView(true);
         timeTo.setIs24HourView(true);
@@ -700,11 +710,19 @@ public class RoomBookingController implements Initializable {
             roomsComboBox.getItems().add(x.getKey());
         }
 
+        roomsComboBox.valueProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if(!date.equals(""))
+                    roomAvailability();
+            }
+        });
+
         roomsComboBox.setValue(defaultRoom);
         datePicker.setOnAction(event -> {
             day = datePicker.getValue().getDayOfWeek().getValue();
             date = datePicker.getValue().toString();
-            //roomAvailability();
+            roomAvailability();
         });
 
     }

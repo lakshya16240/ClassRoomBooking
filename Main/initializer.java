@@ -118,7 +118,7 @@ public class initializer {
         ArrayList<Requests> req = new ArrayList<Requests>();
         serializeReq(req);
         Controller.serializeArray(null);
-        MainPage.readCourseCSV();
+        MainPage.readCourseCSV(clgobj);
         User admin1 = new Admin("Abhishek", "abhishek16126", "abhi", "Admin");
         User admin2 = new Admin("Lakshya", "lakshya16240", "chowki", "Admin");
         clgobj.getAllUsers().add(admin1);
