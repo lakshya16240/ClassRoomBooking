@@ -237,6 +237,7 @@ public class RoomBookingController implements Initializable {
         int startMin = Integer.parseInt((from_time.split(":"))[1]);
         int endHour = Integer.parseInt((to_time.split(":"))[0]);
         int endMin = Integer.parseInt((to_time.split(":"))[1]);
+        System.out.println("oyeyeyyeyeyeyyeyeye :::   "+ startHour);
         int startIndex;
         int endIndex;
 
@@ -722,6 +723,7 @@ public class RoomBookingController implements Initializable {
         roomsComboBox.setValue(defaultRoom);
         datePicker.setOnAction(event -> {
             day = datePicker.getValue().getDayOfWeek().getValue();
+            day--;
             date = datePicker.getValue().toString();
             roomAvailability();
         });

@@ -52,7 +52,8 @@
          </toggleGroup></RadioButton>
       <RadioButton fx:id="adminToggle" layoutX="1036.0" layoutY="469.0" mnemonicParsing="false" text="Admin" toggleGroup="$Users" />
       <RadioButton fx:id="facultyToggle" layoutX="1119.0" layoutY="469.0" mnemonicParsing="false" text="Faculty" toggleGroup="$Users" />
-      <ComboBox fx:id="courseComboBox" disable="true" layoutX="996.0" layoutY="504.0" prefHeight="27.0" prefWidth="123.0" promptText="Course" style="-fx-background-color: FFFFFF;" />
+      <ComboBox fx:id="courseComboBox" disable="true" layoutX="934.0" layoutY="504.0" prefHeight="27.0" prefWidth="107.0" promptText="Course" style="-fx-background-color: FFFFFF;" />
+       <ComboBox fx:id="batchComboBox" disable="true" layoutX="1074.0" layoutY="504.0" prefHeight="27.0" prefWidth="107.0" promptText="Batch" style="-fx-background-color: FFFFFF;" />
       <Button fx:id="SignUp" layoutX="1024.0" layoutY="541.0" mnemonicParsing="false" onAction="#SignUp" text="Sign Up" />
       <Text layoutX="751.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" wrappingWidth="80.6708984375" />
       <Text layoutX="970.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />

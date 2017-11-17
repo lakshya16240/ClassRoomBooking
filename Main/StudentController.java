@@ -134,34 +134,7 @@ public class StudentController implements Initializable {
     }
     
     
-    @FXML
-    public void addFriend(ActionEvent actionEvent){
-        Student friend = null ;
-        //friend = 
-        FriendRequest freq = new FriendRequest((Student) current_user);
-        friend.getFriendRequests().add(freq);
-        
-                
-    }
 
-    @FXML
-    public void viewRequets(ActionEvent actionEvent){
-         ObservableList<Requests> requestList = FXCollections.observableArrayList(MainPage.current_user.getRequests());
-         
-    }
-    
-    @FXML
-    public void approveRequets(ActionEvent actionEvent) throws IOException{
-        ObservableList<FriendRequest> approve_requests = FXCollections.observableArrayList();;
-//        requests = requestTable.getSelectionModel().getSelectedItems();
-        for (int i = 0 ; i<approve_requests.size() ; i++){
-            Student st = (Student)current_user;
-            st.getFriendRequests().remove(approve_requests.get(i));
-            approve_requests.get(i).getSender().getMyFriends().add((Student) current_user);
-            st.getMyFriends().add(approve_requests.get(i).getSender());
-        }
-        College.serialize(clgobj);
-    }
     
     
     
@@ -169,6 +142,15 @@ public class StudentController implements Initializable {
     public void myRequestsStudent(ActionEvent actionEvent) throws IOException {
 
         Pane newstudentPane = FXMLLoader.load(getClass().getResource("MyRequests.fxml"));
+        studentPane.getChildren().clear();
+        studentPane.getChildren().add(newstudentPane);
+    }
+
+    @FXML
+    public void searchFriends(ActionEvent actionEvent) throws IOException {
+
+
+        Pane newstudentPane = FXMLLoader.load(getClass().getResource("SearchFriends.fxml"));
         studentPane.getChildren().clear();
         studentPane.getChildren().add(newstudentPane);
     }
@@ -211,5 +193,6 @@ public class StudentController implements Initializable {
 //            resultInfo.setText("Passed!");
         welcome_user.setStyle("-fx-text-fill: white; -fx-font-size: 16;");
     }
+
 
 }
