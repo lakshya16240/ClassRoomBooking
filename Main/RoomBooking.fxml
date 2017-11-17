@@ -10,7 +10,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="867.0" prefWidth="906.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.RoomBookingController">
+<AnchorPane id="AnchorPane" prefHeight="867.0" prefWidth="906.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.RoomBookingController">
    <children>
       <Button fx:id="requestbtn" layoutX="150.0" layoutY="603.0" mnemonicParsing="false" onAction="#makeRequest" prefHeight="31.0" prefWidth="152.0" style="-fx-background-color: #40C4D0;" text="Make Request" />
       <JFXDatePicker fx:id="datePicker" layoutX="148.0" layoutY="66.0" prefHeight="31.0" prefWidth="176.0" style="-fx-background-color: #FFFFFF;" />
@@ -24,8 +24,8 @@
       <TextField editable="false" layoutX="68.0" layoutY="214.0" prefHeight="31.0" prefWidth="72.0" style="-fx-background-color: #689D91; -fx-border-color: #000000; fx-text-fill: white;;" text="FROM :" />
       <TextField editable="false" layoutX="64.0" layoutY="277.0" prefHeight="33.0" prefWidth="72.0" style="-fx-background-color: #689D91; -fx-border-color: #000000; fx-text-fill: white;" text="     TO:" />
       <TextField alignment="TOP_CENTER" editable="false" layoutX="43.0" layoutY="403.0" prefHeight="31.0" prefWidth="417.0" style="-fx-background-color: #40C4D0; fx-text-fill: white;" text="REASON : " />
-      <TextField editable="false" layoutX="59.0" layoutY    ="342.0" prefHeight="31.0" prefWidth="79.0" style="-fx-background-color: #689D91; -fx-border-color: #000000; fx-text-fill: white;;" text="Capacity" />
+      <TextField editable="false" layoutX="59.0" layoutY="342.0" prefHeight="31.0" prefWidth="79.0" style="-fx-background-color: #689D91; -fx-border-color: #000000; fx-text-fill: white;;" text="Capacity" />
       <ListView fx:id="listViewBookings" layoutX="551.0" layoutY="103.0" prefHeight="480.0" prefWidth="332.0" />
-      <ComboBox fx:id="roomsComboBox" layoutX="629.0" layoutY="68.0" prefWidth="150.0" />
+      <ComboBox fx:id="roomsComboBox" layoutX="642.0" layoutY="68.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

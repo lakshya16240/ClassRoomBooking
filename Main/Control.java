@@ -63,7 +63,8 @@ public class Control implements Initializable {
     void leaveCourse(ActionEvent event) throws IOException {
         ObservableList<Course> obslist = mytable.getSelectionModel().getSelectedItems();
         for (int i = 0; i < obslist.size(); i++) {
-            ((Student) MainPage.current_user).viewCourses().remove(obslist.get(i));
+            if(!obslist.get(i).getType().equalsIgnoreCase("Mandatory"))
+                ((Student) MainPage.current_user).viewCourses().remove(obslist.get(i));
         }
         populateTable();
         College.serialize(clgobj);

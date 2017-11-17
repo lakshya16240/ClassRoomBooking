@@ -8,6 +8,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.io.Serializable;
+import static Main.MainPage.clgobj;
 
 public class College implements Serializable{
 
@@ -72,7 +73,7 @@ public class College implements Serializable{
         return allUsersMap;
     }
 
-    public int SignUp(String name, String emailId, String password, String type){
+    public int SignUp(String name, String emailId, String password, String type, String courseType) throws IOException, ClassNotFoundException {
         if (credentials.get(emailId)!=null){
             return 0;
         }
@@ -83,7 +84,37 @@ public class College implements Serializable{
         User user;
         System.out.println(type);
         if (type.equals("Student")){
-            user = new Student(name,emailId,password,type);
+            user = new Student(name,emailId,password,type,courseType);
+
+            allCourses = College.deserialize("data").getAllCourses();
+            for(int i=0;i<allCourses.size();i++){
+                Course course = allCourses.get(i);
+                System.out.println("type  " + course.getType() + " name" + course.getCode());
+                if(course.getType().equalsIgnoreCase("Mandatory")){
+
+                    if(courseType.equalsIgnoreCase("CSAM")) {
+
+                        if (course.getCode().charAt(4) == 'x' && course.getCode().charAt(5) == 'x') {
+
+                            ((Student) user).viewCourses().add(course);
+                        }
+                    }
+                    else if(courseType.equalsIgnoreCase("CSE")){
+
+                        if (course.getCode().charAt(0) == 'C' && course.getCode().charAt(1) == 'S' && course.getCode().charAt(2)=='E' && !(course.getCode().charAt(4) == 'x' && course.getCode().charAt(5) == 'x')) {
+
+                            ((Student) user).viewCourses().add(course);
+                        }
+                    }
+                    else if(courseType.equalsIgnoreCase("ECE")){
+
+                        if (course.getCode().charAt(0) == 'E' && course.getCode().charAt(1) == 'C' && course.getCode().charAt(2)=='E') {
+
+                            ((Student) user).viewCourses().add(course);
+                        }
+                    }
+                }
+            }
             System.out.println("Student created");
         }
         else if (type.equals("Admin")){

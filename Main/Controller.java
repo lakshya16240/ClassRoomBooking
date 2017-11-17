@@ -31,6 +31,9 @@ public class Controller implements Initializable {
     private TableView<Course> mytable;
 
     @FXML
+    private ComboBox<String> courseComboBox;
+
+    @FXML
     private TextField username;
 
     @FXML
@@ -117,31 +120,49 @@ public class Controller implements Initializable {
     @FXML
     void SignUp(ActionEvent event) throws IOException, ClassNotFoundException {
 //        College clgobj = deserialize("data");
+        int flag=0;
         clgobj = College.deserialize("data");
         String user_name = name.getText();
         String email = emailId.getText();
         String passwd = password.getText();
+        String course = courseComboBox.getValue();
         RadioButton selectedRadioButton = (RadioButton) Users.getSelectedToggle();
-        String type = selectedRadioButton.getText();
+        String type="";
+        if(selectedRadioButton!=null)
+            type = selectedRadioButton.getText();
+        System.out.println(type + " " + course);
+
+        if(user_name.equals("") || email.equals("") || passwd.equals("") || course==null || course.equals("Course") || type.equals("") )
+        {
+            signuplabel.setText("All Fields are Required");
+            flag=1;
+        }
+
 //        String type = Users.getSelectedToggle().toString();
 //        System.out.println("tt= "+ toogleGroupValue);
         name.setText(null);
         emailId.setText(null);
         password.setText(null);
+        if(selectedRadioButton!=null)
+            selectedRadioButton.setSelected(false);
+        courseComboBox.setValue("Course");
+        courseComboBox.setDisable(true);
 //        System.out.println(u);
-        int val = clgobj.SignUp(user_name, email, passwd, type);
-        if (val == 0) {
-            signuplabel.setText("User already exists");
-        }
+        if(flag==0) {
+            int val = clgobj.SignUp(user_name, email, passwd, type, course);
+            if (val == 0) {
+                signuplabel.setText("User already exists");
+            }
 //        if (val==2){
 //            signuplabel.setText("Invalid E-mail Id");
 //        }
-        else {
-            signuplabel.setText("Sign up succesful");
+            else {
+                signuplabel.setText("Sign up succesful");
 
+            }
+            System.out.println(type);
+            College.serialize(clgobj);
         }
-        System.out.println(type);
-        College.serialize(clgobj);  
     }
 
     public static void serializeArray(ArrayList<Requests> al) throws IOException {
@@ -296,6 +317,9 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+
+        courseComboBox.getItems().addAll("CSE","ECE","CSAM");
+
         username.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
@@ -362,6 +386,7 @@ public class Controller implements Initializable {
             public void handle(KeyEvent event) {
                 if (event.getCode() == KeyCode.ENTER) {
                     studentToggle.setSelected(true);
+                    courseComboBox.setDisable(false);
                 }
             }
         });

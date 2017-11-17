@@ -5,6 +5,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -61,7 +62,7 @@ public class MainPage extends Application {
         stage.show();
     }
 
-    public static void readCourseCSV() throws IOException {
+    public static void readCourseCSV(College collegeObject) throws IOException {
 
         ArrayList<Course> courseinfo = new ArrayList<>();
 //        String pathToFile = "/Users/pc.csv"; 
@@ -101,23 +102,25 @@ public class MainPage extends Application {
                             rooms[i] = timeAndVenue[1];
 
                         } else {
-                            timings[i] = rooms[i] = schedule[i];
+                            timings[i] = schedule[i];
+                            rooms[i] = schedule[i];
 
                         }
                     }
 
 
                     Course course = new Course(attributes[0], attributes[1], attributes[2], attributes[3], Integer.valueOf(attributes[4]), timings, rooms, null, postConditions);
+
                     courseinfo.add(course);
                     //clgobj.getCredentials().put(attributes[3],attributes[3]);
-                    if (clgobj.getAllUsersMap().get(attributes[3]) == null) {
-                        clgobj.getCredentials().put(attributes[3], attributes[3]);
-                        clgobj.getAllUsersMap().put(attributes[3], new Faculty(attributes[3], attributes[3], attributes[3], "Faculty"));
+                    if (collegeObject.getAllUsersMap().get(attributes[3]) == null) {
+                        collegeObject.getCredentials().put(attributes[3], attributes[3]);
+                        collegeObject.getAllUsersMap().put(attributes[3], new Faculty(attributes[3], attributes[3], attributes[3], "Faculty"));
 
 //                        ((Faculty)clgobj.getAllUsersMap().get(attributes[3])).getCoursesTaught().add(course);
                     }
-                    if (!((Faculty) clgobj.getAllUsersMap().get(attributes[3])).getCoursesTaught().contains(course))
-                        ((Faculty) clgobj.getAllUsersMap().get(attributes[3])).getCoursesTaught().add(course);
+                    if (!((Faculty) collegeObject.getAllUsersMap().get(attributes[3])).getCoursesTaught().contains(course))
+                        ((Faculty) collegeObject.getAllUsersMap().get(attributes[3])).getCoursesTaught().add(course);
 
                 }
                 line = br.readLine();
@@ -134,8 +137,8 @@ public class MainPage extends Application {
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
-        clgobj.getAllCourses().addAll(courseinfo);
-        College.serialize(clgobj);
+        collegeObject.getAllCourses().addAll(courseinfo);
+        College.serialize(collegeObject);
         System.out.println("read course CSV called");
 //        Course.serialize(courseinfo);
 //        return courseinfo;
