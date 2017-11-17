@@ -141,7 +141,7 @@ public class Controller implements Initializable {
 
         }
         System.out.println(type);
-        College.serialize(clgobj);
+        College.serialize(clgobj);  
     }
 
     public static void serializeArray(ArrayList<Requests> al) throws IOException {
