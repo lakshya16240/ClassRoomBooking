@@ -63,6 +63,8 @@ public class SearchCoursesController implements Initializable {
 
     @FXML
     void addCourse(ActionEvent event) throws IOException, ClassNotFoundException {
+                clgobj = College.deserialize("data");
+
         ObservableList<Course> SelectedCourses = FXCollections.observableArrayList();;
         SelectedCourses = searchCoursesTable.getSelectionModel().getSelectedItems();
 //        System.out.println("req = " + ApprovedRequests);
@@ -73,7 +75,7 @@ public class SearchCoursesController implements Initializable {
         for (int i = 0; i < SelectedCourses.size(); i++) {
             ((Student) current_user).addCourses(SelectedCourses.get(i));
         }
-        clgobj = College.deserialize("data");
+//        clgobj = College.deserialize("data");
         ArrayList<Course> courseList = clgobj.getAllCourses();
 //        List<Course> courseList = MainPage.readCourseCSV();
         //System.out.println("ullahhaaa : " + courseList.size());
@@ -102,7 +104,10 @@ public class SearchCoursesController implements Initializable {
 
 
 //        clgobj.getAllUsersMap().put(user.getEmailId(),user);
-//        System.out.println("Courses are : " + user.viewCourses() );
+        clgobj.getAllUsersMap().put(current_user.getEmailId(), current_user);
+
+        System.out.println("Courses are : " + ((Student)current_user).viewCourses() );
+        System.out.println("Check courses : " + ((Student)clgobj.getAllUsersMap().get(current_user.getEmailId())).viewCourses());
         College.serialize(clgobj);
     }
 
