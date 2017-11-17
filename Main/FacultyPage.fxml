@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDrawer?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,46 +11,68 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="859.0" prefWidth="1227.0" style="-fx-background-image: #85C1E9;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.FacultyController">
-   <children>
-      <ImageView fitHeight="867.0" fitWidth="1236.0" layoutY="-7.0" pickOnBounds="true">
-         <image>
-            <Image url="@../Images/grad3.jpg" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="133.0" fitWidth="322.0" layoutX="50.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Images/IIITD(2).png" />
-         </image>
-      </ImageView>
-      <JFXDrawer layoutY="130.0" prefHeight="287.0" prefWidth="322.0">
-         <children>
-            <VBox prefHeight="703.0" prefWidth="322.0" style="-fx-background-color: #21618C;">
-               <children>
-                  <JFXButton onAction="#displayCourses" prefHeight="102.0" prefWidth="322.0" style="-fx-background-color: #215259;" text="My Courses" textFill="WHITE">
-                     <font>
-                        <Font size="27.0" />
-                     </font></JFXButton>
-                  <JFXButton onAction="#roomBooking" prefHeight="109.0" prefWidth="322.0" style="-fx-background-color: #689D91;" text="Room Booking" textFill="WHITE">
-                     <font>
-                        <Font size="27.0" />
-                     </font></JFXButton>
+    <children>
+        <ImageView fitHeight="867.0" fitWidth="1236.0" layoutY="-7.0" pickOnBounds="true">
+            <image>
+                <Image url="@../Images/grad3.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="133.0" fitWidth="322.0" layoutX="50.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../Images/IIITD(2).png" />
+            </image>
+        </ImageView>
+        <JFXDrawer layoutY="130.0" prefHeight="398.0" prefWidth="322.0">
+            <children>
+                <VBox prefHeight="297.0" prefWidth="322.0" style="-fx-background-color: #21618C;">
+                    <children>
+                   
+                        <JFXButton buttonType="RAISED" onAction="#displayCourses" prefHeight="102.0" prefWidth="322.0" style="-fx-background-color: #215259;" text="My Courses" textFill="WHITE">
+                            <font>
+                                <Font size="27.0" />
+                            </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                        </JFXButton>
+                        <JFXButton buttonType="RAISED" onAction="#roomBooking" prefHeight="109.0" prefWidth="322.0" style="-fx-background-color: #689D91;" text="Room Booking" textFill="WHITE">
+                            <font>
+                                <Font size="27.0" />
+                            </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                        </JFXButton>
 
-                  <JFXButton fx:id="logoutFaculty" onAction="#Logout" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #536482;" text="Logout" textFill="WHITE">
-                     <font>
-                        <Font size="27.0" />
-                     </font>
-                  </JFXButton>
-               </children>
-            </VBox>
-         </children>
-      </JFXDrawer>
-      <AnchorPane fx:id="facultyPane" layoutX="322.0" prefHeight="859.0" prefWidth="909.0" />
-      <JFXButton layoutX="955.0" layoutY="-6.0" onAction="#displayNotification" prefHeight="45.0" prefWidth="56.0" />
-      <ImageView fitHeight="45.0" fitWidth="56.0" layoutX="961.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Images/notif.png" />
-         </image>
-      </ImageView>
-      <JFXTextField fx:id="welcome_user" editable="false" focusColor="BLACK" layoutX="1011.0" prefHeight="31.0" prefWidth="208.0" />
-   </children>
+                        <JFXButton fx:id="logoutFaculty" buttonType="RAISED" onAction="#Logout" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #536482;" text="Logout" textFill="WHITE">
+                            <font>
+                                <Font size="27.0" />
+                            </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                        </JFXButton>
+                        <JFXButton buttonType="RAISED" onAction="#myRequestsFaculty" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #1B3041;" text="My Requests" textFill="WHITE">
+                            <font>
+                                <Font size="27.0" />
+                            </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+
+                        </JFXButton>
+                  
+                    </children>
+                </VBox>
+            </children>
+        </JFXDrawer>
+        <AnchorPane fx:id="facultyPane" layoutX="322.0" prefHeight="859.0" prefWidth="909.0" />
+        <ImageView fitHeight="45.0" fitWidth="56.0" layoutX="961.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../Images/notif.png" />
+            </image>
+        </ImageView>
+        <JFXButton layoutX="955.0" layoutY="-6.0" onAction="#displayNotification" prefHeight="45.0" prefWidth="56.0" />
+        <JFXTextField fx:id="welcome_user" editable="false" focusColor="BLACK" layoutX="1011.0" prefHeight="31.0" prefWidth="208.0" />
+    </children>
 </AnchorPane>

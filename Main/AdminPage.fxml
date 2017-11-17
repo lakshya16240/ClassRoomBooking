@@ -11,63 +11,72 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="859.0" prefWidth="1227.0" style="-fx-background-image: #85C1E9;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.AdminController">
-   <children>
-      <ImageView fitHeight="867.0" fitWidth="1236.0" layoutX="-4.0" layoutY="-7.0" pickOnBounds="true">
-         <image>
-            <Image url="@../Images/grad3.jpg" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="133.0" fitWidth="269.0" layoutX="50.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Images/IIITD(2).png" />
-         </image>
-      </ImageView>
-      <JFXDrawer layoutY="130.0" prefHeight="373.0" prefWidth="322.0">
-         <children>
-            <VBox prefHeight="442.0" prefWidth="322.0" style="-fx-background-color: #21618C;">
-               <children>
-                  <JFXButton buttonType="RAISED" onAction="#viewRequests" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #5C7B7D;" text="View Requests" textFill="WHITE">
-                     <font>
-                        <Font size="27.0" />
-                     </font>
-                     <effect>
-                        <DropShadow />
-                     </effect></JFXButton>
-                  <JFXButton buttonType="RAISED" onAction="#roomBooking" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #689D91;" text="Room Booking" textFill="WHITE">
-                     <font>
-                        <Font size="27.0" />
-                     </font>
-                     <effect>
-                        <DropShadow />
-                     </effect>
-                  </JFXButton>
-                  <JFXButton fx:id="roomBookingsAdmin" buttonType="RAISED" onAction="#viewBookings" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #215259;" text="View Bookings" textFill="WHITE">
-                     <font>
-                        <Font size="27.0" />
-                     </font>
-                     <effect>
-                        <DropShadow />
-                     </effect>
-                  </JFXButton>
-                  <JFXButton fx:id="logoutAdmin" buttonType="RAISED" onAction="#Logout" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #536482;" text="Logout" textFill="WHITE">
-                     <font>
-                        <Font size="27.0" />
-                     </font>
-                     <effect>
-                        <DropShadow />
-                     </effect>
-                  </JFXButton>
-               </children>
-            </VBox>
-         </children>
-      </JFXDrawer>
-      <AnchorPane fx:id="adminPane" layoutX="321.0" layoutY="-2.0" prefHeight="867.0" prefWidth="910.0" />
-      <JFXButton layoutX="965.0" layoutY="4.0" onAction="#displayNotification" prefHeight="45.0" prefWidth="56.0" />
-      <ImageView fitHeight="45.0" fitWidth="56.0" layoutX="971.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Images/notif.png" />
-         </image>
-      </ImageView>
-      <JFXTextField fx:id="welcome_user" editable="false" focusColor="BLACK" layoutX="1021.0" layoutY="10.0" prefHeight="31.0" prefWidth="208.0" />
-   </children>
+    <children>
+        <ImageView fitHeight="867.0" fitWidth="1236.0" layoutX="-4.0" layoutY="-7.0" pickOnBounds="true">
+            <image>
+                <Image url="@../Images/grad3.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="133.0" fitWidth="269.0" layoutX="50.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../Images/IIITD(2).png" />
+            </image>
+        </ImageView>
+        <JFXDrawer layoutY="130.0" prefHeight="466.0" prefWidth="322.0">
+            <children>
+                <VBox prefHeight="442.0" prefWidth="322.0" style="-fx-background-color: #21618C;">
+                    <children>
+                        <JFXButton buttonType="RAISED" onAction="#viewRequests" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #5C7B7D;" text="View Requests" textFill="WHITE">
+                            <font>
+                                <Font size="27.0" />
+                            </font>
+                            <effect>
+                                <DropShadow />
+                            </effect>
+                        </JFXButton>
+                        <JFXButton buttonType="RAISED" onAction="#roomBooking" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #689D91;" text="Room Booking" textFill="WHITE">
+                            <font>
+                                <Font size="27.0" />
+                            </font>
+                            <effect>
+                                <DropShadow />
+                            </effect>
+                        </JFXButton>
+                        <JFXButton fx:id="roomBookingsAdmin" buttonType="RAISED" onAction="#viewBookings" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #215259;" text="View Bookings" textFill="WHITE">
+                            <font>
+                                <Font size="27.0" />
+                            </font>
+                            <effect>
+                                <DropShadow />
+                            </effect>
+                        </JFXButton>
+                        <JFXButton fx:id="logoutAdmin" buttonType="RAISED" onAction="#Logout" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #536482;" text="Logout" textFill="WHITE">
+                            <font>
+                                <Font size="27.0" />
+                            </font>
+                            <effect>
+                                <DropShadow />
+                            </effect>
+                        </JFXButton>
+                        <JFXButton buttonType="RAISED" onAction="#myRequestsAdmin" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #1B3041;" text="My Requests" textFill="WHITE">
+                            <font>
+                                <Font size="27.0" />
+                            </font>
+                            <effect>
+                                <DropShadow />
+                            </effect>
+                        </JFXButton>
+                    </children>
+                </VBox>
+            </children>
+        </JFXDrawer>
+        <AnchorPane fx:id="adminPane" layoutX="321.0" layoutY="-2.0" prefHeight="867.0" prefWidth="910.0" />
+        <ImageView fitHeight="45.0" fitWidth="56.0" layoutX="971.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../Images/notif.png" />
+            </image>
+        </ImageView>
+        <JFXTextField fx:id="welcome_user" editable="false" focusColor="BLACK" layoutX="1021.0" layoutY="10.0" prefHeight="31.0" prefWidth="208.0" />
+        <JFXButton layoutX="965.0" layoutY="4.0" onAction="#displayNotification" prefHeight="45.0" prefWidth="56.0" />
+    </children>
 </AnchorPane>

@@ -302,9 +302,10 @@ public class RoomBookingController implements Initializable {
 //        if (input_date.compareTo((LocalDate)BookingDate)<0){
 //
 //        }
-        if (requied_capacity >= roomData.get(roomNumber).getCapacity()) {
+        System.out.println("room capacity = " + roomData.get(roomNumber).getCapacity());
+        if (!roomNumber.equals("") && requied_capacity >= roomData.get(roomNumber).getCapacity()) {
             myreq.setStatus("Invalid Request");
-            flag = 1;
+            flag = 1;   
         }
         if (startHour >= 8 && timeSetStart.equals("PM")) {
             myreq.setStatus("Invalid Request");

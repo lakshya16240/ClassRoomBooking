@@ -64,11 +64,15 @@ public class MyRequestsController implements Initializable {
 //            CancelledRequests.get(i).setStatus("Cancelled");
         }
         System.out.println("requests check " + current_user.getRequests());
+        Requests req = null;
         for (int i = 0; i < CancelReq.size(); i++) {
 //            CancelReq.add(CancelledRequests.get(i));
 //            CancelledRequests.get(i).setStatus("Cancelled");
             for (int j=0 ; j<AllRequests.size() ; j++){
                 if (CancelReq.get(i).equals(AllRequests.get(j))){
+                    if (CancelReq.get(i).getStatus().equals("Approved")){
+                        req = CancelReq.get(i);
+                    }
                     AllRequests.get(j).setStatus("Cancelled");
                     System.out.println("Hua kuch cancel");
                 }
@@ -80,9 +84,11 @@ public class MyRequestsController implements Initializable {
         System.out.println("all = " + AllRequests);
         Controller.serializeArray(AllRequests);
         College.serialize(clgobj);
-
-        s = "Room no." + CancelledRequests.get(0).getRoomNumber() + "is now available from " + CancelledRequests.get(0).getStartTime()+ " to " + CancelledRequests.get(0).getEndTime();
-        current_user.uppdateNotification(s);
+        if (req!=null){
+            s = "Room no." + req.getRoomNumber() + "is now available from " + req.getStartTime()+ " to " + req.getEndTime();
+            current_user.uppdateNotification(s);
+        }
+        
         System.out.println("after cancel "+ current_user.getNotification());
         College.serialize(clgobj);
     }

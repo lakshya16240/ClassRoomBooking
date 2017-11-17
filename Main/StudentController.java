@@ -39,7 +39,7 @@ public class StudentController implements Initializable {
         myStudent = student;
     }
     
-    
+
     @FXML
     void displayNotification(ActionEvent event) throws IOException {
         System.out.println("Button pressed");
@@ -53,17 +53,19 @@ public class StudentController implements Initializable {
 //        }
         
     }
+
     
-    public void myMethod(String text) throws Exception {
-//        String text = "Hello Programmers";
-//        Button btn1 = new Button("test notif bbi no");
-//        System.out.println("Button added");
-        myButton.setOnAction(e -> {
-            graphic = null;
-            notification(Pos.TOP_CENTER, graphic, text);
-            notifBuilder.showInformation();
-        });
-    }
+    
+//    public void myMethod(String text) throws Exception {
+////        String text = "Hello Programmers";
+////        Button btn1 = new Button("test notif bbi no");
+////        System.out.println("Button added");
+//        myButton.setOnAction(e -> {
+//            graphic = null;
+//            notification(Pos.TOP_CENTER, graphic, text);
+//            notifBuilder.showInformation();
+//        });
+//    }
 
     private void notification(Pos pos, Node graphic, String text) {
         notifBuilder = Notifications.create().title("My Notifications").text(text).graphic(graphic).position(pos);
@@ -160,6 +162,9 @@ public class StudentController implements Initializable {
         }
         College.serialize(clgobj);
     }
+    
+    
+    
     @FXML
     public void myRequestsStudent(ActionEvent actionEvent) throws IOException {
 

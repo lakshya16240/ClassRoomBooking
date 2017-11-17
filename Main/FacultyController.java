@@ -79,7 +79,15 @@ public class FacultyController implements Initializable{
         facultyPane.getChildren().clear();
         facultyPane.getChildren().add(newfacultyPane);
     }
-
+    
+    @FXML
+    public void myRequestsFaculty(ActionEvent actionEvent) throws IOException{
+        
+        Pane newstudentPane = FXMLLoader.load(getClass().getResource("MyRequests.fxml"));
+        facultyPane.getChildren().clear();
+        facultyPane.getChildren().add(newstudentPane);
+    }
+    
     @FXML
     public void Logout(ActionEvent actionEvent) throws IOException {
 

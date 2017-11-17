@@ -67,6 +67,15 @@ public class AdminController implements Initializable {
 //        notifBuilder = Notifications.create().title("My Notifications").text(text).graphic(graphic).position(pos)
 //        pos = 
     }
+    
+    
+    @FXML
+    public void myRequestsAdmin(ActionEvent actionEvent) throws IOException{
+        
+        Pane newstudentPane = FXMLLoader.load(getClass().getResource("MyRequests.fxml"));
+        adminPane.getChildren().clear();
+        adminPane.getChildren().add(newstudentPane);
+    }
     @FXML
     void viewRequests(ActionEvent event) throws IOException {
         Pane newadminPane = FXMLLoader.load(getClass().getResource("Requests.fxml"));

@@ -17,7 +17,7 @@
       <JFXTextField fx:id="roomRequest" layoutX="149.0" layoutY="138.0" prefHeight="31.0" prefWidth="176.0" style="-fx-background-color: #FFFFFF;" />
       <JFXTimePicker fx:id="timeFrom" layoutX="149.0" layoutY="215.0" prefHeight="31.0" prefWidth="176.0" style="-fx-background-color: #FFFFFF;" />
       <JFXTimePicker fx:id="timeTo" layoutX="150.0" layoutY="278.0" prefHeight="31.0" prefWidth="176.0" style="-fx-background-color: #FFFFFF;" />
-      <JFXTextField fx:id="capacity" layoutX="150.0" layoutY="342.0" prefHeight="31.0" prefWidth="176.0" />
+      <JFXTextField fx:id="capacity" layoutX="150.0" layoutY="342.0" prefHeight="31.0" prefWidth="176.0" style="-fx-background-color: #FFFFFF;" />
       <TextArea fx:id="Reason" layoutX="43.0" layoutY="460.0" prefHeight="126.0" prefWidth="417.0" />
        <TextField editable="false" layoutX="68.0" layoutY="65.0" prefHeight="33.0" prefWidth="72.0" style="-fx-background-color: #689D91; -fx-border-color: #000000; fx-text-fill: white;" text="DATE :" />
        <TextField editable="false" layoutX="68.0" layoutY="137.0" prefHeight="33.0" prefWidth="72.0" style="-fx-background-color: #689D91; -fx-border-color: #000000; fx-text-fill: white;" text="ROOM :" />
