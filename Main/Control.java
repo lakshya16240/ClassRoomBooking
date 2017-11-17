@@ -57,7 +57,7 @@ public class Control implements Initializable {
     private TextField searchCourses;
 
     @FXML
-    private JFXButton LeaveCourse;
+    private Button LeaveCourse;
 
     @FXML
     void leaveCourse(ActionEvent event) throws IOException {

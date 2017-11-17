@@ -11,7 +11,7 @@
       <TextField fx:id="searchCoursesTextField" alignment="CENTER" layoutX="162.0" layoutY="60.0" prefHeight="31.0" prefWidth="318.0" promptText="Search for Courses" />
       <Button fx:id="AddCourse" layoutX="390.0" layoutY="738.0" mnemonicParsing="false" onAction="#addCourse" prefHeight="31.0" prefWidth="123.0" text="Add Course" />
       <Button layoutX="568.0" layoutY="60.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="159.0" text="Search" />
-      <TableView fx:id="searchCoursesTable" layoutX="-2.0" layoutY="130.0" prefHeight="571.0" prefWidth="906.0" style="-fx-background-color: #3A7A77;">
+      <TableView fx:id="searchCoursesTable" layoutX="-2.0" layoutY="130.0" prefHeight="565.0" prefWidth="906.0" style="-fx-background-color: #3A7A77;">
          <columns>
             <TableColumn fx:id="tc5" minWidth="245.0" prefWidth="253.0" text="Course Name" />
             <TableColumn fx:id="tc6" minWidth="100.0" prefWidth="105.0" text="Course Type" />

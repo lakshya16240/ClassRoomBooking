@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -61,5 +62,12 @@
          </children>
       </JFXDrawer>
       <AnchorPane fx:id="adminPane" layoutX="321.0" layoutY="-2.0" prefHeight="867.0" prefWidth="910.0" />
+      <JFXButton layoutX="965.0" layoutY="4.0" onAction="#displayNotification" prefHeight="45.0" prefWidth="56.0" />
+      <ImageView fitHeight="45.0" fitWidth="56.0" layoutX="971.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/notif.png" />
+         </image>
+      </ImageView>
+      <JFXTextField fx:id="welcome_user" editable="false" focusColor="BLACK" layoutX="1021.0" layoutY="10.0" prefHeight="31.0" prefWidth="208.0" />
    </children>
 </AnchorPane>

@@ -86,15 +86,13 @@
       <AnchorPane fx:id="studentPane" layoutX="315.0" prefHeight="867.0" prefWidth="909.0">
          <effect>
             <GaussianBlur radius="0.79" />
-         </effect>
-         <children>
-            <JFXTextField fx:id="welcome_user" editable="false" focusColor="BLACK" layoutX="694.0" layoutY="7.0" prefHeight="31.0" prefWidth="208.0" />
-            <ImageView fitHeight="63.0" fitWidth="70.0" layoutX="615.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Images/notif.png" />
-               </image>
-            </ImageView>
-            <JFXButton layoutX="612.0" layoutY="12.0" onAction="#displayNotification" prefHeight="45.0" prefWidth="70.0" />
-         </children></AnchorPane>
+         </effect></AnchorPane>
+      <JFXTextField fx:id="welcome_user" editable="false" focusColor="BLACK" layoutX="1018.0" layoutY="8.0" prefHeight="31.0" prefWidth="208.0" />
+      <ImageView fitHeight="45.0" fitWidth="56.0" layoutX="951.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/notif.png" />
+         </image>
+      </ImageView>
+      <JFXButton layoutX="945.0" layoutY="-6.0" onAction="#displayNotification" prefHeight="45.0" prefWidth="56.0" />
    </children>
 </AnchorPane>

@@ -3,6 +3,12 @@ package Main;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Admin class is a class which extends the user class and it has info of all
+ * the Room Booking requests and the current room Bookings
+ *
+ * @author Lenovo
+ */
 public class Admin extends User {
 
     private static ArrayList<Requests> requests;
@@ -14,19 +20,38 @@ public class Admin extends User {
         roomBookings = new HashMap<>();
     }
 
-    @Override
-    public void BookRoom(Room room, String startTime, String endTime, int date) {
+    public ArrayList<Requests> getReq() {
 
+        if (requests == null) {
+            requests = new ArrayList<>();
+        }
+        return requests;
     }
-    
-    public static void setList(ArrayList<Requests> arr){
+
+    public static void addRequest(Requests req) {
+        if (requests == null) {
+            requests = new ArrayList<>();
+            System.out.println("new arraylist created in admin class");
+        }
+        requests.add(req);
+    }
+
+    public static void setList(ArrayList<Requests> arr) {
         requests = arr;
     }
 //    @Override
 //    public String toString() {
 //        return ;
 //    }
-    
+
+    /**
+     * addBookings method is used to add the default bookings for all the rooms
+     * once we have read the CSV file
+     *
+     * @param timeAndVenue represents time and Venue for the class of a
+     * particular course as read from CSV
+     * @param i Represents the day of class
+     */
     public static void addBookings(String[] timeAndVenue, int i) {                      // i REPRESENTS DAY
 
         Room room;
@@ -59,8 +84,7 @@ public class Admin extends User {
         if (endMin != 0) {
             endIndex++;
         }
-        
-        
+
         if (roomBookings == null) {
             roomBookings = new HashMap<>();
         }
@@ -81,32 +105,17 @@ public class Admin extends User {
 
     }
 
-    public  ArrayList<Requests> getReq() {
+//    public ArrayList<Requests> ViewRequests(){
+//
+//    }
 
-        if (requests==null){
-            requests = new ArrayList<>();
-        }
-        return requests;
-    }
-
-    public static void addRequest(Requests req) {
-        if (requests==null){
-            requests = new ArrayList<>();
-            System.out.println("new arraylist created in admin class");
-        }
-        requests.add(req);
+    @Override
+    public void BookRoom(Room room, String startTime, String endTime, int date) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void CancelRoom(Room room) {
-
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    public void RespondRequest(Room room, String startTime, String endTime) {
-
-    }
-
-//    public ArrayList<Requests> ViewRequests(){
-//
-//    }
 }

@@ -62,9 +62,9 @@ public class MainPage extends Application {
         stage.show();
     }
 
-    public static List<Course> readCourseCSV() throws IOException {
+    public static void readCourseCSV() throws IOException {
 
-        List<Course> courseinfo = new ArrayList<>();
+        ArrayList<Course> courseinfo = new ArrayList<>();
 //        String pathToFile = "/Users/pc.csv"; 
 //        String pathToFile = "/Users/finalap.csv";
         String pathToFile = "./src/timetable.csv";
@@ -137,9 +137,11 @@ public class MainPage extends Application {
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
+        clgobj.getAllCourses().addAll(courseinfo);
         College.serialize(clgobj);
         System.out.println("read course CSV called");
-        return courseinfo;
+//        Course.serialize(courseinfo);
+//        return courseinfo;
     }
 
     public static HashMap<String, ArrayList<String>> readPostConditionsCSV() throws IOException {
@@ -169,7 +171,7 @@ public class MainPage extends Application {
             }
 
         }
-
+        
         return postConditionsHashMap;
 
     }
@@ -187,8 +189,8 @@ public class MainPage extends Application {
         System.out.println(obj.getReq());
 //        ArrayList<Integer> myarray = new ArrayList<Integer>();
 
-        List<Course> courseinfo = new ArrayList<>();
-        courseinfo = readCourseCSV();
+        ArrayList<Course> courseinfo = new ArrayList<>();
+        courseinfo = clgobj.getAllCourses();
         for (int i = 0; i < courseinfo.size(); i++) {
             Course c = courseinfo.get(i);
             //System.out.println(c);

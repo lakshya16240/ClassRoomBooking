@@ -16,8 +16,11 @@ import com.jfoenix.controls.JFXTimePicker;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.HashMap;
 import javafx.event.ActionEvent;
@@ -66,64 +69,136 @@ public class RoomBookingController implements Initializable {
     private ArrayList<Requests> requests;
     private String date;
     public static final String defaultRoom = "All Rooms";
+    private ArrayList<Room> availableRooms;
 
-//    boolean checkAvailabilty(Room room, int startIndex, int endIndex, Requests req, String date1, String from_time, String to_time){
-//                HashMap<String, Room> roomBookings = Room.deserializeRoom();
-//                String roomNumber = room.getName();
-//                int flag = 0 ;
-//                for (int j = startIndex; j <= endIndex; j++) {
-//
-//                    if (roomBookings.get(roomNumber) == null || (roomBookings.get(roomNumber).getAvailability())[j][day]) {
-////                    System.out.println("null wala chalaa");
-////                        myreq.setStatus("Room Already Boooked");
-//                        flag = 1;
-//                        return false;
-//                    }
-//                }
-//
-//                if (req.getDate().compareTo(date1) == 0
-//                            && req.getStartTime().compareTo(from_time) < 0
-//                            && req.getEndTime().compareTo(from_time) > 0
-//                            && req.getStatus().equals("Approved")) {
-//
-//                        flag = 1;
-//                    } else if (req.getDate().compareTo(date1) == 0
-//                            && req.getRoomNumber().compareToIgnoreCase(roomNumber) == 0
-//                            && req.getStartTime().compareTo(to_time) < 0
-//                            && req.getEndTime().compareTo(to_time) > 0
-//                            && arr.get(i).getStatus().equals("Approved")) {
-//                        myreq.setStatus("Room Already Boooked");
-//                        flag = 1;
-//                    } else if (arr.get(i).getDate().compareTo(date1) == 0
-//                            && arr.get(i).getRoomNumber().compareToIgnoreCase(roomNumber) == 0
-//                            && from_time.compareTo(arr.get(i).getStartTime()) < 0
-//                            && to_time.compareTo(arr.get(i).getStartTime()) > 0
-//                            && arr.get(i).getStatus().equals("Approved")) {
-//
-//                        myreq.setStatus("Room Already Boooked");
-//                        flag = 1;
-//
-//                    } else if (arr.get(i).getDate().compareTo(date1) == 0
-//                            && arr.get(i).getRoomNumber().compareToIgnoreCase(roomNumber) == 0
-//                            && from_time.compareTo(arr.get(i).getEndTime()) < 0
-//                            && to_time.compareTo(arr.get(i).getEndTime()) > 0
-//                            && arr.get(i).getStatus().equals("Approved")) {
-//
-//                        myreq.setStatus("Room Already Boooked");
-//                        flag = 1;
-//
-//                    }
-//
-////                if (flag == 0){
-////
-////                }
-//    }
+    boolean checkAvailabilty(Room room, int day, String date1, String from_time, String to_time) throws IOException, ClassNotFoundException {
+
+        int startHour = Integer.parseInt((from_time.split(":"))[0]);
+        int startMin = Integer.parseInt((from_time.split(":"))[1]);
+        int endHour = Integer.parseInt((to_time.split(":"))[0]);
+        int endMin = Integer.parseInt((to_time.split(":"))[1]);
+        int startIndex;
+        int endIndex;
+        String timeSetStart = "";
+        String timeSetEnd = "";
+
+        if (startHour > 12) {
+            startHour -= 12;
+            timeSetStart = "PM";
+        } else if (startHour == 0) {
+            startHour += 12;
+            timeSetStart = "AM";
+        } else if (startHour == 12) {
+            timeSetStart = "PM";
+        } else {
+            timeSetStart = "AM";
+        }
+
+        if (endHour > 12) {
+            endHour -= 12;
+            timeSetEnd = "PM";
+        } else if (endHour == 0) {
+            endHour += 12;
+            timeSetEnd = "AM";
+        } else if (endHour == 12) {
+            timeSetEnd = "PM";
+        } else {
+            timeSetEnd = "AM";
+        }
+
+        if (startHour < 8) {
+            startIndex = (12 + startHour - 8) * 2;
+        } else {
+            startIndex = (startHour - 8) * 2;
+        }
+        if (startMin >= 30) {
+            startIndex++;
+        }
+
+        if (endHour <= 8) {
+            endIndex = (12 + endHour - 8) * 2 - 1;
+        } else {
+            endIndex = (endHour - 8) * 2 - 1;
+        }
+
+        if (endMin >= 30) {
+            endIndex++;
+        }
+
+        for (int j = startIndex; j <= endIndex; j++) {
+
+            if (room.getAvailability()[j][day]) {
+                return false;
+            }
+        }
+
+        ArrayList<Requests> arr = new ArrayList<Requests>();
+        arr = deserializeArray();
+        if (arr == null) {
+            arr = new ArrayList<Requests>();
+        }
+        int flag = 0;
+//        if (flag == 0) {4
+//        if (req)
+        String roomNumber = room.getName();
+        for (int i = 0; i < arr.size(); i++) {
+
+            if (arr.get(i).getDate().compareTo(date1) == 0
+                    && arr.get(i).getRoomNumber().compareToIgnoreCase(roomNumber) == 0
+                    && arr.get(i).getStartTime().compareTo(from_time) < 0
+                    && arr.get(i).getEndTime().compareTo(from_time) > 0
+                    && arr.get(i).getStatus().equals("Approved")) {
+//                    myreq.setStatus("Room Already Boooked");
+                flag = 1;
+            } else if (arr.get(i).getDate().compareTo(date1) == 0
+                    && arr.get(i).getRoomNumber().compareToIgnoreCase(roomNumber) == 0
+                    && arr.get(i).getStartTime().compareTo(to_time) < 0
+                    && arr.get(i).getEndTime().compareTo(to_time) > 0
+                    && arr.get(i).getStatus().equals("Approved")) {
+//                    myreq.setStatus("Room Already Boooked");
+                flag = 1;
+            } else if (arr.get(i).getDate().compareTo(date1) == 0
+                    && arr.get(i).getRoomNumber().compareToIgnoreCase(roomNumber) == 0
+                    && from_time.compareTo(arr.get(i).getStartTime()) < 0
+                    && to_time.compareTo(arr.get(i).getStartTime()) > 0
+                    && arr.get(i).getStatus().equals("Approved")) {
+
+//                    myreq.setStatus("Room Already Boooked");
+                flag = 1;
+
+            } else if (arr.get(i).getDate().compareTo(date1) == 0
+                    && arr.get(i).getRoomNumber().compareToIgnoreCase(roomNumber) == 0
+                    && from_time.compareTo(arr.get(i).getEndTime()) < 0
+                    && to_time.compareTo(arr.get(i).getEndTime()) > 0
+                    && arr.get(i).getStatus().equals("Approved")) {
+
+//                    myreq.setStatus("Room Already Boooked");
+                flag = 1;
+
+            }
+        }
+
+        if (flag == 0) {
+            return true;
+        } else {
+            return false;
+        }
+
+//        clgobj.getAllUsersMap().put(MainPage.main.current_user.getEmailId(), MainPage.main.current_user);
+//        System.out.println("new created abhishek");
+//        ArrayList<Requests> allreq = new ArrayList<Requests>();
+//        allreq.add(myreq);
+//        clgobj.
+//        College.serialize(clgobj);
+//        System.out.println("req 2 = " + current_user.getRequests());
+    }
+
     @FXML
     void makeRequest(ActionEvent event) throws IOException, ClassNotFoundException {
 
-        HashMap<String, Room> roomBookings = Room.deserializeRoom();
+        HashMap<String, Room> roomData = Room.deserializeRoom();
 
-        String timeSetStart= "";
+        String timeSetStart = "";
         String timeSetEnd = "";
 
         int flag = 0;
@@ -135,6 +210,7 @@ public class RoomBookingController implements Initializable {
 //        Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
 //        Date date2 = Date.from(instant);
 //        System.out.println("day = " + date2);
+
         String date1 = datePicker.getValue().toString();
         int day = datePicker.getValue().getDayOfWeek().getValue();
 
@@ -161,17 +237,17 @@ public class RoomBookingController implements Initializable {
         int startIndex;
         int endIndex;
 
-
         if (startHour > 12) {
             startHour -= 12;
             timeSetStart = "PM";
         } else if (startHour == 0) {
             startHour += 12;
             timeSetStart = "AM";
-        } else if (startHour == 12)
+        } else if (startHour == 12) {
             timeSetStart = "PM";
-        else
+        } else {
             timeSetStart = "AM";
+        }
 
         if (endHour > 12) {
             endHour -= 12;
@@ -179,12 +255,11 @@ public class RoomBookingController implements Initializable {
         } else if (endHour == 0) {
             endHour += 12;
             timeSetEnd = "AM";
-        } else if (endHour == 12)
+        } else if (endHour == 12) {
             timeSetEnd = "PM";
-        else
+        } else {
             timeSetEnd = "AM";
-
-
+        }
 
         if (startHour < 8) {
             startIndex = (12 + startHour - 8) * 2;
@@ -216,37 +291,40 @@ public class RoomBookingController implements Initializable {
 //        myreq.setUser(clgobj.getAllUsersMap().get(current_user.getEmailId()));
         myreq.setUser(current_user);
 
-
-
-        if(startHour>=8 && timeSetStart.equals("PM")){
+        LocalDate input_date = datePicker.getValue();
+//        input_date.getT
+//        LocalDate today =
+        Calendar cal = Calendar.getInstance();
+//        Date BookingDate = cal.getTime();
+//        if (input_date.compareTo((LocalDate)BookingDate)<0){
+//
+//        }
+        if (requied_capacity >= roomData.get(roomNumber).getCapacity()) {
             myreq.setStatus("Invalid Request");
-            flag=1;
+            flag = 1;
         }
-        else if(endHour==8 && endMin !=0  && timeSetEnd.equals("PM")){
+        if (startHour >= 8 && timeSetStart.equals("PM")) {
             myreq.setStatus("Invalid Request");
-            flag=1;
-        }
-        else if(endHour>8 && timeSetEnd.equals("PM")){
+            flag = 1;
+        } else if (endHour == 8 && endMin != 0 && timeSetEnd.equals("PM")) {
             myreq.setStatus("Invalid Request");
-            flag=1;
-        }
-        else if(startHour<8 && timeSetStart.equals("AM")){
+            flag = 1;
+        } else if (endHour > 8 && timeSetEnd.equals("PM")) {
             myreq.setStatus("Invalid Request");
-            flag=1;
-        }
-        else if(endHour<8 && timeSetEnd.equals("AM")){
+            flag = 1;
+        } else if (startHour < 8 && timeSetStart.equals("AM")) {
             myreq.setStatus("Invalid Request");
-            flag=1;
-        }
-        else if(timeSetStart.equals("PM") &&timeSetEnd.equals("AM")){
+            flag = 1;
+        } else if (endHour < 8 && timeSetEnd.equals("AM")) {
             myreq.setStatus("Invalid Request");
-            flag=1;
-        }
-        else if(startHour>endHour){
+            flag = 1;
+        } else if (timeSetStart.equals("PM") && timeSetEnd.equals("AM")) {
             myreq.setStatus("Invalid Request");
-            flag=1;
-        }
-        else if(startHour == endHour && startMin< endMin){
+            flag = 1;
+        } else if (startHour > endHour) {
+            myreq.setStatus("Invalid Request");
+            flag = 1;
+        } else if (startHour == endHour && startMin < endMin) {
             myreq.setStatus("Invalid Request");
             flag = 1;
         }
@@ -258,7 +336,7 @@ public class RoomBookingController implements Initializable {
 
                 for (int j = startIndex; j <= endIndex; j++) {
 
-                    if (roomBookings.get(roomNumber) == null || (roomBookings.get(roomNumber).getAvailability())[j][day]) {
+                    if (roomData.get(roomNumber) == null || (roomData.get(roomNumber).getAvailability())[j][day]) {
                         System.out.println("null wala chalaa");
                         myreq.setStatus("Room Unavailable");
                         flag = 1;
@@ -266,7 +344,8 @@ public class RoomBookingController implements Initializable {
                     }
                 }
             }
-            if (flag == 0) {
+
+            if (flag == 0 && !roomNumber.equals("")) {
 
                 for (int i = 0; i < arr.size(); i++) {
 
@@ -310,36 +389,45 @@ public class RoomBookingController implements Initializable {
 //        System.out.println("new created abhishek");
 //        ArrayList<Requests> allreq = new ArrayList<Requests>();
 //        allreq.add(myreq);
-            if (flag == 0) {
-                if (roomNumber.equals("")) {
-                    System.out.println("Room Number khaali");
-                    for (String key : roomBookings.keySet()) {
-                        if (roomBookings.get(key).getCapacity() > requied_capacity) {
-                            myreq.setRoomNumber(key);
-
-                            break;
+            if (flag == 0 && roomNumber.equals("")) {
+//                if (roomNumber.equals("")) {
+                System.out.println("Room Number khaali");
+                for (String key : roomData.keySet()) {
+                    if (roomData.get(key).getCapacity() > requied_capacity) {
+//                            myreq.setRoomNumber(key);
+                        boolean b = checkAvailabilty(roomData.get(key), day, date1, from_time, to_time);
+                        if (b) {
+                            availableRooms.add(roomData.get(key));
                         }
                     }
                 }
-                if (!current_user.getType().equals("Student")) {
+                if (availableRooms.size()>0){
 
+                myreq.setRoomNumber(availableRooms.get(0).getName());
+                }
+                else{
+                    myreq.setStatus("No room available");
+                }
+
+                if (!current_user.getType().equals("Student") && !myreq.getRoomNumber().equals("") ) {
                     myreq.setStatus("Approved");
                 }
 //            arr.add(myreq);
             }
-            current_user.getRequests().add(myreq);
-//        College.serialize();
-            arr.add(myreq);
-            System.out.println(myreq);
-//        System.out.println("check " + MainPage.clgobj.getAllUsersMap().get("ab").getRequests());
-            College.serialize(MainPage.clgobj);
-
-            serializeArray(arr);
 
 //        clgobj.
 //        College.serialize(clgobj);
             System.out.println("req 2 = " + current_user.getRequests());
         }
+        current_user.getRequests().add(myreq);
+//        College.serialize();
+        arr.add(myreq);
+        System.out.println(myreq);
+//        System.out.println("check " + MainPage.clgobj.getAllUsersMap().get("ab").getRequests());
+        College.serialize(MainPage.clgobj);
+
+        serializeArray(arr);
+
     }
 
     public void roomAvailability() {
@@ -574,6 +662,10 @@ public class RoomBookingController implements Initializable {
     @Override
     public void initialize(URL locationab, ResourceBundle resources) {
 
+        //TODO get rooms arrayList
+//        datePicker.
+        timeFrom.setIs24HourView(true);
+        timeTo.setIs24HourView(true);
         try {
             roomHashMap = Room.deserializeRoom();
         } catch (IOException | ClassNotFoundException e) {
@@ -607,7 +699,6 @@ public class RoomBookingController implements Initializable {
         for(Map.Entry<String, Room> x: roomHashMap.entrySet()){
             roomsComboBox.getItems().add(x.getKey());
         }
-
 
         roomsComboBox.setValue(defaultRoom);
         datePicker.setOnAction(event -> {

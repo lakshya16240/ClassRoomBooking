@@ -25,6 +25,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 
@@ -60,7 +62,7 @@ public class SearchCoursesController implements Initializable {
     private Button AddCourse;
 
     @FXML
-    void addCourse(ActionEvent event) throws IOException {
+    void addCourse(ActionEvent event) throws IOException, ClassNotFoundException {
         ObservableList<Course> SelectedCourses = FXCollections.observableArrayList();;
         SelectedCourses = searchCoursesTable.getSelectionModel().getSelectedItems();
 //        System.out.println("req = " + ApprovedRequests);
@@ -71,9 +73,9 @@ public class SearchCoursesController implements Initializable {
         for (int i = 0; i < SelectedCourses.size(); i++) {
             ((Student) current_user).addCourses(SelectedCourses.get(i));
         }
-
-
-        List<Course> courseList = MainPage.readCourseCSV();
+        clgobj = College.deserialize("data");
+        ArrayList<Course> courseList = clgobj.getAllCourses();
+//        List<Course> courseList = MainPage.readCourseCSV();
         //System.out.println("ullahhaaa : " + courseList.size());
         ObservableList<Course> courseObservableList = FXCollections.observableArrayList();
         ArrayList<Course> registeredCourses = ((Student)MainPage.current_user).viewCourses();
@@ -118,46 +120,46 @@ public class SearchCoursesController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 //        searchCoursesTable.setSelectionModel(value);
-        List<Course> courseList = new ArrayList<>();
+        ArrayList<Course> courseList = new ArrayList<>();
         ArrayList<String> postConditionsList = new ArrayList<>();
-
         try {
-            courseList = MainPage.readCourseCSV();
-            System.out.println("debugging : " + courseList.size());
-            ObservableList<Course> courseObservableList = FXCollections.observableArrayList();
-            ArrayList<Course> registeredCourses = ((Student)MainPage.current_user).viewCourses();
-//            course.convertToString(courseList);'
-            for (int i = 0 ; i<courseList.size() ;i++){
-                if(!registeredCourses.contains(courseList.get(i)) && checkTimingsCourses(registeredCourses,courseList.get(i))) {
-                    courseList.get(i).convertToString(courseList.get(i).getPostConditions());
-                    courseObservableList.add(courseList.get(i));
-                }
+            clgobj = College.deserialize("data");
+        } catch (IOException ex) {
+            Logger.getLogger(SearchCoursesController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SearchCoursesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        courseList = clgobj.getAllCourses();
+        System.out.println("debugging : " + courseList.size());
+        ObservableList<Course> courseObservableList = FXCollections.observableArrayList();
+        ArrayList<Course> registeredCourses = ((Student)MainPage.current_user).viewCourses();
+        //            course.convertToString(courseList);'
+        for (int i = 0 ; i<courseList.size() ;i++){
+            if(!registeredCourses.contains(courseList.get(i)) && checkTimingsCourses(registeredCourses,courseList.get(i))) {
+                courseList.get(i).convertToString(courseList.get(i).getPostConditions());
+                courseObservableList.add(courseList.get(i));
             }
-            tc5.setCellValueFactory(
-                    new PropertyValueFactory<Course, String>("name"));
-            tc6.setCellValueFactory(
-                    new PropertyValueFactory<Course, String>("type"));
-            tc7.setCellValueFactory(
-                    new PropertyValueFactory<Course, String>("code"));
-            tc8.setCellValueFactory(
-                    new PropertyValueFactory<Course, Integer>("credits"));
-
-            tc9.setCellValueFactory(
-                    new PropertyValueFactory<Course, String>("postConditionsString"));
-
-            searchCoursesTable.setItems(courseObservableList);
-            for (int i = 0; i < courseList.size(); i++) {
-
-                Course course = courseList.get(i);
-                postConditionsList.addAll(course.getPostConditions());
-            }
-            String[] suggestedPostConditions = new String[postConditionsList.size()];
-            for (int i = 0; i < postConditionsList.size(); i++) {
-                suggestedPostConditions[i] = postConditionsList.get(i);
-                //System.out.println("suggested pc =  " + suggestedPostConditions[i]);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        }
+        tc5.setCellValueFactory(
+                new PropertyValueFactory<Course, String>("name"));
+        tc6.setCellValueFactory(
+                new PropertyValueFactory<Course, String>("type"));
+        tc7.setCellValueFactory(
+                new PropertyValueFactory<Course, String>("code"));
+        tc8.setCellValueFactory(
+                new PropertyValueFactory<Course, Integer>("credits"));
+        tc9.setCellValueFactory(
+                new PropertyValueFactory<Course, String>("postConditionsString"));
+        searchCoursesTable.setItems(courseObservableList);
+        for (int i = 0; i < courseList.size(); i++) {
+            
+            Course course = courseList.get(i);
+            postConditionsList.addAll(course.getPostConditions());
+        }
+        String[] suggestedPostConditions = new String[postConditionsList.size()];
+        for (int i = 0; i < postConditionsList.size(); i++) {
+            suggestedPostConditions[i] = postConditionsList.get(i);
+            //System.out.println("suggested pc =  " + suggestedPostConditions[i]);
         }
 
         String postConditionTyped = "";

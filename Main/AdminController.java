@@ -1,20 +1,31 @@
 package Main;
 
+import static Main.MainPage.clgobj;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import org.controlsfx.control.Notifications;
 
+/** 
+ * This class is used to take control when the admin logs in
+ * @author Lenovo
+ */
 public class AdminController implements Initializable {
 
     Admin myAdmin;
@@ -22,13 +33,40 @@ public class AdminController implements Initializable {
     public void Start(Admin admin) {
         myAdmin = admin;
     }
+    
+    
+    Notifications notifBuilder;
+    Node graphic;
+    @FXML
+    private Button myButton;
 
     @FXML
     private AnchorPane adminPane;
 
     @FXML
     private JFXButton logoutAdmin;
-
+    
+     @FXML
+    void displayNotification(ActionEvent event) throws IOException {
+        System.out.println("Button pressed");
+        System.out.println("notif = " +MainPage.current_user.getNotification());
+//        if (MainPage.current_user.getNotification()!=null){
+            System.out.println("not null");
+            notification(Pos.TOP_CENTER, graphic, MainPage.current_user.getNotification());
+            MainPage.current_user.setNotification(null);
+            notifBuilder.showInformation();
+            College.serialize(clgobj);
+//        }
+        
+    }
+    
+    
+    private void notification(Pos pos, Node graphic, String text) {
+        notifBuilder = Notifications.create().title("My Notifications").text(text).graphic(graphic).position(pos);
+//        Notifications.create().
+//        notifBuilder = Notifications.create().title("My Notifications").text(text).graphic(graphic).position(pos)
+//        pos = 
+    }
     @FXML
     void viewRequests(ActionEvent event) throws IOException {
         Pane newadminPane = FXMLLoader.load(getClass().getResource("Requests.fxml"));
@@ -70,7 +108,14 @@ public class AdminController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        ActionEvent a = new ActionEvent();
+        if (MainPage.current_user.getNotification()!=null){
+            try {
+                displayNotification(a);
+            } catch (IOException ex) {
+                Logger.getLogger(StudentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
 
