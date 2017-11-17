@@ -23,7 +23,7 @@ public class initializer {
 
         Room room;
         String[] time = timeAndVenue[0].split("-");
-        System.out.println("TIMEEEEEEE ::::: " + timeAndVenue[0]);
+        //System.out.println("TIMEEEEEEE ::::: " + timeAndVenue[0]);
         String startTime = time[0];
         String endTime = time[1];
         int startHour = Integer.parseInt((startTime.split(":"))[0]);

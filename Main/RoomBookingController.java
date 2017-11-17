@@ -17,6 +17,7 @@ import com.jfoenix.controls.JFXTimePicker;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.HashMap;
 import javafx.event.ActionEvent;
@@ -352,68 +353,83 @@ public class RoomBookingController implements Initializable {
         TextFlow textFlow = new TextFlow();
         if (roomName.equals(defaultRoom)) {
 
-            for (int i = 0; i < roomArrayList.size(); i++) {
-                availability = roomArrayList.get(i).getAvailability();
-                requests = roomArrayList.get(i).getBookings();
 
-                Text text1 = new Text(roomArrayList.get(i).getName() + "\n");
+            for(Map.Entry<String, Room> x: roomHashMap.entrySet())
+            {
+                availability = x.getValue().getAvailability();
+                requests = x.getValue().getBookings();
+
+                Text text1 = new Text(x.getKey() + "\n");
                 textFlow.getChildren().add(text1);
                 textFlow.getChildren().addAll(bookingSlotsTimings(availability, requests));
-//                for (int j = 0; j < 24; j++) {
-//
-//                    if (j == 0 && availability[j][day]) {
-//                        startHour = "8";
-//                        startMin = "00";
-//                        k = 1;
-//                    } else if (availability[j][day] && !availability[j - 1][day]) {
-//                        if (j % 2 == 1) {
-//                            startHour = Integer.toString((j - 1) / 2 + 8);
-//                            startMin = "30";
-//                        } else {
-//                            startHour = Integer.toString((j - 1) / 2 + 8);
-//                            startMin = "00";
-//                        }
-//                        k = 1;
-//                    }
-//
-//                    if (j == 23 && availability[j][day]) {
-//                        endHour = "7";
-//                        endMin = "30";
-//                        l = 1;
-//                    } else if (availability[j][day] && availability[j + 1][day]) {
-//                        if (j % 2 == 1) {
-//                            endHour = Integer.toString((j - 1) / 2 + 8);
-//                            endMin = "30";
-//
-//                        } else {
-//                            endHour = Integer.toString((j - 1) / 2 + 8);
-//                            endMin = "00";
-//
-//                        }
-//                        l = 1;
-//                    }
-//
-//                    if (k == 1 && l == 1) {
-//                        Text text2 = new Text(startHour + ":" + startMin + " - " + endHour + ":" + endMin + ",\n");
-//                        textFlow.getChildren().add(text2);
-//                        k = 0;
-//                        l = 0;
-//                    }
-//                }
-//
-//
-//
-//                for (int j = 0; j < requests.size(); j++) {
-//                    if (requests.get(i).getStatus().equals("Approved")) {
-//                        if (requests.get(i).getDate().equals(date)) {
-//
-//                            Text text2 = new Text(requests.get(i).getStartTime() + " - " + requests.get(i).getEndTime() + ",\n");
-//                            textFlow.getChildren().add(text2);
-//                        }
-//                    }
-//                }
+                listViewBookings.getItems().add(textFlow);
+
             }
-            listViewBookings.getItems().add(textFlow);
+
+
+//            for (int i = 0; i < roomArrayList.size(); i++) {
+//                availability = roomArrayList.get(i).getAvailability();
+//                requests = roomArrayList.get(i).getBookings();
+//
+//                Text text1 = new Text(roomArrayList.get(i).getName() + "\n");
+//                textFlow.getChildren().add(text1);
+//                textFlow.getChildren().addAll(bookingSlotsTimings(availability, requests));
+////                for (int j = 0; j < 24; j++) {
+////
+////                    if (j == 0 && availability[j][day]) {
+////                        startHour = "8";
+////                        startMin = "00";
+////                        k = 1;
+////                    } else if (availability[j][day] && !availability[j - 1][day]) {
+////                        if (j % 2 == 1) {
+////                            startHour = Integer.toString((j - 1) / 2 + 8);
+////                            startMin = "30";
+////                        } else {
+////                            startHour = Integer.toString((j - 1) / 2 + 8);
+////                            startMin = "00";
+////                        }
+////                        k = 1;
+////                    }
+////
+////                    if (j == 23 && availability[j][day]) {
+////                        endHour = "7";
+////                        endMin = "30";
+////                        l = 1;
+////                    } else if (availability[j][day] && availability[j + 1][day]) {
+////                        if (j % 2 == 1) {
+////                            endHour = Integer.toString((j - 1) / 2 + 8);
+////                            endMin = "30";
+////
+////                        } else {
+////                            endHour = Integer.toString((j - 1) / 2 + 8);
+////                            endMin = "00";
+////
+////                        }
+////                        l = 1;
+////                    }
+////
+////                    if (k == 1 && l == 1) {
+////                        Text text2 = new Text(startHour + ":" + startMin + " - " + endHour + ":" + endMin + ",\n");
+////                        textFlow.getChildren().add(text2);
+////                        k = 0;
+////                        l = 0;
+////                    }
+////                }
+////
+////
+////
+////                for (int j = 0; j < requests.size(); j++) {
+////                    if (requests.get(i).getStatus().equals("Approved")) {
+////                        if (requests.get(i).getDate().equals(date)) {
+////
+////                            Text text2 = new Text(requests.get(i).getStartTime() + " - " + requests.get(i).getEndTime() + ",\n");
+////                            textFlow.getChildren().add(text2);
+////                        }
+////                    }
+////                }
+//                listViewBookings.getItems().add(textFlow);
+//
+//            }
         } else {
 
 //            for(int i=0;i<roomArrayList.size();i++){
@@ -558,7 +574,6 @@ public class RoomBookingController implements Initializable {
     @Override
     public void initialize(URL locationab, ResourceBundle resources) {
 
-        //TODO get rooms arrayList
         try {
             roomHashMap = Room.deserializeRoom();
         } catch (IOException | ClassNotFoundException e) {
@@ -589,6 +604,9 @@ public class RoomBookingController implements Initializable {
         roomsComboBox.getItems().add(defaultRoom);
 //        for (int i = 0; i < roomArrayList.size(); i++)
 //            roomsComboBox.getItems().add(roomArrayList.get(i).getName());
+        for(Map.Entry<String, Room> x: roomHashMap.entrySet()){
+            roomsComboBox.getItems().add(x.getKey());
+        }
 
 
         roomsComboBox.setValue(defaultRoom);

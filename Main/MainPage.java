@@ -5,6 +5,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -101,13 +102,15 @@ public class MainPage extends Application {
                             rooms[i] = timeAndVenue[1];
 
                         } else {
-                            timings[i] = rooms[i] = schedule[i];
+                            timings[i] = schedule[i];
+                            rooms[i] = schedule[i];
 
                         }
                     }
 
 
                     Course course = new Course(attributes[0], attributes[1], attributes[2], attributes[3], Integer.valueOf(attributes[4]), timings, rooms, null, postConditions);
+
                     courseinfo.add(course);
                     //clgobj.getCredentials().put(attributes[3],attributes[3]);
                     if (clgobj.getAllUsersMap().get(attributes[3]) == null) {

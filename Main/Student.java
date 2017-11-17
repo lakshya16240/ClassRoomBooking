@@ -6,14 +6,16 @@ import java.util.HashMap;
 
 public class Student extends User {
 
+    private String course;
     private TimeTable myTimeTable;
     private ArrayList<Course> courses;
     private ArrayList<Student> myFriends;
     private ArrayList<FriendRequest> FriendRequests;
 
     
-    Student(String name, String emailId, String password, String type) {
+    Student(String name, String emailId, String password, String type, String course) {
         super(name, emailId, password, type);
+        this.course = course;
         courses = new ArrayList<>();
     }
 

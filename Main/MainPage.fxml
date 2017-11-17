@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
@@ -19,7 +20,7 @@
             <Image url="@../Images/vishaal.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="424.0" fitWidth="294.0" layoutX="910.0" layoutY="151.0" opacity="0.46" pickOnBounds="true">
+      <ImageView fitHeight="467.0" fitWidth="294.0" layoutX="910.0" layoutY="151.0" opacity="0.46" pickOnBounds="true">
          <image>
             <Image url="@../Images/1.jpg" />
          </image>
@@ -44,14 +45,15 @@
       <Button fx:id="LogIn" layoutX="1140.0" layoutY="38.0" mnemonicParsing="false" onAction="#userlogin" text="Log In" />
       <TextField fx:id="name" layoutX="934.0" layoutY="281.0" prefHeight="44.0" prefWidth="247.0" promptText="Full Name" />
       <TextField fx:id="emailId" layoutX="934.0" layoutY="341.0" prefHeight="44.0" prefWidth="247.0" promptText="Email Id" />
-      <PasswordField fx:id="password" layoutX="934.0" layoutY="404.0" prefHeight="46.0" prefWidth="247.0" promptText="Password" />
-      <RadioButton fx:id="studentToggle" layoutX="939.0" layoutY="475.0" mnemonicParsing="false" text="Student">
+      <PasswordField fx:id="password" layoutX="934.0" layoutY="401.0" prefHeight="46.0" prefWidth="247.0" promptText="Password" />
+      <RadioButton fx:id="studentToggle" layoutX="938.0" layoutY="469.0" mnemonicParsing="false" text="Student">
          <toggleGroup>
             <ToggleGroup fx:id="Users" />
          </toggleGroup></RadioButton>
-      <RadioButton fx:id="adminToggle" layoutX="1033.0" layoutY="475.0" mnemonicParsing="false" text="Admin" toggleGroup="$Users" />
-      <RadioButton fx:id="facultyToggle" layoutX="1115.0" layoutY="475.0" mnemonicParsing="false" text="Faculty" toggleGroup="$Users" />
-      <Button fx:id="SignUp" layoutX="1021.0" layoutY="511.0" mnemonicParsing="false" onAction="#SignUp" text="Sign Up" />
+      <RadioButton fx:id="adminToggle" layoutX="1036.0" layoutY="469.0" mnemonicParsing="false" text="Admin" toggleGroup="$Users" />
+      <RadioButton fx:id="facultyToggle" layoutX="1119.0" layoutY="469.0" mnemonicParsing="false" text="Faculty" toggleGroup="$Users" />
+      <ComboBox fx:id="courseComboBox" disable="true" layoutX="996.0" layoutY="504.0" prefHeight="27.0" prefWidth="123.0" promptText="Course" style="-fx-background-color: FFFFFF;" />
+      <Button fx:id="SignUp" layoutX="1024.0" layoutY="541.0" mnemonicParsing="false" onAction="#SignUp" text="Sign Up" />
       <Text layoutX="751.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" wrappingWidth="80.6708984375" />
       <Text layoutX="970.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
       <ImageView fitHeight="215.0" fitWidth="244.0" layoutX="247.0" layoutY="287.0" opacity="0.0" pickOnBounds="true">
@@ -64,7 +66,7 @@
             <Font size="54.0" />
          </font>
       </Text>
-      <Label fx:id="signuplabel" layoutX="964.0" layoutY="542.0" prefHeight="21.0" prefWidth="187.0" />
+      <Label fx:id="signuplabel" layoutX="974.0" layoutY="583.0" prefHeight="21.0" prefWidth="187.0" textFill="#f20707" />
       <Text fill="#391f1f" layoutX="935.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New to IIITD?" wrappingWidth="243.99999250471592">
          <font>
             <Font size="33.0" />
@@ -81,5 +83,6 @@
             <Font size="54.0" />
          </font>
       </Text>
+
    </children>
 </AnchorPane>

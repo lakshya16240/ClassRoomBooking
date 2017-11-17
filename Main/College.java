@@ -72,7 +72,7 @@ public class College implements Serializable{
         return allUsersMap;
     }
 
-    public int SignUp(String name, String emailId, String password, String type){
+    public int SignUp(String name, String emailId, String password, String type, String courseType){
         if (credentials.get(emailId)!=null){
             return 0;
         }
@@ -83,7 +83,9 @@ public class College implements Serializable{
         User user;
         System.out.println(type);
         if (type.equals("Student")){
-            user = new Student(name,emailId,password,type);
+            user = new Student(name,emailId,password,type,courseType);
+
+            allCourses = MainPage.clgobj.getAllCourses();
             System.out.println("Student created");
         }
         else if (type.equals("Admin")){
