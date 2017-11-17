@@ -162,8 +162,12 @@ public class StudentController implements Initializable {
         }
         College.serialize(clgobj);
     }
-    
-    
+     @FXML
+    public void viewFriends(ActionEvent actionEvent) throws IOException{
+        Student friend = null;
+        //friend is the user obtained on selection from the table
+        
+    }
     
     @FXML
     public void myRequestsStudent(ActionEvent actionEvent) throws IOException {
