@@ -624,7 +624,7 @@ public class RoomBookingController implements Initializable {
                     startHour = Integer.toString((j - 1) / 2 + 8);
                     startMin = "30";
                 } else {
-                    startHour = Integer.toString((j - 1) / 2 + 8);
+                    startHour = Integer.toString((j) / 2 + 8);
                     startMin = "00";
                 }
                 k = 1;
@@ -634,14 +634,14 @@ public class RoomBookingController implements Initializable {
                 endHour = "7";
                 endMin = "30";
                 l = 1;
-            } else if (availability[j][day] && availability[j + 1][day]) {
+            } else if (availability[j][day] && !availability[j + 1][day]) {
                 if (j % 2 == 1) {
-                    endHour = Integer.toString((j - 1) / 2 + 8);
-                    endMin = "30";
+                    endHour = Integer.toString((j + 1) / 2 + 8);
+                    endMin = "00";
 
                 } else {
-                    endHour = Integer.toString((j - 1) / 2 + 8);
-                    endMin = "00";
+                    endHour = Integer.toString((j/ 2 + 8));
+                    endMin = "30";
 
                 }
                 l = 1;
