@@ -9,7 +9,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.io.Serializable;
 import static Main.MainPage.clgobj;
-
+/**
+ * College class is the main class which stores data of all the users, courses and rooms
+ * @author Lenovo
+ */
 public class College implements Serializable{
 
     
@@ -27,7 +30,11 @@ public class College implements Serializable{
         allUsersMap = new HashMap<>();
     }
     
-    
+    /**
+     * To serialize an object of type College
+     * @param p the object to be serialized
+     * @throws IOException 
+     */
     public static void serialize(College p) throws IOException {
 
         ObjectOutputStream out = null;
@@ -40,7 +47,13 @@ public class College implements Serializable{
             out.close();
         }
     }
-
+    /**
+     * To deserialize the college object
+     * @param filename represents the name of file to be deserialized
+     * @return college type object obtained after deserialization 
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
     public static College deserialize(String filename) throws IOException, ClassNotFoundException {
         System.out.println("deserializing");
         ObjectInputStream in = null;
@@ -72,7 +85,18 @@ public class College implements Serializable{
     public HashMap<String, User> getAllUsersMap() {
         return allUsersMap;
     }
-
+    
+    /**
+     * 
+     * @param name name of user
+     * @param emailId emailID of user
+     * @param password password of user 
+     * @param type type of user
+     * @param courseType branch of user
+     * @return 0 if user already exists, 1 if sign up is successful, 2 if email ID is incorrect
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
     public int SignUp(String name, String emailId, String password, String type, String courseType) throws IOException, ClassNotFoundException {
         if (credentials.get(emailId)!=null){
             return 0;
@@ -129,7 +153,13 @@ public class College implements Serializable{
         credentials.put(emailId,password);
         return 1;
     }
-
+    
+    /**
+     * To authenticate login of a user
+     * @param emailId emailId of the user
+     * @param password password of the user 
+     * @return 1 if login is successful, 0 if unsuccessful
+     */
     public int Login(String emailId, String password){
         
         System.out.println(emailId + " " + password);

@@ -18,6 +18,10 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.SelectionMode;
 
+/**
+ * Controller class for MyRequests fxml which loads all the booking requests of the user
+ * @author Lenovo
+ */
 public class MyRequestsController implements Initializable {
     public static String s;
     @FXML
@@ -43,7 +47,13 @@ public class MyRequestsController implements Initializable {
 
     @FXML
     private Button CancelRequestStudent;
-
+    
+    /**
+     * Method to cancel the booking made earlier
+     * @param event mouse click 
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
     @FXML
     void CancelRequest(ActionEvent event) throws IOException, ClassNotFoundException {
         ObservableList<Requests> CancelledRequests = FXCollections.observableArrayList();;
@@ -92,7 +102,9 @@ public class MyRequestsController implements Initializable {
         System.out.println("after cancel "+ current_user.getNotification());
         College.serialize(clgobj);
     }
-
+    /**
+     * Method to put the requests in the table
+     */
     public void PopulateTable() {
 //        User currentStudent = MainPage.clgobj.getAllUsersMap().get(MainPage.main.current_user.getEmailId());
         
@@ -113,7 +125,7 @@ public class MyRequestsController implements Initializable {
 //        College.serialize(clgobj);
 
     }
-
+   
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         PopulateTable();

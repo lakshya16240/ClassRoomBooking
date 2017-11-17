@@ -25,7 +25,7 @@ import javafx.scene.layout.Pane;
 import org.controlsfx.control.textfield.TextFields;
 
 /**
- *
+ * A class which is the controller class for fxml
  * @author Lenovo
  */
 public class Control implements Initializable {
@@ -58,7 +58,12 @@ public class Control implements Initializable {
 
     @FXML
     private Button LeaveCourse;
-
+    
+    /**
+     * enables user to leave a course which he/she has taken
+     * @param event mouse click after selection of course
+     * @throws IOException 
+     */
     @FXML
     void leaveCourse(ActionEvent event) throws IOException {
         ObservableList<Course> obslist = mytable.getSelectionModel().getSelectedItems();
@@ -70,7 +75,11 @@ public class Control implements Initializable {
         College.serialize(clgobj);
     }
     private ArrayList<Course> myCourses = new ArrayList<>();
-
+    
+    /**
+     * calls the method to populate the table
+     * @param myCourses represents the courses of the user
+     */
     public void Start(ArrayList<Course> myCourses) {
         this.myCourses = myCourses;
         populateTable();
@@ -79,7 +88,10 @@ public class Control implements Initializable {
     public ArrayList<Course> getMyCourses() {
         return myCourses;
     }
-
+    
+    /**
+     * method which fills the table with all the required entries  
+     */
     public void populateTable() {
         MainPage obj = new MainPage();
         List<Course> myList = getMyCourses();
@@ -105,14 +117,23 @@ public class Control implements Initializable {
 
         mytable.setItems(obsList);
     }
-
+    /**
+     * method to view TimeTable
+     * @param event mouse click
+     * @throws IOException 
+     */
     @FXML
     void viewTimeTable(ActionEvent event) throws IOException {
         Pane newstudentPane = FXMLLoader.load(getClass().getResource("TimeTable.fxml"));
         adminPane.getChildren().clear();
         adminPane.getChildren().add(newstudentPane);
     }
-
+    
+    /**
+     * method to book a room
+     * @param event mouse click
+     * @throws IOException 
+     */
     @FXML
     void roomBooking(ActionEvent event) throws IOException {
         Pane newstudentPane = FXMLLoader.load(getClass().getResource("RoomBooking.fxml"));

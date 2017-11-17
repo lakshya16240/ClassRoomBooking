@@ -2,6 +2,7 @@ package Main;
 
 import static Main.MainPage.clgobj;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,8 +25,13 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import org.controlsfx.control.Notifications;
 
+/**
+ * Controller class for FacultyPage fxml
+ * @author Lenovo
+ */
 public class FacultyController implements Initializable{
-
+    @FXML
+    private JFXTextField welcome_user;
     private Faculty myFaculty;
     public void Start(Faculty faculty){
         myFaculty = faculty;
@@ -41,7 +47,12 @@ public class FacultyController implements Initializable{
     @FXML
     private AnchorPane facultyPane;
     
-      @FXML
+    /**
+     * Method to display notifications to the faculty
+     * @param event mouse click
+     * @throws IOException 
+     */
+    @FXML
     void displayNotification(ActionEvent event) throws IOException {
         System.out.println("Button pressed");
         System.out.println("notif = " +MainPage.current_user.getNotification());
@@ -55,13 +66,24 @@ public class FacultyController implements Initializable{
         
     }
     
-    
+    /**
+     * method used as a helper in displaying notifications
+     * @param pos to define the position of notification
+     * @param graphic the graphic property of the notification
+     * @param text the text to be displayed 
+     */
     private void notification(Pos pos, Node graphic, String text) {
         notifBuilder = Notifications.create().title("My Notifications").text(text).graphic(graphic).position(pos);
 //        Notifications.create().
 //        notifBuilder = Notifications.create().title("My Notifications").text(text).graphic(graphic).position(pos)
 //        pos = 
     }
+    
+    /**
+     * To display the courses taught by the faculty
+     * @param event mouse click
+     * @throws IOException 
+     */
     @FXML
     void displayCourses(ActionEvent event) throws IOException {
         ArrayList<Course> myCourses = myFaculty.getCoursesTaught();
@@ -72,13 +94,23 @@ public class FacultyController implements Initializable{
         facultyPane.getChildren().clear();
         facultyPane.getChildren().add(newfacultyPane);
     }
-
+    
+    /**
+     * method to book a room for faculty
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     void roomBooking(ActionEvent event) throws IOException {
         Pane newfacultyPane = FXMLLoader.load(getClass().getResource("RoomBooking.fxml"));
         facultyPane.getChildren().clear();
         facultyPane.getChildren().add(newfacultyPane);
     }
+      /**
+     * Method to load the bookings of the faculty
+     * @param actionEvent
+     * @throws IOException 
+     */
     
     @FXML
     public void myRequestsFaculty(ActionEvent actionEvent) throws IOException{
@@ -87,7 +119,12 @@ public class FacultyController implements Initializable{
         facultyPane.getChildren().clear();
         facultyPane.getChildren().add(newstudentPane);
     }
-    
+        
+    /**
+     * To log out to enable other user to log in
+     * @param actionEvent
+     * @throws IOException 
+     */
     @FXML
     public void Logout(ActionEvent actionEvent) throws IOException {
 
@@ -97,7 +134,12 @@ public class FacultyController implements Initializable{
         Stage stage = (Stage) logoutFaculty.getScene().getWindow();
         stage.setScene(scene);
     }
-
+     /**
+     * displays any pending notification
+     * sets the text for welcome user
+     * @param url
+     * @param rb 
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ActionEvent a = new ActionEvent();
@@ -108,5 +150,8 @@ public class FacultyController implements Initializable{
                 Logger.getLogger(StudentController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+                welcome_user.setText("Welcome, " + MainPage.current_user.getName());
+//            resultInfo.setText("Passed!");
+        welcome_user.setStyle("-fx-text-fill: white; -fx-font-size: 16;");
     }
 }

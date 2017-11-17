@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
@@ -27,7 +28,8 @@ import org.controlsfx.control.Notifications;
  * @author Lenovo
  */
 public class AdminController implements Initializable {
-
+    @FXML
+    private JFXTextField welcome_user;
     Admin myAdmin;
 
     public void Start(Admin admin) {
@@ -46,6 +48,12 @@ public class AdminController implements Initializable {
     @FXML
     private JFXButton logoutAdmin;
     
+    
+    /**
+     * method used to display the notifications on click
+     * @param event mouse click event
+     * @throws IOException 
+     */ 
      @FXML
     void displayNotification(ActionEvent event) throws IOException {
         System.out.println("Button pressed");
@@ -60,7 +68,12 @@ public class AdminController implements Initializable {
         
     }
     
-    
+    /**
+     * method used as a helper in displaying notifications
+     * @param pos to define the position of notification
+     * @param graphic the graphic property of the notification
+     * @param text the text to be displayed 
+     */
     private void notification(Pos pos, Node graphic, String text) {
         notifBuilder = Notifications.create().title("My Notifications").text(text).graphic(graphic).position(pos);
 //        Notifications.create().
@@ -68,7 +81,11 @@ public class AdminController implements Initializable {
 //        pos = 
     }
     
-    
+    /**
+     * Method to load the booking requests of the admin
+     * @param actionEvent
+     * @throws IOException 
+     */
     @FXML
     public void myRequestsAdmin(ActionEvent actionEvent) throws IOException{
         
@@ -76,6 +93,12 @@ public class AdminController implements Initializable {
         adminPane.getChildren().clear();
         adminPane.getChildren().add(newstudentPane);
     }
+    
+    /**
+     * Method to view the requests pending with the admin
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     void viewRequests(ActionEvent event) throws IOException {
         Pane newadminPane = FXMLLoader.load(getClass().getResource("Requests.fxml"));
@@ -84,7 +107,12 @@ public class AdminController implements Initializable {
 
         System.out.println("ENDDDDD");
     }
-
+    
+    /**
+     * method to book a room for admin
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     void roomBooking(ActionEvent event) throws IOException {
         Pane newstudentPane = FXMLLoader.load(getClass().getResource("RoomBooking.fxml"));
@@ -92,11 +120,11 @@ public class AdminController implements Initializable {
         adminPane.getChildren().add(newstudentPane);
     }
 
-    @FXML
-    void viewTimeTable(ActionEvent event) {
-
-    }
-
+    /**
+     * To view the confirmed bookings
+     * @param actionEvent
+     * @throws IOException 
+     */
     @FXML
     public void viewBookings(ActionEvent actionEvent) throws IOException {
 
@@ -104,7 +132,12 @@ public class AdminController implements Initializable {
         adminPane.getChildren().clear();
         adminPane.getChildren().add(newstudentPane);
     }
-
+    
+    /**
+     * To log out to enable other user to log in
+     * @param actionEvent
+     * @throws IOException 
+     */
     @FXML
     public void Logout(ActionEvent actionEvent) throws IOException {
 
@@ -114,7 +147,12 @@ public class AdminController implements Initializable {
         Stage stage = (Stage) logoutAdmin.getScene().getWindow();
         stage.setScene(scene);
     }
-
+    /**
+     * displays any pending notification
+     * sets the text for welcome user
+     * @param url
+     * @param rb 
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ActionEvent a = new ActionEvent();
@@ -125,6 +163,9 @@ public class AdminController implements Initializable {
                 Logger.getLogger(StudentController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+                welcome_user.setText("Welcome, " + MainPage.current_user.getName());
+//            resultInfo.setText("Passed!");
+        welcome_user.setStyle("-fx-text-fill: white; -fx-font-size: 16;");
     }
 
 

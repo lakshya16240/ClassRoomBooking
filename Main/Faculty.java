@@ -2,7 +2,10 @@ package Main;
 
 import java.util.ArrayList;
 
-
+/**
+ * Class for faculty type objects i.e. users which are faculty
+ * @author Lenovo
+ */
 public class Faculty extends User {
 
     private ArrayList<Course> coursesTaught;
