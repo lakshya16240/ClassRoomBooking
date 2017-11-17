@@ -19,6 +19,8 @@ import java.util.HashMap;
 public class initializer {
     private static HashMap<String, Room> roomBookings;
 
+
+
     public static void addBookings(String[] timeAndVenue, int i) throws IOException {                      // i REPRESENTS DAY
 
         Room room;
