@@ -96,10 +96,10 @@ public class TimeTableController implements Initializable {
 
         JFXDatePickerSkin datePickerSkin = new JFXDatePickerSkin((datePicker));
         Node popupContent = datePickerSkin.getPopupContent();
-        popupContent.setLayoutX(300.0);
-        popupContent.setLayoutY(50.0);
-        popupContent.setScaleX(1.17);
-        popupContent.setScaleY(0.85);
+        popupContent.setLayoutX(50.0);
+        popupContent.setLayoutY(195.0);
+        popupContent.setScaleX(1.30);
+        popupContent.setScaleY(1.30);
         timeTableAnchor.getChildren().add(popupContent);
         try {
             coursesListView(LocalDate.now().getDayOfWeek().getValue() - 1);
