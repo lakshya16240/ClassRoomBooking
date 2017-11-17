@@ -133,17 +133,6 @@ public class StudentController implements Initializable {
 
     }
     
-    
-    @FXML
-    public void addFriend(ActionEvent actionEvent){
-        Student friend = null ;
-        //friend = 
-        FriendRequest freq = new FriendRequest((Student) current_user);
-        friend.getFriendRequests().add(freq);
-        
-                
-    }
-
     @FXML
     public void viewRequets(ActionEvent actionEvent){
          ObservableList<Requests> requestList = FXCollections.observableArrayList(MainPage.current_user.getRequests());
@@ -166,13 +155,22 @@ public class StudentController implements Initializable {
     public void viewFriends(ActionEvent actionEvent) throws IOException{
         Student friend = null;
         //friend is the user obtained on selection from the table
+        Student profile = (Student)(clgobj.getAllUsersMap().get(friend));
         
     }
-    
     @FXML
     public void myRequestsStudent(ActionEvent actionEvent) throws IOException {
 
         Pane newstudentPane = FXMLLoader.load(getClass().getResource("MyRequests.fxml"));
+        studentPane.getChildren().clear();
+        studentPane.getChildren().add(newstudentPane);
+    }
+
+    @FXML
+    public void searchFriends(ActionEvent actionEvent) throws IOException {
+
+
+        Pane newstudentPane = FXMLLoader.load(getClass().getResource("SearchFriends.fxml"));
         studentPane.getChildren().clear();
         studentPane.getChildren().add(newstudentPane);
     }
@@ -215,5 +213,6 @@ public class StudentController implements Initializable {
 //            resultInfo.setText("Passed!");
         welcome_user.setStyle("-fx-text-fill: white; -fx-font-size: 16;");
     }
+
 
 }

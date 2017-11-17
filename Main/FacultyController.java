@@ -137,8 +137,6 @@ public class FacultyController implements Initializable{
      /**
      * displays any pending notification
      * sets the text for welcome user
-     * @param url
-     * @param rb 
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {

@@ -182,11 +182,13 @@ public class SearchCoursesController implements Initializable {
 
                 System.out.println("hello ::::::::::::::::::::" + finalCourseList.size());
                 for (int i = 0; i < finalCourseList.size(); i++) {
-                    System.out.println("loop :::");
+                    //System.out.println("loop :::");
                     Course course = finalCourseList.get(i);
+                    //System.out.println(course.getName());
                     ArrayList<String> postConditions = course.getPostConditions();
                     for (int j = 0; j < postConditions.size(); j++) {
 
+                        System.out.println(course.getName() + " " + postConditions.get(j).contains(newValue));
                         if (postConditions.get(j).contains(newValue) && !registeredCourses.contains(course) && checkTimingsCourses(registeredCourses,course) ) {
                             course.convertToString(postConditions);
                             courseObservableList.add(course);
