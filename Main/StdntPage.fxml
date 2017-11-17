@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="859.0" prefWidth="1227.0" style="-fx-background-image: #85C1E9;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.StudentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="859.0" prefWidth="1227.0" style="-fx-background-image: #85C1E9;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.StudentController">
    <children>
       <ImageView fitHeight="867.0" fitWidth="1236.0" layoutX="-4.0" layoutY="-7.0" pickOnBounds="true">
          <image>
@@ -26,7 +26,7 @@
             <Image url="@../Images/IIITD(2).png" />
          </image>   
       </ImageView>
-      <JFXDrawer layoutY="130.0" prefHeight="554.0" prefWidth="315.0">
+      <JFXDrawer layoutY="130.0" prefHeight="720.0" prefWidth="315.0">
          <children>
             <VBox prefHeight="554.0" prefWidth="304.0" style="-fx-background-color: #3FADA8;">
                <children>
