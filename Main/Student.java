@@ -10,13 +10,15 @@ public class Student extends User {
     private TimeTable myTimeTable;
     private ArrayList<Course> courses;
     private ArrayList<Student> myFriends;
-    private ArrayList<FriendRequest> FriendRequests;
+    private ArrayList<FriendRequest> friendRequests;
 
     
     Student(String name, String emailId, String password, String type, String courseType) {
         super(name, emailId, password, type);
         this.courseType = courseType;
         courses = new ArrayList<>();
+        friendRequests = new ArrayList<>();
+        myFriends = new ArrayList<>();
     }
 
     public String getCourseType() {
@@ -28,7 +30,7 @@ public class Student extends User {
     }
 
     public ArrayList<FriendRequest> getFriendRequests() {
-        return FriendRequests;
+        return friendRequests;
     }
             
     

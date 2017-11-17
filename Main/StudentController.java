@@ -133,31 +133,31 @@ public class StudentController implements Initializable {
 
     }
     
-    @FXML
-    public void viewRequets(ActionEvent actionEvent){
-         ObservableList<Requests> requestList = FXCollections.observableArrayList(MainPage.current_user.getRequests());
-         
-    }
-    
-    @FXML
-    public void approveRequets(ActionEvent actionEvent) throws IOException{
-        ObservableList<FriendRequest> approve_requests = FXCollections.observableArrayList();;
-//        requests = requestTable.getSelectionModel().getSelectedItems();
-        for (int i = 0 ; i<approve_requests.size() ; i++){
-            Student st = (Student)current_user;
-            st.getFriendRequests().remove(approve_requests.get(i));
-            approve_requests.get(i).getSender().getMyFriends().add((Student) current_user);
-            st.getMyFriends().add(approve_requests.get(i).getSender());
-        }
-        College.serialize(clgobj);
-    }
-     @FXML
-    public void viewFriends(ActionEvent actionEvent) throws IOException{
-        Student friend = null;
-        //friend is the user obtained on selection from the table
-        Student profile = (Student)(clgobj.getAllUsersMap().get(friend));
-        
-    }
+//    @FXML
+//    public void viewRequets(ActionEvent actionEvent){
+//         ObservableList<Requests> requestList = FXCollections.observableArrayList(MainPage.current_user.getRequests());
+//
+//    }
+//
+//    @FXML
+//    public void approveRequets(ActionEvent actionEvent) throws IOException{
+//        ObservableList<FriendRequest> approve_requests = FXCollections.observableArrayList();;
+////        requests = requestTable.getSelectionModel().getSelectedItems();
+//        for (int i = 0 ; i<approve_requests.size() ; i++){
+//            Student st = (Student)current_user;
+//            st.getFriendRequests().remove(approve_requests.get(i));
+//            approve_requests.get(i).getSender().getMyFriends().add((Student) current_user);
+//            st.getMyFriends().add(approve_requests.get(i).getSender());
+//        }
+//        College.serialize(clgobj);
+//    }
+//     @FXML
+//    public void viewFriends(ActionEvent actionEvent) throws IOException{
+//        Student friend = null;
+//        //friend is the user obtained on selection from the table
+//        Student profile = (Student)(clgobj.getAllUsersMap().get(friend));
+//
+//    }
     @FXML
     public void myRequestsStudent(ActionEvent actionEvent) throws IOException {
 
