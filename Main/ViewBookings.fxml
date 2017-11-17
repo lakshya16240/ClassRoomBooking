@@ -8,7 +8,7 @@
 <AnchorPane prefHeight="867.0" prefWidth="906.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.ViewBookingsController">
 
     <children>
-        <TableView fx:id="requestTable" layoutX="-2.0" layoutY="127.0" prefHeight="559.0" prefWidth="960.0">
+        <TableView fx:id="requestTable" layoutX="8.0" layoutY="127.0" prefHeight="457.0" prefWidth="950.0">
             <columns>
                 <TableColumn fx:id="Date" prefWidth="107.0" text="Date" />
                 <TableColumn fx:id="start_time" prefWidth="102.0" text="Start Time" />
@@ -17,6 +17,6 @@
                 <TableColumn fx:id="Reason" prefWidth="504.0" text="Reason" />
             </columns>
         </TableView>
-        <Button fx:id="cancelButton" layoutX="303.0" layoutY="808.0" mnemonicParsing="false" onAction="#CancelRequests" prefHeight="31.0" prefWidth="301.0" text="Cancel Selected Requests" />
+        <Button fx:id="cancelButton" layoutX="329.0" layoutY="649.0" mnemonicParsing="false" onAction="#CancelRequests" prefHeight="31.0" prefWidth="301.0" text="Cancel Selected Requests" />
     </children>
 </AnchorPane>
