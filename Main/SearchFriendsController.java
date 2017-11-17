@@ -96,7 +96,7 @@ public class SearchFriendsController  implements Initializable{
             acceptbutton.setLayoutY(2);
             rejectButton.setLayoutY(30);
 
-            
+
 
 
 
