@@ -27,6 +27,7 @@ import javafx.stage.Stage;
 
 /**
  * The main controller class for fxml files
+ *
  * @author Lenovo
  */
 public class Controller implements Initializable {
@@ -120,52 +121,58 @@ public class Controller implements Initializable {
 //
 //    @FXML
 //    private TextArea Reason;
-    
+
     /**
      * Authenticates sign up of a new user
+     *
      * @param event
      * @throws IOException
-     * @throws ClassNotFoundException 
+     * @throws ClassNotFoundException
      */
     @FXML
     void SignUp(ActionEvent event) throws IOException, ClassNotFoundException {
 //        College clgobj = deserialize("data");
-        int flag=0;
+        int flag = 0;
         clgobj = College.deserialize("data");
         String user_name = name.getText();
         String email = emailId.getText();
         String passwd = password.getText();
         String course = courseComboBox.getValue();
         RadioButton selectedRadioButton = (RadioButton) Users.getSelectedToggle();
-        String type="";
-        if(selectedRadioButton!=null)
+        String type = "";
+        if (selectedRadioButton != null) {
             type = selectedRadioButton.getText();
-        System.out.println(type + " " + course);
-
-        if(user_name.equals("") || email.equals("") || passwd.equals("") || course==null || course.equals("Course") || type.equals("") )
-        {
-            signuplabel.setText("All Fields are Required");
-            flag=1;
         }
-
+        System.out.println(type + " " + course);
+        if (!type.equals("Student")) {
+            if (user_name.equals("") || email.equals("") || passwd.equals("")  || type.equals("")) {
+                signuplabel.setText("All Fields are Required");
+                flag = 1;
+            }
+        } else {
+            if (user_name.equals("") || email.equals("") || passwd.equals("") || course == null || course.equals("Course") || type.equals("")) {
+                signuplabel.setText("All Fields are Required");
+                flag = 1;
+            }
+        }
 //        String type = Users.getSelectedToggle().toString();
 //        System.out.println("tt= "+ toogleGroupValue);
         name.setText(null);
         emailId.setText(null);
         password.setText(null);
-        if(selectedRadioButton!=null)
+        if (selectedRadioButton != null) {
             selectedRadioButton.setSelected(false);
+        }
         courseComboBox.setValue("Course");
         courseComboBox.setDisable(true);
 //        System.out.println(u);
-        if(flag==0) {
+        if (flag == 0) {
             int val = clgobj.SignUp(user_name, email, passwd, type, course);
             if (val == 0) {
                 signuplabel.setText("User already exists");
-            }
-//        if (val==2){
-//            signuplabel.setText("Invalid E-mail Id");
-//        }
+            } //        if (val==2){
+            //            signuplabel.setText("Invalid E-mail Id");
+            //        }
             else {
                 signuplabel.setText("Sign up succesful");
 
@@ -174,11 +181,12 @@ public class Controller implements Initializable {
             College.serialize(clgobj);
         }
     }
-    
+
     /**
      * Method to serialize the ArrayList of all requests
+     *
      * @param al represents the arrayList of all requests
-     * @throws IOException 
+     * @throws IOException
      */
     public static void serializeArray(ArrayList<Requests> al) throws IOException {
         ObjectOutputStream out = null;
@@ -191,11 +199,13 @@ public class Controller implements Initializable {
             out.close();
         }
     }
+
     /**
      * To deserialize the arrayList of booking requests
+     *
      * @return the ArrayList obtained after deserializing
      * @throws IOException
-     * @throws ClassNotFoundException 
+     * @throws ClassNotFoundException
      */
     public static ArrayList<Requests> deserializeArray() throws IOException, ClassNotFoundException {
         System.out.println("deserializing");
@@ -213,9 +223,10 @@ public class Controller implements Initializable {
             in.close();
         }
     }
+
     /**
      * Method to authenticate user login
-    */
+     */
     @FXML
     void userlogin(ActionEvent event) throws IOException, ClassNotFoundException {
         clgobj = College.deserialize("data");
@@ -230,7 +241,7 @@ public class Controller implements Initializable {
         Parent root2;
 //        current_user
         int num = clgobj.Login(email, passwd);
-        
+
         if (num == 1) {
             loginlabel.setText("successful");
 //            loginlabel.setText("hello1");
@@ -291,11 +302,11 @@ public class Controller implements Initializable {
 //        studentPane.getChildren().add(newstudentPane);
 //        tableView.getColumns().add(0,"monday");
 //    }
-    
     /**
      * Method enabling user to view the TimeTable
+     *
      * @param event
-     * @throws IOException 
+     * @throws IOException
      */
     @FXML
     void viewTimeTable(ActionEvent event) throws IOException {
@@ -345,8 +356,7 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-
-        courseComboBox.getItems().addAll("CSE","ECE","CSAM");
+        courseComboBox.getItems().addAll("CSE", "ECE", "CSAM");
 
         username.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
