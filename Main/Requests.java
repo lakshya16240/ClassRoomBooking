@@ -3,7 +3,10 @@ package Main;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
-
+/**
+ * A class which contains objects having information about a request
+ * @author Lenovo
+ */
 public class Requests implements Serializable {
 
     private String roomNumber;
@@ -14,7 +17,8 @@ public class Requests implements Serializable {
     private String userType;
     private User user;
     private Date BookingDate;
-
+    private int day;
+    
     public Requests(String date, String startTime, String endTime, String reason, String userType, String roomNumber) {
         this.roomNumber = roomNumber;
         this.date = date;
@@ -25,6 +29,14 @@ public class Requests implements Serializable {
         this.reason = reason;
         Calendar cal = Calendar.getInstance();
         this.BookingDate = cal.getTime();
+    }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+    public int getDay() {
+        return day;
     }
     
     public Date getBookingDate(){

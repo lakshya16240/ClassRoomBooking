@@ -1,14 +1,11 @@
 package Main;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * Stores data of each course
+ * @author Lenovo
+ */
 public class Course implements Serializable {
 
     private String type;
@@ -41,7 +38,10 @@ public class Course implements Serializable {
         //String s =
         return (s);
     }
-
+/**
+ * Converting postCOnditions to string form to enable search
+ * @param postConditions : list of all postconditions of a course
+ */
     public void convertToString(ArrayList<String> postConditions) {
         postConditionsString = "";
         for (int i = 0; i < postConditions.size(); i++) {

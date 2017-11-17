@@ -50,14 +50,6 @@
                                 <DropShadow />
                             </effect>
                         </JFXButton>
-                        <JFXButton fx:id="logoutAdmin" buttonType="RAISED" onAction="#Logout" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #536482;" text="Logout" textFill="WHITE">
-                            <font>
-                                <Font size="27.0" />
-                            </font>
-                            <effect>
-                                <DropShadow />
-                            </effect>
-                        </JFXButton>
                         <JFXButton buttonType="RAISED" onAction="#myRequestsAdmin" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #1B3041;" text="My Requests" textFill="WHITE">
                             <font>
                                 <Font size="27.0" />
@@ -66,6 +58,14 @@
                                 <DropShadow />
                             </effect>
                         </JFXButton>
+                  <JFXButton fx:id="logoutAdmin" buttonType="RAISED" onAction="#Logout" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #536482;" text="Logout" textFill="WHITE">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </JFXButton>
                     </children>
                 </VBox>
             </children>

@@ -11,7 +11,8 @@
         <TableView fx:id="requestTable" layoutX="-2.0" layoutY="127.0" prefHeight="559.0" prefWidth="960.0">
             <columns>
                 <TableColumn fx:id="Date" prefWidth="107.0" text="Date" />
-                <TableColumn fx:id="Timings" prefWidth="135.0" text="Timings" />
+                <TableColumn fx:id="start_time" prefWidth="102.0" text="Start Time" />
+            <TableColumn fx:id="end_time" prefWidth="108.0" text="End Time" />
                 <TableColumn fx:id="UserType" prefWidth="159.0" text="User Type" />
                 <TableColumn fx:id="Reason" prefWidth="504.0" text="Reason" />
             </columns>

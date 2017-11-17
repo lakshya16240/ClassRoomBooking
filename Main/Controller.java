@@ -25,6 +25,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+/**
+ * The main controller class for fxml files
+ * @author Lenovo
+ */
 public class Controller implements Initializable {
 
     @FXML
@@ -116,7 +120,13 @@ public class Controller implements Initializable {
 //
 //    @FXML
 //    private TextArea Reason;
-
+    
+    /**
+     * Authenticates sign up of a new user
+     * @param event
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
     @FXML
     void SignUp(ActionEvent event) throws IOException, ClassNotFoundException {
 //        College clgobj = deserialize("data");
@@ -164,7 +174,12 @@ public class Controller implements Initializable {
             College.serialize(clgobj);
         }
     }
-
+    
+    /**
+     * Method to serialize the ArrayList of all requests
+     * @param al represents the arrayList of all requests
+     * @throws IOException 
+     */
     public static void serializeArray(ArrayList<Requests> al) throws IOException {
         ObjectOutputStream out = null;
         try {
@@ -176,7 +191,12 @@ public class Controller implements Initializable {
             out.close();
         }
     }
-
+    /**
+     * To deserialize the arrayList of booking requests
+     * @return the ArrayList obtained after deserializing
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
     public static ArrayList<Requests> deserializeArray() throws IOException, ClassNotFoundException {
         System.out.println("deserializing");
         ObjectInputStream in = null;
@@ -193,7 +213,9 @@ public class Controller implements Initializable {
             in.close();
         }
     }
-
+    /**
+     * Method to authenticate user login
+    */
     @FXML
     void userlogin(ActionEvent event) throws IOException, ClassNotFoundException {
         clgobj = College.deserialize("data");
@@ -269,6 +291,12 @@ public class Controller implements Initializable {
 //        studentPane.getChildren().add(newstudentPane);
 //        tableView.getColumns().add(0,"monday");
 //    }
+    
+    /**
+     * Method enabling user to view the TimeTable
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     void viewTimeTable(ActionEvent event) throws IOException {
         Pane newstudentPane = FXMLLoader.load(getClass().getResource("TimeTable.fxml"));

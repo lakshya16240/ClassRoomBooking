@@ -17,6 +17,7 @@ import Main.College.*;
 import static Main.College.deserialize;
 
 /**
+ * A class for the loading of the main page i.e. the login page
  * @author Lenovo
  */
 
@@ -50,7 +51,12 @@ public class MainPage extends Application {
     public static College clgobj;
     public static User current_user;
     public static User test_user;
-
+    
+    /**
+     * The default method called at starting to load the first fxml
+     * @param stage to display the fxml on the stage
+     * @throws Exception 
+     */
     @Override
     public void start(Stage stage) throws Exception {
 
@@ -61,7 +67,11 @@ public class MainPage extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
+    /**
+     * Method to read the course data from csv file and store it in a file by serializing
+     * @param collegeObject The main object in which data is stored and is serialized
+     * @throws IOException 
+     */
     public static void readCourseCSV(College collegeObject) throws IOException {
 
         ArrayList<Course> courseinfo = new ArrayList<>();
@@ -143,7 +153,12 @@ public class MainPage extends Application {
 //        Course.serialize(courseinfo);
 //        return courseinfo;
     }
-
+    
+    /**
+     * Method to read the file containing PostConditions of all the courses
+     * @return HashMap of Course code and its post conditions
+     * @throws IOException 
+     */
     public static HashMap<String, ArrayList<String>> readPostConditionsCSV() throws IOException {
 
         ArrayList<String> postConditionsArrayList;
@@ -180,6 +195,9 @@ public class MainPage extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException, ClassNotFoundException {
+//        HashMap<String, Room> RoomData;
+//        RoomData = Room.deserializeRoom();
+//        System.out.println("lets check " + RoomData.get("C11").getBookings());
         clgobj = deserialize("data");
         System.out.println();
 
@@ -200,6 +218,8 @@ public class MainPage extends Application {
         HashMap<String, Room> RoomData = new HashMap<String, Room>();
         RoomData = Room.deserializeRoom();
         Room RoomObj = RoomData.get("C21");
+        System.out.println("lets check " + RoomData.get("C11").getBookings());
+
 //        System.out.println("room data coming");
 //        RoomObj.printAvailability();
 

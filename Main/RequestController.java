@@ -17,7 +17,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
- *
+ *A controller class which allows admin to approve or dis approve any pending requests
  * @author Lenovo
  */
 public class RequestController implements Initializable {
@@ -44,37 +44,47 @@ public class RequestController implements Initializable {
     @FXML
     private Button DisApproveButton;
 
+    /**
+     * Method to approve a request made by student
+     * @param event
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
     @FXML
     void ApproveRequests(ActionEvent event) throws IOException, ClassNotFoundException {
         System.out.println("Approve request called");
         ObservableList<Requests> ApprovedRequests = FXCollections.observableArrayList();;
         ApprovedRequests = requestTable.getSelectionModel().getSelectedItems();
 //        System.out.println("req = " + ApprovedRequests);
-        ArrayList<Requests> AllRequests = new ArrayList<Requests>();
+        HashMap<String, Room> RoomData;
+        RoomData = Room.deserializeRoom();
+        ArrayList<Requests> AllRequests ;
         AllRequests = Controller.deserializeArray();
         int cnt = ApprovedRequests.size() - 1;
-        System.out.println("approved requests = " + ApprovedRequests);
-        System.out.println("requests = " + AllRequests);
-        ArrayList<Requests> AppReq = new ArrayList<Requests>();
-        
+        System.out.println("to be approved requests = " + ApprovedRequests);
+        System.out.println("all requests = " + AllRequests);
+        ArrayList<Requests> AppReq = new ArrayList<>();
+
         for (int i = 0; i < ApprovedRequests.size(); i++) {
             AppReq.add(ApprovedRequests.get(i));
         }
-
+        
         while (cnt >= 0) {
             Requests current_req = AppReq.get(cnt);
+            System.out.println("current_req = " + current_req);
 //                User  userobj = clgobj.getAllUsersMap().get(current_req.getUser().getName());
             User userobj = clgobj.getAllUsersMap().get(current_req.getUser().getEmailId());
-//            System.out.println("user check " + current_user);
+            System.out.println(" my user check " + userobj);
 
-            System.out.println("All requests on pressing Approved before check: " + current_user.getRequests());
-            
+            System.out.println("All requests on pressing Approved before check: " + userobj.getRequests());
+
             for (int i = 0; i < userobj.getRequests().size(); i++) {
                 if (userobj.getRequests().get(i).equals(current_req)) {
                     userobj.getRequests().get(i).setStatus("Approved");
+                    RoomData.get(current_req.getRoomNumber()).getBookings().add(userobj.getRequests().get(i));
                 }
             }
-
+            System.out.println("All requests on pressing Approved after check: " + clgobj.getAllUsersMap().get(userobj.getEmailId()).getRequests());
 //            clgobj.getAllUsersMap().put(current_req.getUser().getEmailId(), userobj);
 //            System.out.println("All requests on pressing Approved: " + userobj.getRequests());
 //            System.out.println("All requests on pressing Approved (just a check) : " + clgobj.getAllUsersMap().get(userobj.getEmailId()).getRequests());
@@ -114,13 +124,20 @@ public class RequestController implements Initializable {
         ObservableList<Requests> display = FXCollections.observableArrayList(PendingRequests);
 //            System.out.println("check in admin " + MainPage.clgobj.getAllUsersMap().get("ab").getRequests());
 //            ObservableList<Requests> display = FXCollections.observableArrayList(AllRequests);
+
         Controller.serializeArray(AllRequests);
-        PopulateTable();
+        Room.serializeRoom(RoomData);
         College.serialize(clgobj);
-
+        PopulateTable();
         System.out.println("serialized");
+        
     }
-
+    /**
+     * Method to dis-approve request made by a student
+     * @param event
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
     @FXML
     void DisApproveRequests(ActionEvent event) throws IOException, ClassNotFoundException {
 //        System.out.println("Dis-Approve request called");
@@ -143,7 +160,7 @@ public class RequestController implements Initializable {
 //                User  userobj = clgobj.getAllUsersMap().get(current_req.getUser().getName());
 //            User userobj = current_req.getUser();
             User userobj = clgobj.getAllUsersMap().get(current_req.getUser().getEmailId());
-
+            
             System.out.println("user check " + userobj);
 
             for (int i = 0; i < userobj.getRequests().size(); i++) {
@@ -194,14 +211,20 @@ public class RequestController implements Initializable {
         System.out.println("serialized");
 
     }
-
-    public void PopulateTable() throws IOException {
+    /**
+     * Method to display all the pending requests to the admin
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
+    public void PopulateTable() throws IOException, ClassNotFoundException {
         ArrayList<Requests> requests = new ArrayList<Requests>();
 //        requestTable.getSelectionModel().setCellSelectionEnabled(true);
 //        requestTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-
+        HashMap<String, Room> RoomData;
+        RoomData = Room.deserializeRoom();
         try {
             requests = Controller.deserializeArray();
+            
             if (requests == null) {
                 requests = new ArrayList<Requests>();
             }
@@ -218,18 +241,18 @@ public class RequestController implements Initializable {
         ObservableList<Requests> obsList = FXCollections.observableArrayList();
         Calendar cal = Calendar.getInstance();
         Date CurrentDate = cal.getTime();
-        for (int i=0; i<requests.size(); i++){
-            int DayDiff = (int)((CurrentDate.getTime() - requests.get(i).getBookingDate().getTime())/86400000);
-            System.out.println("day differnce = "  + DayDiff);
-            if (DayDiff>5){
+        for (int i = 0; i < requests.size(); i++) {
+            int DayDiff = (int) ((CurrentDate.getTime() - requests.get(i).getBookingDate().getTime()) / 86400000);
+            System.out.println("day differnce = " + DayDiff);
+            if (DayDiff > 5) {
                 requests.get(i).setStatus("Request expired");
-            }                                                                    
+            }
         }
         for (int i = 0; i < requests.size(); i++) {
-            if (requests.get(i).getStatus().equals("Pending")){
+            if (RoomBookingController.checkAvailabilty(RoomData.get(requests.get(i).getRoomNumber()), requests.get(i).getDay() , requests.get(i).getDate(), requests.get(i).getStartTime(), requests.get(i).getEndTime()) && requests.get(i).getStatus().equals("Pending")) {
                 obsList.add(requests.get(i));
             }
-            
+
         }
         System.out.println("arraylist coming");
 //        final ObservableList<Course> data = FXCollections.observableArrayList(new Course("a", "b" , "c", "d", 5, null, null, null, null));
@@ -253,6 +276,8 @@ public class RequestController implements Initializable {
         try {
             PopulateTable();
         } catch (IOException ex) {
+            Logger.getLogger(RequestController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(RequestController.class.getName()).log(Level.SEVERE, null, ex);
         }
 

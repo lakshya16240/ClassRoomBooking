@@ -28,7 +28,11 @@ public class ViewBookingsController implements Initializable{
     private TableColumn<Requests, String> Date;
 
     @FXML
-    private TableColumn<Requests, String> Timings;
+    private TableColumn<Requests, String> start_time;
+
+    
+    @FXML
+    private TableColumn<Requests, String> end_time;
 
     @FXML
     private TableColumn<Requests, String> UserType;
@@ -68,8 +72,11 @@ public class ViewBookingsController implements Initializable{
 //        final ObservableList<Course> data = FXCollections.observableArrayList(new Course("a", "b" , "c", "d", 5, null, null, null, null));
         Date.setCellValueFactory(
                 new PropertyValueFactory<Requests, String>("date"));
-        Timings.setCellValueFactory(
+        start_time.setCellValueFactory(
                 new PropertyValueFactory<Requests, String>("startTime"));
+        end_time.setCellValueFactory(
+                new PropertyValueFactory<Requests, String>("endTime"));
+        
         UserType.setCellValueFactory(
                 new PropertyValueFactory<Requests, String>("userType"));
         Reason.setCellValueFactory(
