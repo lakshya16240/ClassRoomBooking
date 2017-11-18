@@ -30,21 +30,21 @@
          <children>
             <VBox prefHeight="554.0" prefWidth="304.0" style="-fx-background-color: #3FADA8;">
                <children>
-                  <JFXButton buttonType="RAISED" onAction="#displayCourses" prefHeight="93.0" prefWidth="322.0" ripplerFill="#bf1313" style="-fx-background-color: #5C7B7D;" text="My Courses" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" onAction="#displayCourses" prefHeight="68.0" prefWidth="315.0" ripplerFill="#bf1313" style="-fx-background-color: #526182;" text="My Courses" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font>
                      <effect>
                         <DropShadow height="8.86" radius="6.965" />
                      </effect></JFXButton>
-                  <JFXButton buttonType="RAISED" onAction="#roomBooking" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #689D91;" text="Room Booking" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" onAction="#roomBooking" prefHeight="67.0" prefWidth="315.0" style="-fx-background-color: #215259;" text="Room Booking" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font>
                      <effect>
                         <DropShadow />
                      </effect></JFXButton>
-                  <JFXButton buttonType="RAISED" onAction="#viewTimeTable" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #215259;" text="Time Table" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" onAction="#viewTimeTable" prefHeight="61.0" prefWidth="315.0" style="-fx-background-color: #3A7A77;" text="Time Table" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font>
@@ -52,7 +52,7 @@
                         <DropShadow />
                      </effect>
                   </JFXButton>
-                  <JFXButton buttonType="RAISED" onAction="#searchCoursesStudent" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #405C61;" text="Search for Courses" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" onAction="#searchCoursesStudent" prefHeight="70.0" prefWidth="315.0" style="-fx-background-color: #173444;" text="Search for Courses" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font>
@@ -60,7 +60,7 @@
                         <DropShadow />
                      </effect>
                   </JFXButton>
-                  <JFXButton buttonType="RAISED" onAction="#myRequestsStudent" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #1B3041;" text="My Requests" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" onAction="#myRequestsStudent" prefHeight="66.0" prefWidth="315.0" style="-fx-background-color: #4B597C;" text="My Requests" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font>
@@ -68,7 +68,7 @@
                         <DropShadow />
                      </effect>
                   </JFXButton>
-                  <JFXButton buttonType="RAISED" onAction="#searchFriends" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #1B3041;" text="Look For Friends" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" onAction="#searchFriends" prefHeight="77.0" prefWidth="315.0" style="-fx-background-color: #1A5557;" text="Look For Friends" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font>
@@ -76,7 +76,7 @@
                         <DropShadow />
                      </effect>
                   </JFXButton>
-                   <JFXButton buttonType="RAISED" onAction="#myFriends" prefHeight="93.0" prefWidth="322.0" style="-fx-background-color: #1B3041;" text="My Friends" textFill="WHITE">
+                   <JFXButton buttonType="RAISED" onAction="#myFriends" prefHeight="70.0" prefWidth="315.0" style="-fx-background-color: #3A7A77;" text="My Friends" textFill="WHITE">
                        <font>
                            <Font size="27.0" />
                        </font>
@@ -84,7 +84,7 @@
                            <DropShadow />
                        </effect>
                    </JFXButton>
-                  <JFXButton fx:id="logoutStudent" buttonType="RAISED" onAction="#Logout" prefHeight="94.0" prefWidth="322.0" style="-fx-background-color: #536482;" text="Logout" textFill="WHITE">
+                  <JFXButton fx:id="logoutStudent" buttonType="RAISED" onAction="#Logout" prefHeight="75.0" prefWidth="315.0" style="-fx-background-color: #173444;" text="Logout" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font>

@@ -117,7 +117,7 @@ public class StudentController implements Initializable {
         Control newcontroller = fxmlLoader.<Control>getController();
         //newcontroller.Test("Super");
         newcontroller.Start(myCourses);
-
+        studentPane.getChildren().clear();
         studentPane.getChildren().add(newstudentPane);
 //        tableView.getColumns().add(0,"monday");
     }
