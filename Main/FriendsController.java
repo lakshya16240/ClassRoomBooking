@@ -6,6 +6,8 @@
 package Main;
 
 import static Main.MainPage.clgobj;
+import static Main.MainPage.current_user;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -39,12 +41,18 @@ public class FriendsController implements Initializable {
     
     @FXML
     private TableColumn<Student, String> info;
+
+    private ArrayList<Student> friendList;
+
     /**
      * Initializes the controller class.
      */
     
     void populateTable(){
-        ArrayList<Student> friendList;
+
+        for(int i=0;i<friendList.size();i++){
+            friendList.get(i).convertToString(friendList.get(i).viewCourses());
+        }
         friendList = ((Student)MainPage.current_user).getMyFriends();
         ObservableList<Student> obsList = FXCollections.observableArrayList(friendList);
         name_column.setCellValueFactory(
@@ -53,6 +61,7 @@ public class FriendsController implements Initializable {
                 new PropertyValueFactory<Student, String>("emailId"));
         branch_column.setCellValueFactory(
                 new PropertyValueFactory<Student, String>("courseType"));
+        info.setCellValueFactory(new PropertyValueFactory<Student,String>("courseInfoString"));
 
 
         friendsTable.setItems(obsList);
@@ -61,6 +70,7 @@ public class FriendsController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        friendList = ((Student)current_user).getMyFriends();
         populateTable();
     }    
     

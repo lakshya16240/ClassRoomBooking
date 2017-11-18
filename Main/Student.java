@@ -14,6 +14,7 @@ public class Student extends User {
     private ArrayList<Course> courses;
     private ArrayList<Student> myFriends;
     private ArrayList<FriendRequest> friendRequests;
+    private String courseInfoString = "";
 
     
     Student(String name, String emailId, String password, String type, String courseType) {
@@ -56,6 +57,19 @@ public class Student extends User {
 
     public void SearchCourses(){
 //        return 
+    }
+
+    public String getCourseInfoString() {
+        return courseInfoString;
+    }
+
+    public void convertToString(ArrayList<Course> courses){
+
+        courseInfoString = "";
+        for(int i=0;i<courses.size();i++){
+            courseInfoString = courseInfoString + Integer.toString(i+1) + ". " + courses.get(i).getName() +  " - " + courses.get(i).getInstructor();
+        }
+
     }
 
     /**

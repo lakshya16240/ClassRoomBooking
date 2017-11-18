@@ -20,6 +20,7 @@ public class Course implements Serializable {
 
 
 
+
     public Course(String type, String name, String code, String instructor, int credits, String[] time, String[] room, ArrayList<String> preRequisites, ArrayList<String> postConditions) {
         this.type = type;
         this.name = name;
@@ -50,6 +51,7 @@ public class Course implements Serializable {
 
         //System.out.println( "holaaa :  " + postConditionsString);
     }
+
 
 
     public ArrayList<String> getPostConditions() {
