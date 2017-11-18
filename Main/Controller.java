@@ -253,7 +253,7 @@ public class Controller implements Initializable {
                 root2 = (Parent) fxmlLoader.load();
 //                root2 = FXMLLoader.load(getClass().getResource("StdntPage.fxml"));
                 StudentController newcontroller = fxmlLoader.getController();
-                newcontroller.Test("Super");
+//                newcontroller.Test("Super");
                 newcontroller.Start((Student) obj);
                 current_user = (Student) obj;
                 System.out.println("current user has been set to " + current_user);
