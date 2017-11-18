@@ -27,6 +27,8 @@ import java.util.ResourceBundle;
 
 import static Main.MainPage.clgobj;
 import static Main.MainPage.current_user;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Controller which handles the searching of friends, displaying of friend requests and adding/ rejecting them
@@ -54,15 +56,18 @@ public class SearchFriendsController  implements Initializable{
      * @throws IOException
      */
 
-    public void addFriend(AnchorPane anchorPane) throws IOException {
+    public void addFriend(AnchorPane anchorPane) throws IOException, ClassNotFoundException {
         Student friend = null ;
+        College clgobj;
+        clgobj = College.deserialize("data");
         TextFlow textFlow = (TextFlow) anchorPane.getChildren().get(0);
-        Text text= (Text) textFlow.getChildren().get(0);
-        String name = text.getText();
-        name = name.replace("\n","");
-        System.out.println("NAME : " + name);
+        Text text= (Text) textFlow.getChildren().get(1);
+        String email = text.getText();
+        email = email.replace("\n","");
+        
+//        System.out.println("NAME : " + name);
         //for(Map.Entry<String,User> x : clgobj.getAllUsersMap())
-        friend = (Student) users.get(name);
+        friend = (Student) users.get(email);
         FriendRequest freq = new FriendRequest((Student) current_user , friend);
         freq.setStatus("Pending");
         if(!friend.getFriendRequests().contains(freq))
@@ -73,6 +78,8 @@ public class SearchFriendsController  implements Initializable{
         Text text1 = new Text("Pending");
         anchorPane.getChildren().add(text1);
         text1.setLayoutX(265);
+        clgobj.getAllUsersMap().put(current_user.getEmailId(), current_user);
+        clgobj.getAllUsersMap().put(friend.getEmailId(), friend);
         College.serialize(clgobj);
     }
 
@@ -155,7 +162,7 @@ public class SearchFriendsController  implements Initializable{
 
     /**
      * Method which accepts/rejects a friend request.
-     * @param anchorPane pane in whicht the {accept/reject} button is situated.
+     * @param anchorPane pane in which the {accept/reject} button is situated.
      * @param react String value --> "accept" if accept button is clicked, "reject" if reject button is clicked.
      * @param friendRequest A FriendRequest type object which is to be accepted/rejected.
      * @throws IOException
@@ -163,11 +170,12 @@ public class SearchFriendsController  implements Initializable{
     public void approveRequets(AnchorPane anchorPane, String react , FriendRequest friendRequest) throws IOException {
 
         TextFlow textFlow = (TextFlow) anchorPane.getChildren().get(0);
-        Text text= (Text) textFlow.getChildren().get(0);
+        Text text= (Text) textFlow.getChildren().get(1);
         String name = text.getText();
         name = name.replace("\n","");
+        Student friend = (Student)(users.get(name));
         if(react.equals("accept")){
-             ArrayList<FriendRequest> requests = ((Student)users.get(name)).getFriendRequests();
+             ArrayList<FriendRequest> requests = friend.getFriendRequests();
              for(int i=0;i<requests.size();i++){
 
                  if(requests.get(i).getReceiver().getName().equals(current_user.getName())) {
@@ -177,12 +185,12 @@ public class SearchFriendsController  implements Initializable{
 
              Student student= (Student) current_user;
 
-             student.getMyFriends().add((Student)users.get(name));
-             ((Student)users.get(name)).getMyFriends().add(student);
+             student.getMyFriends().add(friend);
+             (friend).getMyFriends().add(student);
 
          }
          else{
-             ArrayList<FriendRequest> requests = ((Student)users.get(name)).getFriendRequests();
+             ArrayList<FriendRequest> requests = (friend).getFriendRequests();
              for(int i=0;i<requests.size();i++){
 
                  if(requests.get(i).getReceiver().getName().equals(current_user.getName()))
@@ -197,6 +205,8 @@ public class SearchFriendsController  implements Initializable{
 //            approve_requests.get(i).getSender().getMyFriends().add((Student) current_user);
 //            st.getMyFriends().add(approve_requests.get(i).getSender());
 //        }
+        clgobj.getAllUsersMap().put(current_user.getEmailId(), current_user);
+        clgobj.getAllUsersMap().put(friend.getEmailId(), friend);
         College.serialize(clgobj);
     }
 
@@ -210,83 +220,94 @@ public class SearchFriendsController  implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
 
         try {
-            clgobj = College.deserialize("data");
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        users = clgobj.getAllUsersMap();
-        friendRequests = ((Student)current_user).getFriendRequests();
-
-        searchFriendsTextField.textProperty().addListener(new ChangeListener<String>() {
-
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-
-                TextFlow textFlow = new TextFlow();
-
-                listViewFriends.getItems().clear();
-                try {
-                    viewRequests();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                for(Map.Entry<String,User> x : users.entrySet()){
-                    AnchorPane anchorPane = new AnchorPane();
-                    int flag=0;
-
-                    if(x.getKey().contains(newValue) && !x.getValue().equals(current_user)){
-                        if(x.getValue().getType().equals("Student")) {
-                            Text text1 = new Text(x.getValue().getName() + "\n");
-                            text1.setStyle("-fx-font-size: 23px");
-                            Text text2 = new Text(x.getValue().getEmailId() + "\n");
-                            text2.setStyle("-fx-font-size: 18px");
-                            Text text3 = new Text(((Student)x.getValue()).getCourseType());
-                            text3.setStyle("-fx-font-size: 18px");
-                            textFlow.getChildren().addAll(text1, text2, text3);
-                            anchorPane.getChildren().add(textFlow);
-                            textFlow.setPrefWidth(290);
-                            for(int i=0;i<((Student) current_user).getFriendRequests().size();i++){
-                                System.out.println(((Student) current_user).getFriendRequests().get(i).getReceiver().getName());
-                                if(((Student) current_user).getFriendRequests().get(i).getReceiver().getName().equals(x.getValue().getName())){
-
-                                    System.out.println("DEBUG");
-                                    Text textstatus = new Text(((Student) current_user).getFriendRequests().get(i).getStatus());
-                                    anchorPane.getChildren().add(textstatus);
-                                    textstatus.setLayoutX(265);
-                                    flag=1;
-
-                                }
-                            }
-                            if(flag==0) {
-                                Button button = new Button("+ Add Friend");
-                                anchorPane.getChildren().add(button);
-                                button.setLayoutX(270);
-                                button.setOnAction(new EventHandler<ActionEvent>() {
-                                    @Override
-                                    public void handle(ActionEvent event) {
-
-
-                                        try {
-                                            addFriend((AnchorPane) button.getParent());
-                                            viewRequests();
-                                            anchorPane.getChildren().remove(button);
-                                        } catch (IOException e) {
-                                            e.printStackTrace();
-                                        }
+            
+            try {
+                clgobj = College.deserialize("data");
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            users = clgobj.getAllUsersMap();
+            friendRequests = ((Student)current_user).getFriendRequests();
+            listViewFriends.getItems().clear();
+            viewRequests();
+            searchFriendsTextField.textProperty().addListener(new ChangeListener<String>() {
+                
+                
+                @Override
+                public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                    
+                    TextFlow textFlow = new TextFlow();
+                    
+                    listViewFriends.getItems().clear();
+//                    try {
+//                        viewRequests();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+                    
+                    for(Map.Entry<String,User> x : users.entrySet()){
+                        AnchorPane anchorPane = new AnchorPane();
+                        int flag=0;
+                        
+                        if(x.getKey().contains(newValue) && !x.getValue().getEmailId().equals(current_user.getEmailId())){
+                            if(x.getValue().getType().equals("Student")) {
+                                Text text1 = new Text(x.getValue().getName() + "\n");
+                                text1.setStyle("-fx-font-size: 23px");
+                                Text text2 = new Text(x.getValue().getEmailId() + "\n");
+                                text2.setStyle("-fx-font-size: 18px");
+                                Text text3 = new Text(((Student)x.getValue()).getCourseType());
+                                text3.setStyle("-fx-font-size: 18px");
+                                textFlow.getChildren().addAll(text1, text2, text3);
+                                anchorPane.getChildren().add(textFlow);
+                                textFlow.setPrefWidth(290);
+                                for(int i=0;i<((Student) current_user).getFriendRequests().size();i++){
+                                    System.out.println(((Student) current_user).getFriendRequests().get(i).getReceiver().getName());
+                                    if(((Student) current_user).getFriendRequests().get(i).getReceiver().getName().equals(x.getValue().getName())){
+                                        
+                                        System.out.println("DEBUG");
+                                        Text textstatus = new Text(((Student) current_user).getFriendRequests().get(i).getStatus());
+                                        anchorPane.getChildren().add(textstatus);
+                                        textstatus.setLayoutX(265);
+                                        flag=1;
+                                        
                                     }
-                                });
+                                }
+                                if(flag==0) {
+                                    Button button = new Button("+ Add Friend");
+                                    anchorPane.getChildren().add(button);
+                                    button.setLayoutX(270);
+                                    button.setOnAction(new EventHandler<ActionEvent>() {
+                                        @Override
+                                        public void handle(ActionEvent event) {
+                                            
+                                            
+                                            try {
+                                                addFriend((AnchorPane) button.getParent());
+                                                viewRequests();
+                                                anchorPane.getChildren().remove(button);
+                                            } catch (IOException e) {
+                                                e.printStackTrace();
+                                            } catch (ClassNotFoundException ex) {
+                                                Logger.getLogger(SearchFriendsController.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
+                                        }
+                                    });
+                                }
+                                
+                                listViewFriends.getItems().add(anchorPane);
                             }
-
-                            listViewFriends.getItems().add(anchorPane);
                         }
                     }
+                    
+                    
                 }
-
-
-            }
-
-        });
+                
+            });
+            
+            
+        } catch (IOException ex) {
+            Logger.getLogger(SearchFriendsController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
 
     }
