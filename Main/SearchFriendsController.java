@@ -16,6 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 
 import java.io.IOException;
@@ -78,7 +79,9 @@ public class SearchFriendsController  implements Initializable{
 
         Text text1 = new Text("Pending");
         anchorPane.getChildren().add(text1);
-        text1.setLayoutX(265);
+        text1.setLayoutX(270);
+        text1.setLayoutY(20);
+        text1.setStyle("-fx-font-size: 14px");
         clgobj.getAllUsersMap().put(current_user.getEmailId(), current_user);
         clgobj.getAllUsersMap().put(friend.getEmailId(), friend);
         College.serialize(clgobj);
@@ -98,17 +101,18 @@ public class SearchFriendsController  implements Initializable{
         System.out.println(friendRequests.size());
         for(int i=0;i<friendRequests.size();i++){
             AnchorPane anchorPane  = new AnchorPane();
+            textFlow = new TextFlow();
 
             Student sender = friendRequests.get(i).getSender();
             System.out.println(sender.getName());
 
 
             Text text1 = new Text(sender.getName() + "\n");
-            text1.setStyle("-fx-font-size: 23px");
+            text1.setStyle("-fx-font-size: 20px");
             Text text2 = new Text(sender.getEmailId() + "\n");
-            text2.setStyle("-fx-font-size: 18px");
-            Text text3 = new Text(sender.getCourseType());
-            text3.setStyle("-fx-font-size: 18px");
+            text2.setStyle("-fx-font-size: 15px");
+            Text text3 = new Text(sender.getCourseType()  + " - " + sender.getBatch());
+            text3.setStyle("-fx-font-size: 15px");
             textFlow.getChildren().addAll(text1, text2, text3);
             anchorPane.getChildren().add(textFlow);
             textFlow.setPrefWidth(290);
@@ -132,8 +136,10 @@ public class SearchFriendsController  implements Initializable{
                 @Override
                 public void handle(ActionEvent event) {
                     try {
-                        approveRequets((AnchorPane) acceptbutton.getParent(),"accept", friendRequests.get(finalI) );
+                        approveRequets((AnchorPane) acceptbutton.getParent(),"accept", friendRequests.get(finalI));
                         ((Student)current_user).getFriendRequests().remove(friendRequests.get(finalI));
+                        clgobj.getAllUsersMap().put(current_user.getEmailId(), current_user);
+                        viewRequests();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -147,6 +153,8 @@ public class SearchFriendsController  implements Initializable{
                     try {
                         approveRequets((AnchorPane) rejectButton.getParent(),"reject",friendRequests.get(finalI));
                         ((Student)current_user).getFriendRequests().remove(friendRequests.get(finalI));
+                        clgobj.getAllUsersMap().put(current_user.getEmailId(), current_user);
+                        viewRequests();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -248,31 +256,51 @@ public class SearchFriendsController  implements Initializable{
 
                     for(Map.Entry<String,User> x : users.entrySet()){
                         AnchorPane anchorPane = new AnchorPane();
+                        textFlow = new TextFlow();
                         int flag=0;
 
                         if(x.getKey().contains(newValue) && !x.getValue().getEmailId().equals(current_user.getEmailId())){
                             if(x.getValue().getType().equals("Student")) {
                                 Text text1 = new Text(x.getValue().getName() + "\n");
-                                text1.setStyle("-fx-font-size: 23px");
+                                text1.setStyle("-fx-font-size: 20px");
                                 Text text2 = new Text(x.getValue().getEmailId() + "\n");
-                                text2.setStyle("-fx-font-size: 18px");
-                                Text text3 = new Text(((Student)x.getValue()).getCourseType());
-                                text3.setStyle("-fx-font-size: 18px");
+                                text2.setStyle("-fx-font-size: 15px");
+                                Text text3 = new Text(((Student)x.getValue()).getCourseType() + " - " + ((Student)x.getValue()).getBatch());
+                                text3.setStyle("-fx-font-size: 14px");
                                 textFlow.getChildren().addAll(text1, text2, text3);
                                 anchorPane.getChildren().add(textFlow);
                                 textFlow.setPrefWidth(290);
                                 for(int i=0;i<((Student) current_user).getFriendRequests().size();i++){
                                     System.out.println(((Student) current_user).getFriendRequests().get(i).getReceiver().getName());
-                                    if(((Student) current_user).getFriendRequests().get(i).getReceiver().getName().equals(x.getValue().getName())){
+                                    if(((Student) current_user).getFriendRequests().get(i).getReceiver().getName().equals(x.getValue().getName())
+                                            || ((Student) current_user).getFriendRequests().get(i).getSender().getName().equals(x.getValue().getName())){
 
                                         System.out.println("DEBUG");
                                         Text textstatus = new Text(((Student) current_user).getFriendRequests().get(i).getStatus());
                                         anchorPane.getChildren().add(textstatus);
-                                        textstatus.setLayoutX(265);
+                                        textstatus.setLayoutX(270);
+                                        textstatus.setLayoutY(20);
+                                        textstatus.setStyle("-fx-font-size: 14px");
                                         flag=1;
 
                                     }
                                 }
+
+                                for(int i=0;i<((Student)current_user).getMyFriends().size();i++){
+                                    if(((Student)current_user).getMyFriends().get(i).getName().equals(x.getKey())){
+
+                                        Text textstatus = new Text("Friend");
+                                        anchorPane.getChildren().add(textstatus);
+                                        textstatus.setLayoutX(270);
+                                        textstatus.setLayoutY(20);
+                                        textstatus.setStyle("-fx-font-size: 14px");
+                                        textstatus.setTextAlignment(TextAlignment.CENTER);
+                                        flag=1;
+                                    }
+                                }
+
+
+
                                 if(flag==0) {
                                     Button button = new Button("+ Add Friend");
                                     anchorPane.getChildren().add(button);

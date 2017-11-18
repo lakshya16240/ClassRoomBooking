@@ -97,7 +97,7 @@ public class College implements Serializable{
      * @throws IOException
      * @throws ClassNotFoundException 
      */
-    public int SignUp(String name, String emailId, String password, String type, String courseType) throws IOException, ClassNotFoundException {
+    public int SignUp(String name, String emailId, String password, String type, String courseType, String batch) throws IOException, ClassNotFoundException {
         if (credentials.get(emailId)!=null){
             return 0;
         }
@@ -108,7 +108,7 @@ public class College implements Serializable{
         User user;
         System.out.println(type);
         if (type.equals("Student")){
-            user = new Student(name,emailId,password,type,courseType);
+            user = new Student(name,emailId,password,type,courseType, batch);
 
             allCourses = College.deserialize("data").getAllCourses();
             for(int i=0;i<allCourses.size();i++){
