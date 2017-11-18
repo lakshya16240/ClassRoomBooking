@@ -18,6 +18,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
+/**
+ * controller handling the display of the time table of a student
+ */
 public class TimeTableController implements Initializable {
 
     @FXML
@@ -36,6 +39,12 @@ public class TimeTableController implements Initializable {
     private int day;
     private List<Course> courseList;
     private ArrayList<Requests> requestsList;
+
+    /**
+     * display the courses along with their timings of the student on the given day
+     * @param day the day on the which the courses are to be displayed
+     * @throws IOException
+     */
 
     private void coursesListView(int day) throws IOException {
         //int day = datePicker.getValue().getDayOfWeek().getValue() - 1;
@@ -66,6 +75,11 @@ public class TimeTableController implements Initializable {
 //        listViewTable.setItems(observableList);
     }
 
+    /**
+     * display the booking along with their timings of the student on the given day
+     * @param date date on which the bookings are to be displayed
+     */
+
     private void bookingsListView(String date) {
 
         listViewBookings.getItems().clear();
@@ -88,6 +102,12 @@ public class TimeTableController implements Initializable {
         }
 
     }
+
+    /**
+     * Display the calendar and listView for display of information
+     * @param location
+     * @param resources
+     */
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

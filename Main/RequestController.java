@@ -17,7 +17,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
- *A controller class which allows admin to approve or dis approve any pending requests
+ *A controller class which allows admin to approve or disapprove any pending requests
  * @author Lenovo
  */
 public class RequestController implements Initializable {

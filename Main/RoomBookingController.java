@@ -36,7 +36,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
-/**
+/** A controller class to handle the room booking system
  * @author Lenovo
  */
 public class RoomBookingController implements Initializable {
@@ -73,6 +73,18 @@ public class RoomBookingController implements Initializable {
     private String date = "";
     public static final String defaultRoom = "All Rooms";
     private ArrayList<Room> availableRooms;
+
+    /**
+     * Checks the availability of a room
+     * @param room room whose availability is to be checked
+     * @param day  (int) day of availability check
+     * @param date1  date of availability check
+     * @param from_time starting time of the period in which the availability is to be checked
+     * @param to_time ending time of the period in which the availability is to be checked
+     * @return {true} if the room is available & {false} if the room is not available
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
 
     static boolean checkAvailabilty(Room room, int day, String date1, String from_time, String to_time) throws IOException, ClassNotFoundException {
 

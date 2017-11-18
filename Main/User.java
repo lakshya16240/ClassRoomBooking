@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * class containing the information of all types of users
+ */
 public abstract class User implements Serializable {
 
     private String name, emailId, password, type, notification;
@@ -64,7 +67,13 @@ public abstract class User implements Serializable {
    public void ShowAll(){
 
    }
-   
+
+    /**
+     * method to update the notification with a particular message
+     * @param s message to be displayed
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
    public void uppdateNotification(String s) throws IOException, ClassNotFoundException{
        College clgobj = College.deserialize("data");
        ArrayList<User> AllUsers = MainPage.clgobj.getAllUsers();

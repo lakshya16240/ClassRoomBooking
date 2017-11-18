@@ -4,6 +4,9 @@ package Main;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * A class for users which are of type student - extends {User}
+ */
 public class Student extends User {
 
     private String courseType;
@@ -55,6 +58,10 @@ public class Student extends User {
 //        return 
     }
 
+    /**
+     * adds the course to the list of courses
+     * @param course course to be added
+     */
     public void addCourses(Course course){
 
         courses.add(course);

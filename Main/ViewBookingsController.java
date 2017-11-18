@@ -22,6 +22,10 @@ import static Main.MainPage.clgobj;
  * A controller class which the admin to view the rooms booked
  * @author Lenovo
  */
+
+/**
+ * Controller handling the display of room booking requests made by users
+ */
 public class ViewBookingsController implements Initializable{
 
     @FXML

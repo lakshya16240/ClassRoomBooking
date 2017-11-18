@@ -28,6 +28,10 @@ import java.util.ResourceBundle;
 import static Main.MainPage.clgobj;
 import static Main.MainPage.current_user;
 
+/**
+ * Controller which handles the searching of friends, displaying of friend requests and adding/ rejecting them
+ */
+
 public class SearchFriendsController  implements Initializable{
 
 
@@ -43,6 +47,12 @@ public class SearchFriendsController  implements Initializable{
     @FXML
     public ListView<AnchorPane> listViewFriends;
 
+
+    /**
+     * send a friend request to the selected user
+     * @param anchorPane pane in which the {add} button is stored.
+     * @throws IOException
+     */
 
     public void addFriend(AnchorPane anchorPane) throws IOException {
         Student friend = null ;
@@ -66,7 +76,14 @@ public class SearchFriendsController  implements Initializable{
         College.serialize(clgobj);
     }
 
-    public void viewRequests(){
+    /**
+     * Views the friend requests for the current user
+     * @throws IOException
+     */
+
+    public void viewRequests() throws IOException {
+
+
 
         TextFlow textFlow = new TextFlow();
         listViewRequests.getItems().clear();
@@ -131,9 +148,18 @@ public class SearchFriendsController  implements Initializable{
 
         }
 
+        College.serialize(clgobj);
+
     }
 
 
+    /**
+     * Method which accepts/rejects a friend request.
+     * @param anchorPane pane in whicht the {accept/reject} button is situated.
+     * @param react String value --> "accept" if accept button is clicked, "reject" if reject button is clicked.
+     * @param friendRequest A FriendRequest type object which is to be accepted/rejected.
+     * @throws IOException
+     */
     public void approveRequets(AnchorPane anchorPane, String react , FriendRequest friendRequest) throws IOException {
 
         TextFlow textFlow = (TextFlow) anchorPane.getChildren().get(0);
@@ -175,9 +201,19 @@ public class SearchFriendsController  implements Initializable{
     }
 
 
+    /**
+     * display the friends searched for and the friend requests for a user.
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        try {
+            clgobj = College.deserialize("data");
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         users = clgobj.getAllUsersMap();
         friendRequests = ((Student)current_user).getFriendRequests();
 
@@ -189,7 +225,11 @@ public class SearchFriendsController  implements Initializable{
                 TextFlow textFlow = new TextFlow();
 
                 listViewFriends.getItems().clear();
-                viewRequests();
+                try {
+                    viewRequests();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
                 for(Map.Entry<String,User> x : users.entrySet()){
                     AnchorPane anchorPane = new AnchorPane();
@@ -242,14 +282,6 @@ public class SearchFriendsController  implements Initializable{
                         }
                     }
                 }
-
-
-
-
-
-
-
-
 
 
             }
