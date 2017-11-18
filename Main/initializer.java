@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- *
+ *A class file which needs to be run before running the project to initialize the serialized files and read the course data and time table 
  * @author Lenovo
  */
 public class initializer {

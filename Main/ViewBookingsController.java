@@ -41,7 +41,10 @@ public class ViewBookingsController implements Initializable{
     @FXML
     private TableColumn<Requests, String> end_time;
 
-    @FXML
+        @FXML
+    private TableColumn<Requests, String> room;
+    
+        @FXML
     private TableColumn<Requests, String> UserType;
 
     @FXML
@@ -130,7 +133,7 @@ public class ViewBookingsController implements Initializable{
     
     /**
      * A method to put the entries of all the bookings in the table
-     * @throws IOException
+     * @throws IOException 
      * @throws ClassNotFoundException 
      */
     public void PopulateTable() throws IOException, ClassNotFoundException {
@@ -153,6 +156,8 @@ public class ViewBookingsController implements Initializable{
                 new PropertyValueFactory<Requests, String>("startTime"));
         end_time.setCellValueFactory(
                 new PropertyValueFactory<Requests, String>("endTime"));
+        room.setCellValueFactory(
+                new PropertyValueFactory<Requests, String>("roomNumber"));
         
         UserType.setCellValueFactory(
                 new PropertyValueFactory<Requests, String>("userType"));

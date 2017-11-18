@@ -172,7 +172,7 @@ public class SearchFriendsController  implements Initializable{
     /**
      * Method which accepts/rejects a friend request.
      * @param anchorPane pane in which the {accept/reject} button is situated.
-     * @param react String value --> "accept" if accept button is clicked, "reject" if reject button is clicked.
+     * @param react String value "accept" if accept button is clicked, "reject" if reject button is clicked.
      * @param friendRequest A FriendRequest type object which is to be accepted/rejected.
      * @throws IOException
      */

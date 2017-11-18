@@ -11,7 +11,6 @@ public class Student extends User {
 
     private String courseType;
     private String batch;
-    private TimeTable myTimeTable;
     private ArrayList<Course> courses;
     private ArrayList<Student> myFriends;
     private ArrayList<FriendRequest> friendRequests;
@@ -57,9 +56,6 @@ public class Student extends User {
     public void CancelRoom(Room room) {
     }
 
-    public TimeTable ViewTimeTable() {
-        return myTimeTable;
-    }
 
     public void SearchCourses(){
 //        return 

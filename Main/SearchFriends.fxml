@@ -4,10 +4,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="869.0" prefWidth="906.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.SearchFriendsController">
+<AnchorPane prefHeight="869.0" prefWidth="906.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.SearchFriendsController">
     <children>
         <TextField fx:id="searchFriendsTextField" alignment="CENTER" layoutX="263.0" layoutY="60.0" prefHeight="31.0" prefWidth="381.0" promptText="Search for Friends" />
-        <ListView fx:id="listViewFriends" layoutX="59.0" layoutY="136.0" prefHeight="559.0" prefWidth="381.0" />
-        <ListView fx:id="listViewRequests" layoutX="470.0" layoutY="136.0" prefHeight="559.0" prefWidth="381.0" />
+        <ListView fx:id="listViewFriends" layoutX="59.0" layoutY="136.0" opacity="0.87" prefHeight="559.0" prefWidth="381.0" style="-fx-background-color: #689D91;" />
+        <ListView fx:id="listViewRequests" layoutX="470.0" layoutY="136.0" opacity="0.88" prefHeight="559.0" prefWidth="381.0" style="-fx-background-color: #689D91;" />
     </children>
 </AnchorPane>
