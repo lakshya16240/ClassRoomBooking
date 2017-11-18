@@ -9,6 +9,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Class to store information about a romm
+ */
+
 public class Room implements Serializable {
 
     private String name;
@@ -24,6 +28,12 @@ public class Room implements Serializable {
         this.bookings = new ArrayList<Requests>();
     }
 
+    /**
+     * To serialize an object of Class Room
+     * @param rb hashmap to be serialized
+     * @throws IOException
+     */
+
     public static void serializeRoom(HashMap<String, Room> rb) throws IOException {
 
         ObjectOutputStream out = null;
@@ -36,6 +46,13 @@ public class Room implements Serializable {
             out.close();
         }
     }
+
+    /**
+     * To deserialize an object of Class Room
+     * @return a hashmap of key type 'String' , value type 'Room'
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
 
     public static HashMap<String, Room> deserializeRoom() throws IOException, ClassNotFoundException {
         System.out.println("deserializing");

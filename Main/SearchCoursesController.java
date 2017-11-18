@@ -30,6 +30,11 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 
+
+/**
+ * Controller which handles the searching of courses according to the postConditions and the selected courses
+ */
+
 public class SearchCoursesController implements Initializable {
 
     @FXML
@@ -61,6 +66,13 @@ public class SearchCoursesController implements Initializable {
     @FXML
     private Button AddCourse;
 
+
+    /**
+     *
+     * adds the courses selected by the user
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     @FXML
     void addCourse(ActionEvent event) throws IOException, ClassNotFoundException {
                 clgobj = College.deserialize("data");
@@ -111,6 +123,13 @@ public class SearchCoursesController implements Initializable {
         College.serialize(clgobj);
     }
 
+
+    /**
+     *
+     * @param courses list of courses to be checked for overlap of timings
+     * @param toBeCheckedCourse course to be checked with the list of courses for overlap of timings
+     * @return
+     */
     boolean checkTimingsCourses(ArrayList<Course> courses,Course toBeCheckedCourse){
         for(int i=0;i<courses.size();i++){
             if(!courses.get(i).checkTime(toBeCheckedCourse)){
@@ -122,6 +141,12 @@ public class SearchCoursesController implements Initializable {
 
     }
 
+
+    /**
+     * Displays the courses that are being searched for by the user
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 //        searchCoursesTable.setSelectionModel(value);

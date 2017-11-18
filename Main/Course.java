@@ -51,6 +51,7 @@ public class Course implements Serializable {
         //System.out.println( "holaaa :  " + postConditionsString);
     }
 
+
     public ArrayList<String> getPostConditions() {
         return postConditions;
     }

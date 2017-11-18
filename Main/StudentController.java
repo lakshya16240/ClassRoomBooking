@@ -26,6 +26,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
 
+
+/**
+ * A controller which handled the display of various pages of a student portal.
+ */
 public class StudentController implements Initializable {
 
     Notifications notifBuilder;
@@ -38,8 +42,13 @@ public class StudentController implements Initializable {
     public void Start(Student student) {
         myStudent = student;
     }
-    
 
+
+    /**
+     * method to display notifications to the student
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void displayNotification(ActionEvent event) throws IOException {
         System.out.println("Button pressed");
@@ -67,6 +76,13 @@ public class StudentController implements Initializable {
 //        });
 //    }
 
+    /**
+     * method used as a helper in displaying notifications
+     * @param pos to define the position of notification
+     * @param graphic the graphic property of the notification
+     * @param text the text to be displayed
+     */
+
     private void notification(Pos pos, Node graphic, String text) {
         notifBuilder = Notifications.create().title("My Notifications").text(text).graphic(graphic).position(pos);
 //        Notifications.create().
@@ -83,6 +99,11 @@ public class StudentController implements Initializable {
     @FXML
     private JFXTextField welcome_user;
 
+    /**
+     * To display the courses taught by the faculty
+     * @param event mouse click
+     * @throws IOException
+     */
 
     @FXML
     void displayCourses(ActionEvent event) throws IOException {
@@ -101,6 +122,12 @@ public class StudentController implements Initializable {
 //        tableView.getColumns().add(0,"monday");
     }
 
+    /**
+     * method to see the room booking for faculty
+     * @param event
+     * @throws IOException
+     */
+
     @FXML
     void roomBooking(ActionEvent event) throws IOException {
         Pane newstudentPane = FXMLLoader.load(getClass().getResource("RoomBooking.fxml"));
@@ -108,6 +135,11 @@ public class StudentController implements Initializable {
         studentPane.getChildren().add(newstudentPane);
     }
 
+    /**
+     * method to see the time table  page of a student
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void viewTimeTable(ActionEvent event) throws IOException {
         Pane newstudentPane = FXMLLoader.load(getClass().getResource("TimeTable.fxml"));
@@ -122,6 +154,12 @@ public class StudentController implements Initializable {
         //studentPane.getChildren().add(popupContent);
         studentPane.getChildren().add(newstudentPane);
     }
+
+    /**
+     * method the see the page for searching of courses
+     * @param event
+     * @throws IOException
+     */
 
     @FXML
     void searchCoursesStudent(ActionEvent event) throws IOException {
@@ -158,6 +196,12 @@ public class StudentController implements Initializable {
 //        Student profile = (Student)(clgobj.getAllUsersMap().get(friend));
 //
 //    }
+
+    /**
+     * method to see the page diplaying the requests sent by the student
+     * @param actionEvent
+     * @throws IOException
+     */
     @FXML
     public void myRequestsStudent(ActionEvent actionEvent) throws IOException {
 
@@ -166,6 +210,11 @@ public class StudentController implements Initializable {
         studentPane.getChildren().add(newstudentPane);
     }
 
+    /**
+     * method to see the page for searching of friends
+     * @param actionEvent
+     * @throws IOException
+     */
     @FXML
     public void searchFriends(ActionEvent actionEvent) throws IOException {
 
@@ -175,6 +224,25 @@ public class StudentController implements Initializable {
         studentPane.getChildren().add(newstudentPane);
     }
 
+    /**
+     * method to see the page diplaying the friends of a user
+     * @param actionEvent
+     * @throws IOException
+     */
+    @FXML
+    public void myFriends(ActionEvent actionEvent) throws IOException {
+
+        Pane newstudentPane = FXMLLoader.load(getClass().getResource("Friends.fxml"));
+        studentPane.getChildren().clear();
+        studentPane.getChildren().add(newstudentPane);
+
+    }
+
+    /**
+     * method to logout the currently logged in student
+     * @param actionEvent
+     * @throws IOException
+     */
     @FXML
     public void Logout(ActionEvent actionEvent) throws IOException {
 
@@ -186,9 +254,8 @@ public class StudentController implements Initializable {
 
     }
 
-    void Test(String s) {
-        System.out.println(s + " chalaaa");
-    }
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -213,6 +280,7 @@ public class StudentController implements Initializable {
 //            resultInfo.setText("Passed!");
         welcome_user.setStyle("-fx-text-fill: white; -fx-font-size: 16;");
     }
+
 
 
 }
