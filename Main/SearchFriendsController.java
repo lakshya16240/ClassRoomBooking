@@ -220,6 +220,87 @@ public class SearchFriendsController  implements Initializable{
     }
 
 
+    void populateList(){
+
+        TextFlow textFlow = new TextFlow();
+
+        for(Map.Entry<String,User> x : users.entrySet()){
+            AnchorPane anchorPane = new AnchorPane();
+            textFlow = new TextFlow();
+            int flag=0;
+
+            if(!x.getValue().getEmailId().equals(current_user.getEmailId())){
+                if(x.getValue().getType().equals("Student")) {
+                    Text text1 = new Text(x.getValue().getName() + "\n");
+                    text1.setStyle("-fx-font-size: 20px");
+                    Text text2 = new Text(x.getValue().getEmailId() + "\n");
+                    text2.setStyle("-fx-font-size: 15px");
+                    Text text3 = new Text(((Student)x.getValue()).getCourseType() + " - " + ((Student)x.getValue()).getBatch());
+                    text3.setStyle("-fx-font-size: 14px");
+                    textFlow.getChildren().addAll(text1, text2, text3);
+                    anchorPane.getChildren().add(textFlow);
+                    textFlow.setPrefWidth(290);
+                    for(int i=0;i<((Student) current_user).getFriendRequests().size();i++){
+                        System.out.println(((Student) current_user).getFriendRequests().get(i).getReceiver().getName());
+                        if(((Student) current_user).getFriendRequests().get(i).getReceiver().getName().equals(x.getValue().getName())
+                                || ((Student) current_user).getFriendRequests().get(i).getSender().getName().equals(x.getValue().getName())){
+
+                            System.out.println("DEBUG");
+                            Text textstatus = new Text(((Student) current_user).getFriendRequests().get(i).getStatus());
+                            anchorPane.getChildren().add(textstatus);
+                            textstatus.setLayoutX(270);
+                            textstatus.setLayoutY(20);
+                            textstatus.setStyle("-fx-font-size: 14px");
+                            flag=1;
+
+                        }
+                    }
+
+                    for(int i=0;i<((Student)current_user).getMyFriends().size();i++){
+                        if(((Student)current_user).getMyFriends().get(i).getName().equals(x.getKey())){
+
+                            Text textstatus = new Text("Friend");
+                            anchorPane.getChildren().add(textstatus);
+                            textstatus.setLayoutX(270);
+                            textstatus.setLayoutY(20);
+                            textstatus.setStyle("-fx-font-size: 14px");
+                            textstatus.setTextAlignment(TextAlignment.CENTER);
+                            flag=1;
+                        }
+                    }
+
+
+
+                    if(flag==0) {
+                        Button button = new Button("+ Add Friend");
+                        anchorPane.getChildren().add(button);
+                        button.setLayoutX(270);
+                        button.setOnAction(new EventHandler<ActionEvent>() {
+                            @Override
+                            public void handle(ActionEvent event) {
+
+
+                                try {
+                                    addFriend((AnchorPane) button.getParent());
+                                    viewRequests();
+                                    anchorPane.getChildren().remove(button);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                } catch (ClassNotFoundException ex) {
+                                    Logger.getLogger(SearchFriendsController.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            }
+                        });
+                    }
+
+                    listViewFriends.getItems().add(anchorPane);
+                }
+            }
+        }
+
+    }
+
+
     /**
      * display the friends searched for and the friend requests for a user.
      * @param location
@@ -238,6 +319,7 @@ public class SearchFriendsController  implements Initializable{
             users = clgobj.getAllUsersMap();
             friendRequests = ((Student)current_user).getFriendRequests();
             listViewFriends.getItems().clear();
+            populateList();
             viewRequests();
             searchFriendsTextField.textProperty().addListener(new ChangeListener<String>() {
 

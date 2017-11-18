@@ -347,7 +347,7 @@ public class RoomBookingController implements Initializable {
         } else if (startHour > endHour) {
             myreq.setStatus("Invalid Request");
             flag = 1;
-        } else if (startHour == endHour && startMin < endMin) {
+        } else if (startHour == endHour && startMin > endMin) {
             myreq.setStatus("Invalid Request");
             flag = 1;
         }
