@@ -10,15 +10,17 @@ import java.util.HashMap;
 public class Student extends User {
 
     private String courseType;
+    private String batch;
     private ArrayList<Course> courses;
     private ArrayList<Student> myFriends;
     private ArrayList<FriendRequest> friendRequests;
     private String courseInfoString = "";
 
     
-    Student(String name, String emailId, String password, String type, String courseType) {
+    Student(String name, String emailId, String password, String type, String courseType, String batch) {
         super(name, emailId, password, type);
         this.courseType = courseType;
+        this.batch = batch;
         courses = new ArrayList<>();
         friendRequests = new ArrayList<>();
         myFriends = new ArrayList<>();
@@ -26,6 +28,10 @@ public class Student extends User {
 
     public String getCourseType() {
         return courseType;
+    }
+
+    public String getBatch() {
+        return batch;
     }
 
     public ArrayList<Student> getMyFriends() {
@@ -63,7 +69,7 @@ public class Student extends User {
 
         courseInfoString = "";
         for(int i=0;i<courses.size();i++){
-            courseInfoString = courseInfoString + Integer.toString(i+1) + ". " + courses.get(i).getName() +  " - " + courses.get(i).getInstructor();
+            courseInfoString = courseInfoString + Integer.toString(i+1) + ". " + courses.get(i).getName() +  " - " + courses.get(i).getInstructor() + "\n";
         }
 
     }

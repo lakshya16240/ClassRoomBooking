@@ -215,7 +215,7 @@ public class Course implements Serializable {
                 System.out.println("debug" + endTimeCourse);
 
                 if (startTime.compareTo(startTimeCourse) < 0
-                        && startTime.compareTo(endTimeCourse) > 0) {
+                        && endTime.compareTo(startTimeCourse) > 0) {
                     System.out.println("1");
                     System.out.println(startTimeCourse);
                     System.out.println(startTime);
@@ -223,7 +223,7 @@ public class Course implements Serializable {
 
                     return false;
 
-                } else if (endTime.compareTo(startTimeCourse) < 0
+                } else if (startTime.compareTo(endTimeCourse) < 0
                         && endTime.compareTo(endTimeCourse) > 0) {
                     System.out.println("2");
                     System.out.println(startTimeCourse);
@@ -232,7 +232,7 @@ public class Course implements Serializable {
 
                     return false;
                 } else if (startTimeCourse.compareTo(startTime) < 0
-                        && startTimeCourse.compareTo(endTime) > 0) {
+                        && endTimeCourse.compareTo(startTime) > 0) {
                     System.out.println("3");
 
                     System.out.println(startTimeCourse);
@@ -241,7 +241,7 @@ public class Course implements Serializable {
 
                     return false;
 
-                } else if (endTimeCourse.compareTo(startTime) < 0
+                } else if (startTimeCourse.compareTo(endTime) < 0
                         && endTimeCourse.compareTo(endTime) > 0) {
                     System.out.println("4");
                     System.out.println(startTimeCourse);

@@ -33,6 +33,9 @@ import javafx.stage.Stage;
 public class Controller implements Initializable {
 
     @FXML
+    public ComboBox<String> batchComboBox;
+
+    @FXML
     private TableView<Course> mytable;
 
     @FXML
@@ -138,6 +141,7 @@ public class Controller implements Initializable {
         String email = emailId.getText();
         String passwd = password.getText();
         String course = courseComboBox.getValue();
+        String batch = batchComboBox.getValue();
         RadioButton selectedRadioButton = (RadioButton) Users.getSelectedToggle();
         String type = "";
         if (selectedRadioButton != null) {
@@ -150,7 +154,7 @@ public class Controller implements Initializable {
                 flag = 1;
             }
         } else {
-            if (user_name.equals("") || email.equals("") || passwd.equals("") || course == null || course.equals("Course") || type.equals("")) {
+            if (user_name.equals("") || email.equals("") || passwd.equals("") || course == null || course.equals("Course") || batch == null || batch.equals("Batch") || type.equals("") ){
                 signuplabel.setText("All Fields are Required");
                 flag = 1;
             }
@@ -165,9 +169,11 @@ public class Controller implements Initializable {
         }
         courseComboBox.setValue("Course");
         courseComboBox.setDisable(true);
+        batchComboBox.setValue("Batch");
+        batchComboBox.setDisable(true);
 //        System.out.println(u);
         if (flag == 0) {
-            int val = clgobj.SignUp(user_name, email, passwd, type, course);
+            int val = clgobj.SignUp(user_name, email, passwd, type, course, batch);
             if (val == 0) {
                 signuplabel.setText("User already exists");
             }
@@ -357,6 +363,7 @@ public class Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         courseComboBox.getItems().addAll("CSE", "ECE", "CSAM");
+        batchComboBox.getItems().addAll("1st Year", "2nd Year","3rd Year","4th Year");
 
         username.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -425,6 +432,7 @@ public class Controller implements Initializable {
                 if (event.getCode() == KeyCode.ENTER) {
                     studentToggle.setSelected(true);
                     courseComboBox.setDisable(false);
+                    batchComboBox.setDisable(false);
                 }
             }
         });
@@ -446,6 +454,18 @@ public class Controller implements Initializable {
                 }
             }
         });
+
+        studentToggle.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if(studentToggle.isSelected()){
+                    courseComboBox.setDisable(false);
+                    batchComboBox.setDisable(false);
+                }
+
+            }
+        });
+
     }
 
 }

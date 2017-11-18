@@ -67,6 +67,11 @@ public class College implements Serializable{
             in.close();
         }
     }
+
+    /**
+     *
+     * @return
+     */
     public ArrayList<Room> getAllRooms() {
         return allRooms;
     }
@@ -93,11 +98,12 @@ public class College implements Serializable{
      * @param password password of user 
      * @param type type of user
      * @param courseType branch of user
+     * @param batch The batch of the user.
      * @return 0 if user already exists, 1 if sign up is successful, 2 if email ID is incorrect
      * @throws IOException
      * @throws ClassNotFoundException 
      */
-    public int SignUp(String name, String emailId, String password, String type, String courseType) throws IOException, ClassNotFoundException {
+    public int SignUp(String name, String emailId, String password, String type, String courseType, String batch) throws IOException, ClassNotFoundException {
         if (credentials.get(emailId)!=null){
             return 0;
         }
@@ -106,14 +112,12 @@ public class College implements Serializable{
         }
         
         User user;
-        System.out.println(type);
         if (type.equals("Student")){
-            user = new Student(name,emailId,password,type,courseType);
+            user = new Student(name,emailId,password,type,courseType, batch);
 
             allCourses = College.deserialize("data").getAllCourses();
             for(int i=0;i<allCourses.size();i++){
                 Course course = allCourses.get(i);
-                System.out.println("type  " + course.getType() + " name" + course.getCode());
                 if(course.getType().equalsIgnoreCase("Mandatory")){
 
                     if(courseType.equalsIgnoreCase("CSAM")) {
@@ -139,7 +143,6 @@ public class College implements Serializable{
                     }
                 }
             }
-            System.out.println("Student created");
         }
         else if (type.equals("Admin")){
             user = new Admin(name,emailId,password,type);
@@ -162,9 +165,7 @@ public class College implements Serializable{
      */
     public int Login(String emailId, String password){
         
-        System.out.println(emailId + " " + password);
         String actualPassword = credentials.get(emailId);
-        System.out.println(actualPassword);
 
         if(actualPassword!=null && actualPassword.equals(password))
             return 1;

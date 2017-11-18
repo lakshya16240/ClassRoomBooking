@@ -56,15 +56,12 @@ public class AdminController implements Initializable {
      */ 
      @FXML
     void displayNotification(ActionEvent event) throws IOException {
-        System.out.println("Button pressed");
-        System.out.println("notif = " +MainPage.current_user.getNotification());
-//        if (MainPage.current_user.getNotification()!=null){
-            System.out.println("not null");
+
             notification(Pos.TOP_CENTER, graphic, MainPage.current_user.getNotification());
             MainPage.current_user.setNotification(null);
             notifBuilder.showInformation();
             College.serialize(clgobj);
-//        }
+
         
     }
     
@@ -105,7 +102,6 @@ public class AdminController implements Initializable {
         adminPane.getChildren().clear();
         adminPane.getChildren().add(newadminPane);
 
-        System.out.println("ENDDDDD");
     }
     
     /**
