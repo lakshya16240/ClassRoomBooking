@@ -65,13 +65,15 @@ public class Control implements Initializable {
      * @throws IOException 
      */
     @FXML
-    void leaveCourse(ActionEvent event) throws IOException {
+    void leaveCourse(ActionEvent event) throws IOException, ClassNotFoundException {
+        clgobj = College.deserialize("data");
         ObservableList<Course> obslist = mytable.getSelectionModel().getSelectedItems();
         for (int i = 0; i < obslist.size(); i++) {
             if(!obslist.get(i).getType().equalsIgnoreCase("Mandatory"))
                 ((Student) MainPage.current_user).viewCourses().remove(obslist.get(i));
         }
         populateTable();
+        clgobj.getAllUsersMap().put(MainPage.current_user.getEmailId(), MainPage.current_user);
         College.serialize(clgobj);
     }
     private ArrayList<Course> myCourses = new ArrayList<>();

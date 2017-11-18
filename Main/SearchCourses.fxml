@@ -6,8 +6,8 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="867.0" prefWidth="906.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.SearchCoursesController">
-   <children>
+<AnchorPane prefHeight="912.0" prefWidth="960.0"  xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.SearchCoursesController">
+   <children> 
       <TextField fx:id="searchCoursesTextField" alignment="CENTER" layoutX="294.0" layoutY="61.0" prefHeight="31.0" prefWidth="318.0" promptText="Search for Courses" />
       <Button fx:id="AddCourse" layoutX="390.0" layoutY="738.0" mnemonicParsing="false" onAction="#addCourse" prefHeight="31.0" prefWidth="123.0" text="Add Course" />
       <TableView fx:id="searchCoursesTable" layoutX="-2.0" layoutY="130.0" prefHeight="565.0" prefWidth="906.0" style="-fx-background-color: #3A7A77;">
