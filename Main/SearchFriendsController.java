@@ -57,7 +57,7 @@ public class SearchFriendsController  implements Initializable{
     public void addFriend(AnchorPane anchorPane) throws IOException {
         Student friend = null ;
         TextFlow textFlow = (TextFlow) anchorPane.getChildren().get(0);
-        Text text= (Text) textFlow.getChildren().get(0);
+        Text text= (Text) textFlow.getChildren().get(1);
         String name = text.getText();
         name = name.replace("\n","");
         System.out.println("NAME : " + name);
@@ -163,7 +163,7 @@ public class SearchFriendsController  implements Initializable{
     public void approveRequets(AnchorPane anchorPane, String react , FriendRequest friendRequest) throws IOException {
 
         TextFlow textFlow = (TextFlow) anchorPane.getChildren().get(0);
-        Text text= (Text) textFlow.getChildren().get(0);
+        Text text= (Text) textFlow.getChildren().get(1);
         String name = text.getText();
         name = name.replace("\n","");
         if(react.equals("accept")){
