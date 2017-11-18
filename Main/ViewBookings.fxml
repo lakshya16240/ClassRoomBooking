@@ -13,6 +13,7 @@
                 <TableColumn fx:id="Date" prefWidth="107.0" text="Date" />
                 <TableColumn fx:id="start_time" prefWidth="102.0" text="Start Time" />
             <TableColumn fx:id="end_time" prefWidth="108.0" text="End Time" />
+            <TableColumn fx:id="room" prefWidth="75.0" text="Room" />
                 <TableColumn fx:id="UserType" prefWidth="159.0" text="User Type" />
                 <TableColumn fx:id="Reason" prefWidth="504.0" text="Reason" />
             </columns>

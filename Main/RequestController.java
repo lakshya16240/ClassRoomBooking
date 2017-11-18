@@ -29,14 +29,22 @@ public class RequestController implements Initializable {
     @FXML
     private TableColumn<Requests, String> Date;
 
-    @FXML
-    private TableColumn<Requests, String> Timings;
+ 
 
     @FXML
     private TableColumn<Requests, String> UserType;
 
     @FXML
     private TableColumn<Requests, String> Reason;
+    
+        @FXML
+    private TableColumn<Requests, String> start_time;
+
+    @FXML
+    private TableColumn<Requests, String> end_time;
+
+    @FXML
+    private TableColumn<Requests, String> room;
 
     @FXML
     private Button ApproveButton;
@@ -258,8 +266,12 @@ public class RequestController implements Initializable {
 //        final ObservableList<Course> data = FXCollections.observableArrayList(new Course("a", "b" , "c", "d", 5, null, null, null, null));
         Date.setCellValueFactory(
                 new PropertyValueFactory<Requests, String>("date"));
-        Timings.setCellValueFactory(
+        start_time.setCellValueFactory(
                 new PropertyValueFactory<Requests, String>("startTime"));
+        end_time.setCellValueFactory(
+                new PropertyValueFactory<Requests, String>("endTime"));
+        room.setCellValueFactory(
+                new PropertyValueFactory<Requests, String>("roomNumber"));
         UserType.setCellValueFactory(
                 new PropertyValueFactory<Requests, String>("userType"));
         Reason.setCellValueFactory(

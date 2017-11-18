@@ -8,7 +8,7 @@ package Main;
 import java.io.Serializable;
 
 /**
- *
+ *A class which stores the sender, receiver and status of the friend request
  * @author Lenovo
  */
 public class FriendRequest implements Serializable{
