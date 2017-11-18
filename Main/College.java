@@ -101,9 +101,9 @@ public class College implements Serializable{
         if (credentials.get(emailId)!=null){
             return 0;
         }
-//        if (!emailId.contains("@iiitd.ac.in")){
-//            return 2;
-//        }
+        if (!emailId.contains("@iiitd.ac.in")){
+            return 2;
+        }
         
         User user;
         System.out.println(type);

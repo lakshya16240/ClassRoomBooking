@@ -13,13 +13,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- *A class file which needs to be run before running the project to initialize the serialized files and read the course data and time table 
+ * A class file which needs to be run before running the project to initialize
+ * the serialized files and read the course data and time table
+ *
  * @author Lenovo
  */
 public class initializer {
+
     private static HashMap<String, Room> roomBookings;
-
-
 
     public static void addBookings(String[] timeAndVenue, int i) throws IOException {                      // i REPRESENTS DAY
 
@@ -73,8 +74,7 @@ public class initializer {
         roomBookings.put(timeAndVenue[1], room);
         Room.serializeRoom(roomBookings);
     }
-    
-    
+
 //    public static void serializeRoom(HashMap<String, Room> rb) throws IOException {
 //
 //        ObjectOutputStream out = null;
@@ -87,7 +87,6 @@ public class initializer {
 //            out.close();
 //        }
 //    }
-    
     public static void serialize(College p) throws IOException {
 
         ObjectOutputStream out = null;
@@ -129,9 +128,9 @@ public class initializer {
         clgobj.getAllUsersMap().put("lakshya16240", admin2);
         clgobj.getCredentials().put("abhishek16126", "abhi");
         clgobj.getCredentials().put("lakshya16240", "chowki");
-        System.out.println("added wadded");
+//        System.out.println("added wadded");
 //        System.out.println(admin1.getType());
-        System.out.println("hello");
+//        System.out.println("hello");
 
         serialize(clgobj);
     }

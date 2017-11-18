@@ -18,15 +18,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static Main.MainPage.clgobj;
+
 /**
  * A controller class which the admin to view the rooms booked
+ *
  * @author Lenovo
  */
 
 /**
  * Controller handling the display of room booking requests made by users
  */
-public class ViewBookingsController implements Initializable{
+public class ViewBookingsController implements Initializable {
 
     @FXML
     private TableView<Requests> requestTable;
@@ -37,24 +39,24 @@ public class ViewBookingsController implements Initializable{
     @FXML
     private TableColumn<Requests, String> start_time;
 
-    
     @FXML
     private TableColumn<Requests, String> end_time;
 
-        @FXML
+    @FXML
     private TableColumn<Requests, String> room;
-    
-        @FXML
+
+    @FXML
     private TableColumn<Requests, String> UserType;
 
     @FXML
     private TableColumn<Requests, String> Reason;
 
     /**
-     *This method gives admin the ability to cancel the request of any user 
+     * This method gives admin the ability to cancel the request of any user
+     *
      * @param actionEvent mouse click
      * @throws IOException
-     * @throws ClassNotFoundException 
+     * @throws ClassNotFoundException
      */
     @FXML
     public void CancelRequests(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
@@ -77,15 +79,14 @@ public class ViewBookingsController implements Initializable{
 //                User  userobj = clgobj.getAllUsersMap().get(current_req.getUser().getName());
 //            User userobj = current_req.getUser();
             User userobj = clgobj.getAllUsersMap().get(current_req.getUser().getEmailId());
-            
-            System.out.println("user check " + userobj);
 
+//            System.out.println("user  check " + userobj);
             for (int i = 0; i < userobj.getRequests().size(); i++) {
                 if (userobj.getRequests().get(i).equals(current_req)) {
                     userobj.getRequests().get(i).setStatus("Cancelled");
                 }
             }
-            System.out.println("All requests on pressing DisApproved: " + userobj.getRequests());
+//            System.out.println("All requests on pressing DisApproved: " + userobj.getRequests());
             clgobj.getAllUsersMap().put(current_req.getUser().getEmailId(), userobj);
 //            System.out.println("The actual check " + clgobj.getAllUsersMap().get("ab").getRequests());
 
@@ -125,16 +126,15 @@ public class ViewBookingsController implements Initializable{
         Controller.serializeArray(AllRequests);
         PopulateTable();
         College.serialize(clgobj);
-        System.out.println("serialized");
+//        System.out.println("serialized");
 
     }
-    
 
-    
     /**
      * A method to put the entries of all the bookings in the table
-     * @throws IOException 
-     * @throws ClassNotFoundException 
+     *
+     * @throws IOException
+     * @throws ClassNotFoundException
      */
     public void PopulateTable() throws IOException, ClassNotFoundException {
         ArrayList<Requests> requests = new ArrayList<Requests>();
@@ -142,13 +142,14 @@ public class ViewBookingsController implements Initializable{
         if (requests == null) {
             requests = new ArrayList<Requests>();
         }
-        System.out.println("check in bookings " + requests);
+//        System.out.println("check in bookings " + requests);
         ObservableList<Requests> obsList = FXCollections.observableArrayList();
         for (int i = 0; i < requests.size(); i++) {
-            if(requests.get(i).getStatus().equals("Approved"))
+            if (requests.get(i).getStatus().equals("Approved")) {
                 obsList.add(requests.get(i));
+            }
         }
-        System.out.println("arraylist coming");
+//        System.out.println("arraylist coming");
 //        final ObservableList<Course> data = FXCollections.observableArrayList(new Course("a", "b" , "c", "d", 5, null, null, null, null));
         Date.setCellValueFactory(
                 new PropertyValueFactory<Requests, String>("date"));
@@ -158,7 +159,7 @@ public class ViewBookingsController implements Initializable{
                 new PropertyValueFactory<Requests, String>("endTime"));
         room.setCellValueFactory(
                 new PropertyValueFactory<Requests, String>("roomNumber"));
-        
+
         UserType.setCellValueFactory(
                 new PropertyValueFactory<Requests, String>("userType"));
         Reason.setCellValueFactory(
@@ -169,7 +170,7 @@ public class ViewBookingsController implements Initializable{
         requestTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         College.serialize(clgobj);
     }
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {

@@ -60,7 +60,7 @@ public class RequestController implements Initializable {
      */
     @FXML
     void ApproveRequests(ActionEvent event) throws IOException, ClassNotFoundException {
-        System.out.println("Approve request called");
+//        System.out.println("Approve request called");
         ObservableList<Requests> ApprovedRequests = FXCollections.observableArrayList();;
         ApprovedRequests = requestTable.getSelectionModel().getSelectedItems();
 //        System.out.println("req = " + ApprovedRequests);
@@ -69,8 +69,8 @@ public class RequestController implements Initializable {
         ArrayList<Requests> AllRequests ;
         AllRequests = Controller.deserializeArray();
         int cnt = ApprovedRequests.size() - 1;
-        System.out.println("to be approved requests = " + ApprovedRequests);
-        System.out.println("all requests = " + AllRequests);
+//        System.out.println("to be approved requests = " + ApprovedRequests);
+//        System.out.println("all requests = " + AllRequests);
         ArrayList<Requests> AppReq = new ArrayList<>();
 
         for (int i = 0; i < ApprovedRequests.size(); i++) {
@@ -79,12 +79,12 @@ public class RequestController implements Initializable {
         
         while (cnt >= 0) {
             Requests current_req = AppReq.get(cnt);
-            System.out.println("current_req = " + current_req);
+//            System.out.println("current_req = " + current_req);
 //                User  userobj = clgobj.getAllUsersMap().get(current_req.getUser().getName());
             User userobj = clgobj.getAllUsersMap().get(current_req.getUser().getEmailId());
-            System.out.println(" my user check " + userobj);
+//            System.out.println(" my user check " + userobj);
 
-            System.out.println("All requests on pressing Approved before check: " + userobj.getRequests());
+//            System.out.println("All requests on pressing Approved before check: " + userobj.getRequests());
 
             for (int i = 0; i < userobj.getRequests().size(); i++) {
                 if (userobj.getRequests().get(i).equals(current_req)) {
@@ -92,7 +92,7 @@ public class RequestController implements Initializable {
                     RoomData.get(current_req.getRoomNumber()).getBookings().add(userobj.getRequests().get(i));
                 }
             }
-            System.out.println("All requests on pressing Approved after check: " + clgobj.getAllUsersMap().get(userobj.getEmailId()).getRequests());
+//            System.out.println("All requests on pressing Approved after check: " + clgobj.getAllUsersMap().get(userobj.getEmailId()).getRequests());
 //            clgobj.getAllUsersMap().put(current_req.getUser().getEmailId(), userobj);
 //            System.out.println("All requests on pressing Approved: " + userobj.getRequests());
 //            System.out.println("All requests on pressing Approved (just a check) : " + clgobj.getAllUsersMap().get(userobj.getEmailId()).getRequests());
@@ -114,9 +114,9 @@ public class RequestController implements Initializable {
 //                main.current_user = current_req.getUser();
                 if (AllRequests.get(i).equals(current_req)) {
                     AppReq.remove(cnt);
-                    System.out.println("object found");
+//                    System.out.println("object found");
                     cnt--;
-                    AllRequests.get(i).setStatus("Approved");
+//                    AllRequests.get(i).setStatus("Approved");
 //                    AllRequests.remove(i);
                 }
             }
@@ -137,7 +137,7 @@ public class RequestController implements Initializable {
         Room.serializeRoom(RoomData);
         College.serialize(clgobj);
         PopulateTable();
-        System.out.println("serialized");
+//        System.out.println("serialized");
         
     }
     /**
@@ -169,14 +169,14 @@ public class RequestController implements Initializable {
 //            User userobj = current_req.getUser();
             User userobj = clgobj.getAllUsersMap().get(current_req.getUser().getEmailId());
             
-            System.out.println("user check " + userobj);
+//            System.out.println("user check " + userobj);
 
             for (int i = 0; i < userobj.getRequests().size(); i++) {
                 if (userobj.getRequests().get(i).equals(current_req)) {
                     userobj.getRequests().get(i).setStatus("Rejected");
                 }
             }
-            System.out.println("All requests on pressing DisApproved: " + userobj.getRequests());
+//            System.out.println("All requests on pressing DisApproved: " + userobj.getRequests());
             clgobj.getAllUsersMap().put(current_req.getUser().getEmailId(), userobj);
 //            System.out.println("The actual check " + clgobj.getAllUsersMap().get("ab").getRequests());
 
@@ -216,7 +216,7 @@ public class RequestController implements Initializable {
         Controller.serializeArray(AllRequests);
         PopulateTable();
         College.serialize(clgobj);
-        System.out.println("serialized");
+//        System.out.println("serialized");
 
     }
     /**
@@ -251,7 +251,7 @@ public class RequestController implements Initializable {
         Date CurrentDate = cal.getTime();
         for (int i = 0; i < requests.size(); i++) {
             int DayDiff = (int) ((CurrentDate.getTime() - requests.get(i).getBookingDate().getTime()) / 86400000);
-            System.out.println("day differnce = " + DayDiff);
+//            System.out.println("day differnce = " + DayDiff);
             if (DayDiff > 5) {
                 requests.get(i).setStatus("Request expired");
             }
@@ -262,7 +262,7 @@ public class RequestController implements Initializable {
             }
 
         }
-        System.out.println("arraylist coming");
+//        System.out.println("arraylist coming");
 //        final ObservableList<Course> data = FXCollections.observableArrayList(new Course("a", "b" , "c", "d", 5, null, null, null, null));
         Date.setCellValueFactory(
                 new PropertyValueFactory<Requests, String>("date"));

@@ -76,11 +76,11 @@ public class Requests implements Serializable {
 
     public boolean equals(Requests req) {
         if (date.equals(req.getDate()) && reason.equals(req.getReason()) && userType.equals(req.getUserType()) && startTime.equals(req.startTime) && endTime.equals(req.endTime)) {
-            System.out.println(" Request True");
+//            System.out.println(" Request True");
             return true;
 
         }
-        System.out.println("Request False");
+//        System.out.println("Request False");
         return false;
     }
 
@@ -119,6 +119,6 @@ public class Requests implements Serializable {
     }
 
     public static void main(String[] args) {
-        System.out.println("ABHISHEK");
+//        System.out.println("ABHISHEK");
     }
 }
