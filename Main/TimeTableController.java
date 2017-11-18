@@ -49,7 +49,7 @@ public class TimeTableController implements Initializable {
     private void coursesListView(int day) throws IOException {
         //int day = datePicker.getValue().getDayOfWeek().getValue() - 1;
 //        MainPage.current_user = (Student) MainPage.current_user;
-        System.out.println("day ::::" + day);
+//        System.out.println("day ::::" + day);
 
         listViewCourses.getItems().clear();
         //List<Course> displayList = new ArrayList<>();

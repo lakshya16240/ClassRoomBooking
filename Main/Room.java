@@ -55,7 +55,8 @@ public class Room implements Serializable {
      */
 
     public static HashMap<String, Room> deserializeRoom() throws IOException, ClassNotFoundException {
-        System.out.println("deserializing");
+//        System.out.println("deserializing");
+
         ObjectInputStream in = null;
         HashMap<String, Room> rb;
         try {
@@ -72,9 +73,9 @@ public class Room implements Serializable {
     public  void printAvailability(){
         for (int i= 0 ; i < 7 ; i++){
             for (int j=0;j<24;j++){
-                System.out.print(getAvailability()[j][i]+ " " );
+//                System.out.print(getAvailability()[j][i]+ " " );
             }
-            System.out.println();
+//            System.out.println();
         }
     }
 

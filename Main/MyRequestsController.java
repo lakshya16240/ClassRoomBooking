@@ -73,7 +73,7 @@ public class MyRequestsController implements Initializable {
             CancelReq.add(CancelledRequests.get(i));
 //            CancelledRequests.get(i).setStatus("Cancelled");
         }
-        System.out.println("requests check " + current_user.getRequests());
+//        System.out.println("requests check " + current_user.getRequests());
         Requests req = null;
         for (int i = 0; i < CancelReq.size(); i++) {
 //            CancelReq.add(CancelledRequests.get(i));
@@ -84,14 +84,14 @@ public class MyRequestsController implements Initializable {
                         req = CancelReq.get(i);
                     }
                     AllRequests.get(j).setStatus("Cancelled");
-                    System.out.println("Hua kuch cancel");
+//                    System.out.println("Hua kuch cancel");
                 }
             }
 //                AllRequests.get(AllRequests.indexOf(CancelReq.get(i))).setStatus("Cancelled");
         }
-        System.out.println("requests check " + current_user.getRequests());
+//        System.out.println("requests check " + current_user.getRequests());
 //        clgobj.getAllUsersMap().put(MainPage.main.current_user.getEmailId(), MainPage.main.current_user);
-        System.out.println("all = " + AllRequests);
+//        System.out.println("all = " + AllRequests);
         Controller.serializeArray(AllRequests);
         College.serialize(clgobj);
         if (req!=null){
@@ -99,7 +99,7 @@ public class MyRequestsController implements Initializable {
             current_user.uppdateNotification(s);
         }
         
-        System.out.println("after cancel "+ current_user.getNotification());
+//        System.out.println("after cancel "+ current_user.getNotification());
         College.serialize(clgobj);
     }
     /**
@@ -108,9 +108,9 @@ public class MyRequestsController implements Initializable {
     public void PopulateTable() {
 //        User currentStudent = MainPage.clgobj.getAllUsersMap().get(MainPage.main.current_user.getEmailId());
         
-        System.out.println("requests check " + current_user.getRequests());
+//        System.out.println("requests check " + current_user.getRequests());
         ObservableList<Requests> courseObservableList = FXCollections.observableArrayList(current_user.getRequests());
-        System.out.println("check 2 " + courseObservableList);
+//        System.out.println("check 2 " + courseObservableList);
         dateMyRequests.setCellValueFactory(new PropertyValueFactory<>("date"));
         startTimeMyRequests.setCellValueFactory(new PropertyValueFactory<>("startTime"));
         endTimeMyRequests.setCellValueFactory(new PropertyValueFactory<>("endTime"));
@@ -119,7 +119,7 @@ public class MyRequestsController implements Initializable {
         roomMyRequests.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
 
         myRequestsTable.setItems(courseObservableList);
-        System.out.println("HAANNNNJIIII");
+//        System.out.println("HAANNNNJIIII");
 //        requestTable.setItems(obsList);
 //        myRequestsTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 //        College.serialize(clgobj);

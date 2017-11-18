@@ -273,8 +273,8 @@ public class StudentController implements Initializable {
                 Logger.getLogger(StudentController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        System.out.println(MainPage.current_user);
-        System.out.println(MainPage.current_user.getName());
+//        System.out.println(MainPage.current_user);
+//        System.out.println(MainPage.current_user.getName());
 //        welcome_user.
         welcome_user.setText("Welcome, " + MainPage.current_user.getName());
 //            resultInfo.setText("Passed!");

@@ -98,13 +98,13 @@ public class SearchFriendsController  implements Initializable{
 
         TextFlow textFlow = new TextFlow();
         listViewRequests.getItems().clear();
-        System.out.println(friendRequests.size());
+//        System.out.println(friendRequests.size());
         for(int i=0;i<friendRequests.size();i++){
             AnchorPane anchorPane  = new AnchorPane();
             textFlow = new TextFlow();
 
             Student sender = friendRequests.get(i).getSender();
-            System.out.println(sender.getName());
+//            System.out.println(sender.getName());
 
 
             Text text1 = new Text(sender.getName() + "\n");
@@ -353,11 +353,11 @@ public class SearchFriendsController  implements Initializable{
                                 anchorPane.getChildren().add(textFlow);
                                 textFlow.setPrefWidth(290);
                                 for(int i=0;i<((Student) current_user).getFriendRequests().size();i++){
-                                    System.out.println(((Student) current_user).getFriendRequests().get(i).getReceiver().getName());
+//                                    System.out.println(((Student) current_user).getFriendRequests().get(i).getReceiver().getName());
                                     if(((Student) current_user).getFriendRequests().get(i).getReceiver().getName().equals(x.getValue().getName())
                                             || ((Student) current_user).getFriendRequests().get(i).getSender().getName().equals(x.getValue().getName())){
 
-                                        System.out.println("DEBUG");
+//                                        System.out.println("DEBUG");
                                         Text textstatus = new Text(((Student) current_user).getFriendRequests().get(i).getStatus());
                                         anchorPane.getChildren().add(textstatus);
                                         textstatus.setLayoutX(270);

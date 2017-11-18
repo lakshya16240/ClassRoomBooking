@@ -118,8 +118,8 @@ public class SearchCoursesController implements Initializable {
 //        clgobj.getAllUsersMap().put(user.getEmailId(),user);
         clgobj.getAllUsersMap().put(current_user.getEmailId(), current_user);
 
-        System.out.println("Courses are : " + ((Student)current_user).viewCourses() );
-        System.out.println("Check courses : " + ((Student)clgobj.getAllUsersMap().get(current_user.getEmailId())).viewCourses());
+//        System.out.println("Courses are : " + ((Student)current_user).viewCourses() );
+//        System.out.println("Check courses : " + ((Student)clgobj.getAllUsersMap().get(current_user.getEmailId())).viewCourses());
         College.serialize(clgobj);
     }
 
@@ -160,7 +160,7 @@ public class SearchCoursesController implements Initializable {
             Logger.getLogger(SearchCoursesController.class.getName()).log(Level.SEVERE, null, ex);
         }
         courseList = clgobj.getAllCourses();
-        System.out.println("debugging : " + courseList.size());
+//        System.out.println("debugging : " + courseList.size());
         ObservableList<Course> courseObservableList = FXCollections.observableArrayList();
         ArrayList<Course> registeredCourses = ((Student)MainPage.current_user).viewCourses();
         //            course.convertToString(courseList);'
@@ -205,7 +205,7 @@ public class SearchCoursesController implements Initializable {
                 ArrayList<Course> registeredCourses = ((Student)MainPage.current_user).viewCourses();
 //                ObservableList<String> postConditionsObservableList = FXCollections.observableArrayList();
 
-                System.out.println("hello ::::::::::::::::::::" + finalCourseList.size());
+//                System.out.println("hello ::::::::::::::::::::" + finalCourseList.size());
                 for (int i = 0; i < finalCourseList.size(); i++) {
                     //System.out.println("loop :::");
                     Course course = finalCourseList.get(i);
@@ -213,7 +213,7 @@ public class SearchCoursesController implements Initializable {
                     ArrayList<String> postConditions = course.getPostConditions();
                     for (int j = 0; j < postConditions.size(); j++) {
 
-                        //System.out.println(course.getName() + " " + postConditions.get(j).contains(newValue));
+//                        System.out.println(course.getName() + " " + postConditions.get(j).contains(newValue));
                         if (postConditions.get(j).contains(newValue) && !registeredCourses.contains(course) && checkTimingsCourses(registeredCourses,course) ) {
                             course.convertToString(postConditions);
                             courseObservableList.add(course);

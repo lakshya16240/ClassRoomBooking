@@ -199,12 +199,12 @@ public class MainPage extends Application {
 //        RoomData = Room.deserializeRoom();
 //        System.out.println("lets check " + RoomData.get("C11").getBookings());
         clgobj = deserialize("data");
-        System.out.println();
+//        System.out.println();
 
         Admin obj = (Admin) clgobj.getAllUsersMap().get("abhishek16126");
-        System.out.println("after deserializing at start");
+//        System.out.println("after deserializing at start");
 
-        System.out.println(obj.getReq());
+//        System.out.println(obj.getReq());
 //        ArrayList<Integer> myarray = new ArrayList<Integer>();
 
         ArrayList<Course> courseinfo = new ArrayList<>();
@@ -218,7 +218,7 @@ public class MainPage extends Application {
         HashMap<String, Room> RoomData = new HashMap<String, Room>();
         RoomData = Room.deserializeRoom();
         Room RoomObj = RoomData.get("C21");
-        System.out.println("lets check " + RoomData.get("C11").getBookings());
+//        System.out.println("lets check " + RoomData.get("C11").getBookings());
 
 //        System.out.println("room data coming");
 //        RoomObj.printAvailability();

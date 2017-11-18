@@ -149,7 +149,7 @@ public class Controller implements Initializable {
         }
         System.out.println(type + " " + course);
         if (!type.equals("Student")) {
-            if (user_name.equals("") || email.equals("") || passwd.equals("")  || type.equals("")) {
+            if (user_name.equals("") || email.equals("") || passwd.equals("") || type.equals("")) {
                 signuplabel.setText("All Fields are Required");
                 flag = 1;
             }
@@ -176,10 +176,10 @@ public class Controller implements Initializable {
             int val = clgobj.SignUp(user_name, email, passwd, type, course, batch);
             if (val == 0) {
                 signuplabel.setText("User already exists");
-            } //        if (val==2){
-            //            signuplabel.setText("Invalid E-mail Id");
-            //        }
-            else {
+            }
+            if (val == 2) {
+                signuplabel.setText("Invalid E-mail Id");
+            } else {
                 signuplabel.setText("Sign up succesful");
 
             }
