@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" href="../static/css/style.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <title>Hello, world!</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .logo {
+            max-width: 2000px;
+            height: 50px;
+            background-color: #010629;
+        }
+
+        .b1 {
+            background-color: #46ace2;
+            border: none;
+            color: #FEFCFD;
+            padding: 10px 24px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            /* width: 100%; */
+        }
+
+        .b1:hover {
+            background-color: #FEFCFD;
+            color: #46ace2;
+        }
+
+        .upload {
+            /* position: fixed; */
+            /* left: 20px;
+      margin: 50px;
+      margin-left: 100px;
+      margin-right: 100px; */
+            padding: 20px;
+            /* height: 50px;
+      width: 300px; */
+
+        }
+
+        /* input[type="file"] {
+            display: none;
+        } */
+
+        /* .instruc{
+    position: fixed; 
+    right: 20px;
+    margin: 5px;
+    padding-top: 0px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    padding-bottom: 10px;
+    height: 300px;
+    width: 750px;
+    border-style: solid;
+    border-color: coral;
+}
+.metrics{
+    position: fixed;
+    bottom: 5px;
+    right: 20px;
+    margin: 5px;
+    padding-top: 0px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    padding-bottom: 10px;
+    height: 300px;
+    width: 750px;
+    border-style: solid;
+    border-color: coral;
+}
+.thumbnail{
+  position: fixed;
+  margin-left: 30px;
+  margin-top: 150px;
+  height: 200px;
+  width: 250px;
+  border-style: solid;
+  border-color: coral;
+
+}
+.results{
+  position: fixed;
+  margin-left: 300px;
+  margin-top: 150px;
+  height: 100px;
+  width: 300px;
+  border-style: solid;
+  border-color: coral;
+}
+.submit{
+  left: 20px;
+  margin: 500px;
+  margin-left: 100px;
+  margin-right: 100px;
+  padding: 20px;
+  height: 50px;
+  width: 300px;
+}
+.b2{
+  background-color: #e43d32;
+  border: none;
+  color: #FEFCFD;
+  padding: 10px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+}
+.b2:hover {
+  background-color: #FEFCFD;
+  color: #e43d32;
+}  */
+    </style>
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="bg-dark p-3 navigation-bar logo">
+            <img src="../static/images/logo.jpeg" style='position:absolute; top:0; left:0;' width="150" height="50">
+            </img>
+
+        </div>
+        <div class="row">
+
+            <div class="col-md-6 col-12 ">
+                <div class="p-4 d-flex flex-row justify-content-center ">
+                    <div class="col-12 text-center">
+                        <video width="520" height="290" controls id="videoProfile">
+                            <source src="../static/images/My video CV -- student video resume.mp4" type="video/mp4">
+                            <source src="movie.ogg" type="video/ogg">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="row justify-content-center ">
+
+                            <div class="upload " id="upload_video">
+                                <label class="b1">
+                                    <input type="file" accept="video/*" onchange="loadVideo(event)"
+                                        style="display: none;" />
+                                    <i class="fa fa-cloud-upload"></i> Upload Video
+                                </label>
+                            </div>
+                            <div class="upload " id="upload_video">
+                                <label class="b1">
+                                    <input type="submit" style="display: none;" onclick="submitVideo(event)"
+                                        data-toggle="modal" data-target="#bookmarksModal" />
+                                    <i class="fa fa-cloud-upload"></i> Submit Video
+                                </label>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal fade" id="bookmarksModal" tabindex="-1" role="dialog"
+                    aria-labelledby="bookmarksModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="bookmarksModalLabel">Add Bookmarks</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container">
+                                    <form class="form-inline" role="form" id="frm_scents">
+                                        <div class="row" id="p_scents">
+                                            <div class="form-group">
+                                                <input type="number" class="form-control tx-sm bookmark" id="Fld_Time"
+                                                    placeholder="Time" />
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control tx-md bookmark" id="Fld_Ques"
+                                                    placeholder="Description" />
+                                            </div>
+                                            <a href="#" id="addScnt"><i class="fa fa-plus" aria-hidden="true"></i>+</a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" id="saveChanges"
+                                    onclick="getInputValue();">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4 d-flex flex-row">
+                    <div class="col-md-6">
+                        <p>Bookmarks</p><br>
+                        <div class="row">
+                            <div class="col-12" id="bookmarks"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 ">
+                        Results
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col">
+                <div class="instruc m-5 p-2 border border-warning" id="page_instructions">
+                    <p><i>Instructions</i><br>Prior to the meeting, make sure that you have the following items:
+                    <ul>
+                        <li>One notepad</li>
+                        <li>Two to three sharpened pencils with functioning erasers</li>
+                        <li>An up-to-date agenda</li>
+                        <li>Any necessary handouts for the body</li>
+                        <li>One bottle of water</li>
+                    </ul>
+                    </p>
+                </div>
+                <div class="metrics m-5 p-2 border border-warning" id="results">
+                    <p><i>Results</i><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        Lorem Ipsum
+                        has been
+                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                        of type and
+                        scrambled it to make a type specimen book. It has survived not only five centuries, but also the
+                        leap into
+                        electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with
+                        the release
+                        of
+                        Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                        software like
+                        Aldus
+                        PageMaker including versions of Lorem Ipsum.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.js"></script>
+
+    <script>
+        var bookmarks = {}
+
+        var video = document.getElementById('videoProfile');
+        var loadVideo = function (event) {
+            // var video = document.getElementById("videoProfile");
+            video.src = URL.createObjectURL(event.target.files[0]);
+            console.log(event.target.files[0].name);
+            $.ajax({
+                url: '/processVideo',
+                type: 'POST',
+                contentType: 'text/plain',
+                data: event.target.files[0].name ,
+                success: function (response) {
+                    console.log(response);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        }
+
+        var seekVideo = function (obj) {
+            console.log(obj.innerHTML)
+            video.currentTime = obj.innerHTML;
+        }
+
+        var addBookmarks = function (bookmarks) {
+            // var box = document.getElementById('timestamp');
+            // var desp= document.getElementById('descript');
+            var bookmarksRow = document.getElementById("bookmarks")
+            for (var i in bookmarks) {
+                console.log(i, bookmarks[i])
+                // var row = document.createElement('div');
+                // row.a.setAttribute("class",)
+                // var col = document.createElement("div")
+                var a = document.createElement('a');
+                var linkText = document.createTextNode(i);
+                a.appendChild(linkText);
+                a.setAttribute("onclick", "seekVideo(this)");
+                a.title = i;
+                a.href = "javascript:;";
+                var desc = document.createElement('p');
+                desc.innerHTML = bookmarks[i];
+                var div = document.createElement("div");
+                div.className += "row"
+                a.className += "mr-2"
+                div.appendChild(a);
+                div.appendChild(desc);
+                bookmarksRow.appendChild(div);
+                // box.appendChild(a);
+                // desp.appendChild(desc);
+                // var linebreak = document.createElement("br");
+                // box.appendChild(linebreak);
+            }
+        }
+        var scntDiv = $("#frm_scents");
+        var i = $("#p_scents").length + 1;
+
+        $(function () {
+            $("#addScnt").click(function () {
+                $(
+                    '<div class="row" id="p_scents"><div class="form-group"><input type="number" class="form-control tx-sm bookmark" id="Fld_Time(' +
+                    i +
+                    ')" placeholder="Time" /></div><div class="form-group"><input type="text" class="form-control tx-md bookmark" id="Fld_Ques(' +
+                    i +
+                    ')" placeholder="Description" /></div><a href="#" id="remScnt" onclick="removeCont(this);"><i class="fa fa-minus-circle" aria-hidden="true"></i>-</a></div>'
+                ).appendTo(scntDiv);
+                i++;
+                return false;
+            });
+        });
+
+        function removeCont(_this) {
+            if (i > 1) {
+                $(_this).parent().remove();
+                i--;
+            }
+        }
+
+
+        function getInputValue() {
+
+            // Selecting the input element and get its value 
+            var ele = document.getElementsByClassName('bookmark');
+            console.log("here" + ele.length)
+
+            for (i = 0; i < ele.length; i++) {
+                console.log(ele[i].value in Object.keys(bookmarks), ele[i].value, typeof (Object.keys(bookmarks)[0]))
+                if (ele[i].type == "text" && ele[i - 1].value != "")
+                    bookmarks[ele[i - 1].value] = ele[i].value;
+
+            }
+            addBookmarks(bookmarks)
+        }
+
+    // var save = document.getElementById("saveChanges");
+    // save.addEventListener('click', getinput);
+    // save.addEventListener("click")
+    </script>
+</body>
+
+</html>
