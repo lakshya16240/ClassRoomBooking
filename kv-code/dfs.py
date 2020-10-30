@@ -36,7 +36,7 @@ class Graph:
 
 		# Mark all the vertices as not visited 
 		visited = [False] * (max(self.graph)+1) 
-
+		print(visited)
 		# Call the recursive helper function 
 		# to print DFS traversal 
 		self.DFSUtil(v, visited) 
