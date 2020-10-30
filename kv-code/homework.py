@@ -272,7 +272,7 @@ if __name__ == '__main__':
 
 	detector = dlib.get_frontal_face_detector()
 	predictor = dlib.shape_predictor('./static/model/shape_predictor_68_face_landmarks.dat')
-
+	print(predictor)
 	center_validations, face_detected, face_size_valid, eye_ball_position, multiple_faces_frames, eye_area = pre_process_video(detector, predictor, args.vid_path)
 	final_analysis(center_validations, face_detected, face_size_valid, eye_ball_position, multiple_faces_frames, eye_area)
 
