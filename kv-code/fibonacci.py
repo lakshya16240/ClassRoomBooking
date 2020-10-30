@@ -19,4 +19,4 @@ def fibonacci(n):
 	FibArray[n] = FibArray[n - 2] + FibArray[n - 1] 
 	return FibArray[n] 
 	
-print(fibonacci(9)) 
+print(fibonacci(10)) 
