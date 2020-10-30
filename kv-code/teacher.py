@@ -12,6 +12,7 @@ def process_video():
    print("hello")
    modelUrl = "./static/model/shape_predictor_68_face_landmarks.dat"
    videoUrl = baseUrl + request.data.decode("utf-8")
+   print(videoUrl)
    processVideo(modelUrl,videoUrl)
    return "hello"
 
